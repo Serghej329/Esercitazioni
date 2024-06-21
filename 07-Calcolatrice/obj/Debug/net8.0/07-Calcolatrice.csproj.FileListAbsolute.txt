@@ -1,0 +1,15 @@
+C:\Users\Serghej\Documents\Esercitazioni\07-Calcolatrice\obj\Debug\net8.0\07-Calcolatrice.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Serghej\Documents\Esercitazioni\07-Calcolatrice\obj\Debug\net8.0\07-Calcolatrice.AssemblyInfoInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\07-Calcolatrice\obj\Debug\net8.0\07-Calcolatrice.AssemblyInfo.cs
+C:\Users\Serghej\Documents\Esercitazioni\07-Calcolatrice\obj\Debug\net8.0\07-Calcolatrice.csproj.CoreCompileInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\07-Calcolatrice\obj\Debug\net8.0\07-Calcolatrice.sourcelink.json
+C:\Users\Serghej\Documents\Esercitazioni\07-Calcolatrice\bin\Debug\net8.0\07-Calcolatrice.exe
+C:\Users\Serghej\Documents\Esercitazioni\07-Calcolatrice\bin\Debug\net8.0\07-Calcolatrice.deps.json
+C:\Users\Serghej\Documents\Esercitazioni\07-Calcolatrice\bin\Debug\net8.0\07-Calcolatrice.runtimeconfig.json
+C:\Users\Serghej\Documents\Esercitazioni\07-Calcolatrice\bin\Debug\net8.0\07-Calcolatrice.dll
+C:\Users\Serghej\Documents\Esercitazioni\07-Calcolatrice\bin\Debug\net8.0\07-Calcolatrice.pdb
+C:\Users\Serghej\Documents\Esercitazioni\07-Calcolatrice\obj\Debug\net8.0\07-Calcolatrice.dll
+C:\Users\Serghej\Documents\Esercitazioni\07-Calcolatrice\obj\Debug\net8.0\refint\07-Calcolatrice.dll
+C:\Users\Serghej\Documents\Esercitazioni\07-Calcolatrice\obj\Debug\net8.0\07-Calcolatrice.pdb
+C:\Users\Serghej\Documents\Esercitazioni\07-Calcolatrice\obj\Debug\net8.0\07-Calcolatrice.genruntimeconfig.cache
+C:\Users\Serghej\Documents\Esercitazioni\07-Calcolatrice\obj\Debug\net8.0\ref\07-Calcolatrice.dll
