@@ -1,0 +1,15 @@
+C:\Users\Serghej\Documents\Esercitazioni\01-Tipi-di-dati\obj\Debug\net8.0\01-Tipi-di-dati.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Serghej\Documents\Esercitazioni\01-Tipi-di-dati\obj\Debug\net8.0\01-Tipi-di-dati.AssemblyInfoInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\01-Tipi-di-dati\obj\Debug\net8.0\01-Tipi-di-dati.AssemblyInfo.cs
+C:\Users\Serghej\Documents\Esercitazioni\01-Tipi-di-dati\obj\Debug\net8.0\01-Tipi-di-dati.csproj.CoreCompileInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\01-Tipi-di-dati\obj\Debug\net8.0\01-Tipi-di-dati.sourcelink.json
+C:\Users\Serghej\Documents\Esercitazioni\01-Tipi-di-dati\bin\Debug\net8.0\01-Tipi-di-dati.exe
+C:\Users\Serghej\Documents\Esercitazioni\01-Tipi-di-dati\bin\Debug\net8.0\01-Tipi-di-dati.deps.json
+C:\Users\Serghej\Documents\Esercitazioni\01-Tipi-di-dati\bin\Debug\net8.0\01-Tipi-di-dati.runtimeconfig.json
+C:\Users\Serghej\Documents\Esercitazioni\01-Tipi-di-dati\bin\Debug\net8.0\01-Tipi-di-dati.dll
+C:\Users\Serghej\Documents\Esercitazioni\01-Tipi-di-dati\bin\Debug\net8.0\01-Tipi-di-dati.pdb
+C:\Users\Serghej\Documents\Esercitazioni\01-Tipi-di-dati\obj\Debug\net8.0\01-Tipi-di-dati.dll
+C:\Users\Serghej\Documents\Esercitazioni\01-Tipi-di-dati\obj\Debug\net8.0\refint\01-Tipi-di-dati.dll
+C:\Users\Serghej\Documents\Esercitazioni\01-Tipi-di-dati\obj\Debug\net8.0\01-Tipi-di-dati.pdb
+C:\Users\Serghej\Documents\Esercitazioni\01-Tipi-di-dati\obj\Debug\net8.0\01-Tipi-di-dati.genruntimeconfig.cache
+C:\Users\Serghej\Documents\Esercitazioni\01-Tipi-di-dati\obj\Debug\net8.0\ref\01-Tipi-di-dati.dll
