@@ -1,0 +1,15 @@
+C:\Users\Serghej\Documents\Esercitazioni\06-Assignment\obj\Debug\net8.0\06-Assignment.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Serghej\Documents\Esercitazioni\06-Assignment\obj\Debug\net8.0\06-Assignment.AssemblyInfoInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\06-Assignment\obj\Debug\net8.0\06-Assignment.AssemblyInfo.cs
+C:\Users\Serghej\Documents\Esercitazioni\06-Assignment\obj\Debug\net8.0\06-Assignment.csproj.CoreCompileInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\06-Assignment\obj\Debug\net8.0\06-Assignment.sourcelink.json
+C:\Users\Serghej\Documents\Esercitazioni\06-Assignment\bin\Debug\net8.0\06-Assignment.exe
+C:\Users\Serghej\Documents\Esercitazioni\06-Assignment\bin\Debug\net8.0\06-Assignment.deps.json
+C:\Users\Serghej\Documents\Esercitazioni\06-Assignment\bin\Debug\net8.0\06-Assignment.runtimeconfig.json
+C:\Users\Serghej\Documents\Esercitazioni\06-Assignment\bin\Debug\net8.0\06-Assignment.dll
+C:\Users\Serghej\Documents\Esercitazioni\06-Assignment\bin\Debug\net8.0\06-Assignment.pdb
+C:\Users\Serghej\Documents\Esercitazioni\06-Assignment\obj\Debug\net8.0\06-Assignment.dll
+C:\Users\Serghej\Documents\Esercitazioni\06-Assignment\obj\Debug\net8.0\refint\06-Assignment.dll
+C:\Users\Serghej\Documents\Esercitazioni\06-Assignment\obj\Debug\net8.0\06-Assignment.pdb
+C:\Users\Serghej\Documents\Esercitazioni\06-Assignment\obj\Debug\net8.0\06-Assignment.genruntimeconfig.cache
+C:\Users\Serghej\Documents\Esercitazioni\06-Assignment\obj\Debug\net8.0\ref\06-Assignment.dll
