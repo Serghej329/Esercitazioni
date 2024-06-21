@@ -1,0 +1,15 @@
+C:\Users\Serghej\Documents\Esercitazioni\03-esercitazioni-su-tipi-dati-ed-operatori\obj\Debug\net8.0\03-esercitazioni-su-tipi-dati-ed-operatori.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Serghej\Documents\Esercitazioni\03-esercitazioni-su-tipi-dati-ed-operatori\obj\Debug\net8.0\03-esercitazioni-su-tipi-dati-ed-operatori.AssemblyInfoInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\03-esercitazioni-su-tipi-dati-ed-operatori\obj\Debug\net8.0\03-esercitazioni-su-tipi-dati-ed-operatori.AssemblyInfo.cs
+C:\Users\Serghej\Documents\Esercitazioni\03-esercitazioni-su-tipi-dati-ed-operatori\obj\Debug\net8.0\03-esercitazioni-su-tipi-dati-ed-operatori.csproj.CoreCompileInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\03-esercitazioni-su-tipi-dati-ed-operatori\obj\Debug\net8.0\03-esercitazioni-su-tipi-dati-ed-operatori.sourcelink.json
+C:\Users\Serghej\Documents\Esercitazioni\03-esercitazioni-su-tipi-dati-ed-operatori\bin\Debug\net8.0\03-esercitazioni-su-tipi-dati-ed-operatori.exe
+C:\Users\Serghej\Documents\Esercitazioni\03-esercitazioni-su-tipi-dati-ed-operatori\bin\Debug\net8.0\03-esercitazioni-su-tipi-dati-ed-operatori.deps.json
+C:\Users\Serghej\Documents\Esercitazioni\03-esercitazioni-su-tipi-dati-ed-operatori\bin\Debug\net8.0\03-esercitazioni-su-tipi-dati-ed-operatori.runtimeconfig.json
+C:\Users\Serghej\Documents\Esercitazioni\03-esercitazioni-su-tipi-dati-ed-operatori\bin\Debug\net8.0\03-esercitazioni-su-tipi-dati-ed-operatori.dll
+C:\Users\Serghej\Documents\Esercitazioni\03-esercitazioni-su-tipi-dati-ed-operatori\bin\Debug\net8.0\03-esercitazioni-su-tipi-dati-ed-operatori.pdb
+C:\Users\Serghej\Documents\Esercitazioni\03-esercitazioni-su-tipi-dati-ed-operatori\obj\Debug\net8.0\03-esercitazioni-su-tipi-dati-ed-operatori.dll
+C:\Users\Serghej\Documents\Esercitazioni\03-esercitazioni-su-tipi-dati-ed-operatori\obj\Debug\net8.0\refint\03-esercitazioni-su-tipi-dati-ed-operatori.dll
+C:\Users\Serghej\Documents\Esercitazioni\03-esercitazioni-su-tipi-dati-ed-operatori\obj\Debug\net8.0\03-esercitazioni-su-tipi-dati-ed-operatori.pdb
+C:\Users\Serghej\Documents\Esercitazioni\03-esercitazioni-su-tipi-dati-ed-operatori\obj\Debug\net8.0\03-esercitazioni-su-tipi-dati-ed-operatori.genruntimeconfig.cache
+C:\Users\Serghej\Documents\Esercitazioni\03-esercitazioni-su-tipi-dati-ed-operatori\obj\Debug\net8.0\ref\03-esercitazioni-su-tipi-dati-ed-operatori.dll

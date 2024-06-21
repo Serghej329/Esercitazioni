@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Serghej\\Documents\\Esercitazioni\\Prima_Esercitazione\\console\\console.csproj": {}
+    "C:\\Users\\Serghej\\Documents\\Esercitazioni\\03-esercitazioni-su-tipi-dati-ed-operatori\\03-esercitazioni-su-tipi-dati-ed-operatori.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Serghej\\Documents\\Esercitazioni\\Prima_Esercitazione\\console\\console.csproj": {
+    "C:\\Users\\Serghej\\Documents\\Esercitazioni\\03-esercitazioni-su-tipi-dati-ed-operatori\\03-esercitazioni-su-tipi-dati-ed-operatori.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Serghej\\Documents\\Esercitazioni\\Prima_Esercitazione\\console\\console.csproj",
-        "projectName": "console",
-        "projectPath": "c:\\Users\\Serghej\\Documents\\Esercitazioni\\Prima_Esercitazione\\console\\console.csproj",
+        "projectUniqueName": "C:\\Users\\Serghej\\Documents\\Esercitazioni\\03-esercitazioni-su-tipi-dati-ed-operatori\\03-esercitazioni-su-tipi-dati-ed-operatori.csproj",
+        "projectName": "03-esercitazioni-su-tipi-dati-ed-operatori",
+        "projectPath": "C:\\Users\\Serghej\\Documents\\Esercitazioni\\03-esercitazioni-su-tipi-dati-ed-operatori\\03-esercitazioni-su-tipi-dati-ed-operatori.csproj",
         "packagesPath": "C:\\Users\\Serghej\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Serghej\\Documents\\Esercitazioni\\Prima_Esercitazione\\console\\obj\\",
+        "outputPath": "C:\\Users\\Serghej\\Documents\\Esercitazioni\\03-esercitazioni-su-tipi-dati-ed-operatori\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Serghej\\AppData\\Roaming\\NuGet\\NuGet.Config"
