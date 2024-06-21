@@ -1,5 +1,8 @@
 ﻿Console.WriteLine("|scegli la data| \n 1)Lunedì \n 2)Martedì \n 3)Mercoledì \n 4)Giovedì \n 5)Venerdì \n 6)Sabato \n 7)Domenica \n Scrivimi il numero");
+/*
 int giorno = Convert.ToInt32(Console.ReadLine());
+*/
+int giorno = int.Parse(Console.ReadLine()!);
 
 switch (giorno)
 {
