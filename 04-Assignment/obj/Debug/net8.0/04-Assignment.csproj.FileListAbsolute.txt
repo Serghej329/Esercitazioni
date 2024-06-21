@@ -1,0 +1,15 @@
+C:\Users\Serghej\Documents\Esercitazioni\04-Assignment\bin\Debug\net8.0\04-Assignment.exe
+C:\Users\Serghej\Documents\Esercitazioni\04-Assignment\bin\Debug\net8.0\04-Assignment.deps.json
+C:\Users\Serghej\Documents\Esercitazioni\04-Assignment\bin\Debug\net8.0\04-Assignment.runtimeconfig.json
+C:\Users\Serghej\Documents\Esercitazioni\04-Assignment\bin\Debug\net8.0\04-Assignment.dll
+C:\Users\Serghej\Documents\Esercitazioni\04-Assignment\bin\Debug\net8.0\04-Assignment.pdb
+C:\Users\Serghej\Documents\Esercitazioni\04-Assignment\obj\Debug\net8.0\04-Assignment.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Serghej\Documents\Esercitazioni\04-Assignment\obj\Debug\net8.0\04-Assignment.AssemblyInfoInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\04-Assignment\obj\Debug\net8.0\04-Assignment.AssemblyInfo.cs
+C:\Users\Serghej\Documents\Esercitazioni\04-Assignment\obj\Debug\net8.0\04-Assignment.csproj.CoreCompileInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\04-Assignment\obj\Debug\net8.0\04-Assignment.sourcelink.json
+C:\Users\Serghej\Documents\Esercitazioni\04-Assignment\obj\Debug\net8.0\04-Assignment.dll
+C:\Users\Serghej\Documents\Esercitazioni\04-Assignment\obj\Debug\net8.0\refint\04-Assignment.dll
+C:\Users\Serghej\Documents\Esercitazioni\04-Assignment\obj\Debug\net8.0\04-Assignment.pdb
+C:\Users\Serghej\Documents\Esercitazioni\04-Assignment\obj\Debug\net8.0\04-Assignment.genruntimeconfig.cache
+C:\Users\Serghej\Documents\Esercitazioni\04-Assignment\obj\Debug\net8.0\ref\04-Assignment.dll

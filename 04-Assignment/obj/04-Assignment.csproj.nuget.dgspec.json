@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Serghej\\Documents\\Esercitazioni\\Prima_Esercitazione\\console\\console.csproj": {}
+    "C:\\Users\\Serghej\\Documents\\Esercitazioni\\04-Assignment\\04-Assignment.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Serghej\\Documents\\Esercitazioni\\Prima_Esercitazione\\console\\console.csproj": {
+    "C:\\Users\\Serghej\\Documents\\Esercitazioni\\04-Assignment\\04-Assignment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Serghej\\Documents\\Esercitazioni\\Prima_Esercitazione\\console\\console.csproj",
-        "projectName": "console",
-        "projectPath": "C:\\Users\\Serghej\\Documents\\Esercitazioni\\Prima_Esercitazione\\console\\console.csproj",
+        "projectUniqueName": "C:\\Users\\Serghej\\Documents\\Esercitazioni\\04-Assignment\\04-Assignment.csproj",
+        "projectName": "04-Assignment",
+        "projectPath": "C:\\Users\\Serghej\\Documents\\Esercitazioni\\04-Assignment\\04-Assignment.csproj",
         "packagesPath": "C:\\Users\\Serghej\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Serghej\\Documents\\Esercitazioni\\Prima_Esercitazione\\console\\obj\\",
+        "outputPath": "C:\\Users\\Serghej\\Documents\\Esercitazioni\\04-Assignment\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Serghej\\AppData\\Roaming\\NuGet\\NuGet.Config"
