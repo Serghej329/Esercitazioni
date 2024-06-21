@@ -1,0 +1,15 @@
+C:\Users\Serghej\Documents\Esercitazioni\05-Condizioni\bin\Debug\net8.0\05-Condizioni.exe
+C:\Users\Serghej\Documents\Esercitazioni\05-Condizioni\bin\Debug\net8.0\05-Condizioni.deps.json
+C:\Users\Serghej\Documents\Esercitazioni\05-Condizioni\bin\Debug\net8.0\05-Condizioni.runtimeconfig.json
+C:\Users\Serghej\Documents\Esercitazioni\05-Condizioni\bin\Debug\net8.0\05-Condizioni.dll
+C:\Users\Serghej\Documents\Esercitazioni\05-Condizioni\bin\Debug\net8.0\05-Condizioni.pdb
+C:\Users\Serghej\Documents\Esercitazioni\05-Condizioni\obj\Debug\net8.0\05-Condizioni.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Serghej\Documents\Esercitazioni\05-Condizioni\obj\Debug\net8.0\05-Condizioni.AssemblyInfoInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\05-Condizioni\obj\Debug\net8.0\05-Condizioni.AssemblyInfo.cs
+C:\Users\Serghej\Documents\Esercitazioni\05-Condizioni\obj\Debug\net8.0\05-Condizioni.csproj.CoreCompileInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\05-Condizioni\obj\Debug\net8.0\05-Condizioni.sourcelink.json
+C:\Users\Serghej\Documents\Esercitazioni\05-Condizioni\obj\Debug\net8.0\05-Condizioni.dll
+C:\Users\Serghej\Documents\Esercitazioni\05-Condizioni\obj\Debug\net8.0\refint\05-Condizioni.dll
+C:\Users\Serghej\Documents\Esercitazioni\05-Condizioni\obj\Debug\net8.0\05-Condizioni.pdb
+C:\Users\Serghej\Documents\Esercitazioni\05-Condizioni\obj\Debug\net8.0\05-Condizioni.genruntimeconfig.cache
+C:\Users\Serghej\Documents\Esercitazioni\05-Condizioni\obj\Debug\net8.0\ref\05-Condizioni.dll
