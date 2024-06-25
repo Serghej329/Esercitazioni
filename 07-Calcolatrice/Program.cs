@@ -1,8 +1,10 @@
 ﻿//Pulisce il terminale
 Console.Clear();
 
+
+
 //MENU'
-Console.WriteLine("\t |CALCOLATRICE (2 numeri)| \n\n    MENU' \n 1)ADDIZIONE \n 2)SOTTRAZIONE \n 3)MOLTIPLICAZIONE \n 4)DIVISIONE \n 5)RADICE \n 6)ESPONENZIALE \n Digita il numero dell'operazione che vuoi fare: ");
+Console.WriteLine("\t |CALCOLATRICE (2 numeri)| \n\n    MENU' \n 1)ADDIZIONE \n 2)SOTTRAZIONE \n 3)MOLTIPLICAZIONE \n 4)DIVISIONE \n 5)RADICE \n 6)ESPONENZIALE \n Digita il numero dell'operazione che vuoi fare: ");
 
 //Richiesta del tipo di operazione
 int operazione = int.Parse(Console.ReadLine()!); // Converte l'input dell'utente in un numero intero
@@ -11,6 +13,7 @@ int operazione = int.Parse(Console.ReadLine()!); // Converte l'input dell'utente
 Console.WriteLine("Scrivimi il primo numero ");
 int n1 = int.Parse(Console.ReadLine()!); // Converte l'input dell'utente in un numero intero
 Console.WriteLine("Scrivimi il secondo numero");
+
 int n2 = int.Parse(Console.ReadLine()!); // Converte l'input dell'utente in un numero intero
 
 //Controlli operazioni
