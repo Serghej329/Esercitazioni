@@ -1,0 +1,15 @@
+C:\Users\Serghej\Documents\Esercitazioni\13-Assignment-indovina-numero\obj\Debug\net8.0\13-Assignment-indovina-numero.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Serghej\Documents\Esercitazioni\13-Assignment-indovina-numero\obj\Debug\net8.0\13-Assignment-indovina-numero.AssemblyInfoInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\13-Assignment-indovina-numero\obj\Debug\net8.0\13-Assignment-indovina-numero.AssemblyInfo.cs
+C:\Users\Serghej\Documents\Esercitazioni\13-Assignment-indovina-numero\obj\Debug\net8.0\13-Assignment-indovina-numero.csproj.CoreCompileInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\13-Assignment-indovina-numero\obj\Debug\net8.0\13-Assignment-indovina-numero.sourcelink.json
+C:\Users\Serghej\Documents\Esercitazioni\13-Assignment-indovina-numero\bin\Debug\net8.0\13-Assignment-indovina-numero.exe
+C:\Users\Serghej\Documents\Esercitazioni\13-Assignment-indovina-numero\bin\Debug\net8.0\13-Assignment-indovina-numero.deps.json
+C:\Users\Serghej\Documents\Esercitazioni\13-Assignment-indovina-numero\bin\Debug\net8.0\13-Assignment-indovina-numero.runtimeconfig.json
+C:\Users\Serghej\Documents\Esercitazioni\13-Assignment-indovina-numero\bin\Debug\net8.0\13-Assignment-indovina-numero.dll
+C:\Users\Serghej\Documents\Esercitazioni\13-Assignment-indovina-numero\bin\Debug\net8.0\13-Assignment-indovina-numero.pdb
+C:\Users\Serghej\Documents\Esercitazioni\13-Assignment-indovina-numero\obj\Debug\net8.0\13-Assignment-indovina-numero.dll
+C:\Users\Serghej\Documents\Esercitazioni\13-Assignment-indovina-numero\obj\Debug\net8.0\refint\13-Assignment-indovina-numero.dll
+C:\Users\Serghej\Documents\Esercitazioni\13-Assignment-indovina-numero\obj\Debug\net8.0\13-Assignment-indovina-numero.pdb
+C:\Users\Serghej\Documents\Esercitazioni\13-Assignment-indovina-numero\obj\Debug\net8.0\13-Assignment-indovina-numero.genruntimeconfig.cache
+C:\Users\Serghej\Documents\Esercitazioni\13-Assignment-indovina-numero\obj\Debug\net8.0\ref\13-Assignment-indovina-numero.dll
