@@ -1,0 +1,15 @@
+C:\Users\Serghej\Documents\Esercitazioni\12-Metodo-Random\obj\Debug\net8.0\12-Metodo-Random.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Serghej\Documents\Esercitazioni\12-Metodo-Random\obj\Debug\net8.0\12-Metodo-Random.AssemblyInfoInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\12-Metodo-Random\obj\Debug\net8.0\12-Metodo-Random.AssemblyInfo.cs
+C:\Users\Serghej\Documents\Esercitazioni\12-Metodo-Random\obj\Debug\net8.0\12-Metodo-Random.csproj.CoreCompileInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\12-Metodo-Random\obj\Debug\net8.0\12-Metodo-Random.sourcelink.json
+C:\Users\Serghej\Documents\Esercitazioni\12-Metodo-Random\bin\Debug\net8.0\12-Metodo-Random.exe
+C:\Users\Serghej\Documents\Esercitazioni\12-Metodo-Random\bin\Debug\net8.0\12-Metodo-Random.deps.json
+C:\Users\Serghej\Documents\Esercitazioni\12-Metodo-Random\bin\Debug\net8.0\12-Metodo-Random.runtimeconfig.json
+C:\Users\Serghej\Documents\Esercitazioni\12-Metodo-Random\bin\Debug\net8.0\12-Metodo-Random.dll
+C:\Users\Serghej\Documents\Esercitazioni\12-Metodo-Random\bin\Debug\net8.0\12-Metodo-Random.pdb
+C:\Users\Serghej\Documents\Esercitazioni\12-Metodo-Random\obj\Debug\net8.0\12-Metodo-Random.dll
+C:\Users\Serghej\Documents\Esercitazioni\12-Metodo-Random\obj\Debug\net8.0\refint\12-Metodo-Random.dll
+C:\Users\Serghej\Documents\Esercitazioni\12-Metodo-Random\obj\Debug\net8.0\12-Metodo-Random.pdb
+C:\Users\Serghej\Documents\Esercitazioni\12-Metodo-Random\obj\Debug\net8.0\12-Metodo-Random.genruntimeconfig.cache
+C:\Users\Serghej\Documents\Esercitazioni\12-Metodo-Random\obj\Debug\net8.0\ref\12-Metodo-Random.dll
