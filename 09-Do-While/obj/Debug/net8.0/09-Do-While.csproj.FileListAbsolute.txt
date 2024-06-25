@@ -1,0 +1,15 @@
+C:\Users\Serghej\Documents\Esercitazioni\09-Do-While\bin\Debug\net8.0\09-Do-While.exe
+C:\Users\Serghej\Documents\Esercitazioni\09-Do-While\bin\Debug\net8.0\09-Do-While.deps.json
+C:\Users\Serghej\Documents\Esercitazioni\09-Do-While\bin\Debug\net8.0\09-Do-While.runtimeconfig.json
+C:\Users\Serghej\Documents\Esercitazioni\09-Do-While\bin\Debug\net8.0\09-Do-While.dll
+C:\Users\Serghej\Documents\Esercitazioni\09-Do-While\bin\Debug\net8.0\09-Do-While.pdb
+C:\Users\Serghej\Documents\Esercitazioni\09-Do-While\obj\Debug\net8.0\09-Do-While.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Serghej\Documents\Esercitazioni\09-Do-While\obj\Debug\net8.0\09-Do-While.AssemblyInfoInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\09-Do-While\obj\Debug\net8.0\09-Do-While.AssemblyInfo.cs
+C:\Users\Serghej\Documents\Esercitazioni\09-Do-While\obj\Debug\net8.0\09-Do-While.csproj.CoreCompileInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\09-Do-While\obj\Debug\net8.0\09-Do-While.sourcelink.json
+C:\Users\Serghej\Documents\Esercitazioni\09-Do-While\obj\Debug\net8.0\09-Do-While.dll
+C:\Users\Serghej\Documents\Esercitazioni\09-Do-While\obj\Debug\net8.0\refint\09-Do-While.dll
+C:\Users\Serghej\Documents\Esercitazioni\09-Do-While\obj\Debug\net8.0\09-Do-While.pdb
+C:\Users\Serghej\Documents\Esercitazioni\09-Do-While\obj\Debug\net8.0\09-Do-While.genruntimeconfig.cache
+C:\Users\Serghej\Documents\Esercitazioni\09-Do-While\obj\Debug\net8.0\ref\09-Do-While.dll

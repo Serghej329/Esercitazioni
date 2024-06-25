@@ -1,0 +1,15 @@
+C:\Users\Serghej\Documents\Esercitazioni\08-While\obj\Debug\net8.0\08-While.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Serghej\Documents\Esercitazioni\08-While\obj\Debug\net8.0\08-While.AssemblyInfoInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\08-While\obj\Debug\net8.0\08-While.AssemblyInfo.cs
+C:\Users\Serghej\Documents\Esercitazioni\08-While\obj\Debug\net8.0\08-While.csproj.CoreCompileInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\08-While\obj\Debug\net8.0\08-While.sourcelink.json
+C:\Users\Serghej\Documents\Esercitazioni\08-While\bin\Debug\net8.0\08-While.exe
+C:\Users\Serghej\Documents\Esercitazioni\08-While\bin\Debug\net8.0\08-While.deps.json
+C:\Users\Serghej\Documents\Esercitazioni\08-While\bin\Debug\net8.0\08-While.runtimeconfig.json
+C:\Users\Serghej\Documents\Esercitazioni\08-While\bin\Debug\net8.0\08-While.dll
+C:\Users\Serghej\Documents\Esercitazioni\08-While\bin\Debug\net8.0\08-While.pdb
+C:\Users\Serghej\Documents\Esercitazioni\08-While\obj\Debug\net8.0\08-While.dll
+C:\Users\Serghej\Documents\Esercitazioni\08-While\obj\Debug\net8.0\refint\08-While.dll
+C:\Users\Serghej\Documents\Esercitazioni\08-While\obj\Debug\net8.0\08-While.pdb
+C:\Users\Serghej\Documents\Esercitazioni\08-While\obj\Debug\net8.0\08-While.genruntimeconfig.cache
+C:\Users\Serghej\Documents\Esercitazioni\08-While\obj\Debug\net8.0\ref\08-While.dll

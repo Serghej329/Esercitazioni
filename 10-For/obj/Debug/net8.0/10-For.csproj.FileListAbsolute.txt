@@ -1,0 +1,15 @@
+C:\Users\Serghej\Documents\Esercitazioni\10-For\bin\Debug\net8.0\10-For.exe
+C:\Users\Serghej\Documents\Esercitazioni\10-For\bin\Debug\net8.0\10-For.deps.json
+C:\Users\Serghej\Documents\Esercitazioni\10-For\bin\Debug\net8.0\10-For.runtimeconfig.json
+C:\Users\Serghej\Documents\Esercitazioni\10-For\bin\Debug\net8.0\10-For.dll
+C:\Users\Serghej\Documents\Esercitazioni\10-For\bin\Debug\net8.0\10-For.pdb
+C:\Users\Serghej\Documents\Esercitazioni\10-For\obj\Debug\net8.0\10-For.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Serghej\Documents\Esercitazioni\10-For\obj\Debug\net8.0\10-For.AssemblyInfoInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\10-For\obj\Debug\net8.0\10-For.AssemblyInfo.cs
+C:\Users\Serghej\Documents\Esercitazioni\10-For\obj\Debug\net8.0\10-For.csproj.CoreCompileInputs.cache
+C:\Users\Serghej\Documents\Esercitazioni\10-For\obj\Debug\net8.0\10-For.sourcelink.json
+C:\Users\Serghej\Documents\Esercitazioni\10-For\obj\Debug\net8.0\10-For.dll
+C:\Users\Serghej\Documents\Esercitazioni\10-For\obj\Debug\net8.0\refint\10-For.dll
+C:\Users\Serghej\Documents\Esercitazioni\10-For\obj\Debug\net8.0\10-For.pdb
+C:\Users\Serghej\Documents\Esercitazioni\10-For\obj\Debug\net8.0\10-For.genruntimeconfig.cache
+C:\Users\Serghej\Documents\Esercitazioni\10-For\obj\Debug\net8.0\ref\10-For.dll
