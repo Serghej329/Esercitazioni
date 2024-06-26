@@ -71,3 +71,5 @@ Console.WriteLine($"GAME OVER  \n Numero segreto era: {segreto}");
 Console.WriteLine($"Tentativi fatti: {tentativiFatti}");
 Console.WriteLine("Premi un tasto per uscire...");
 Console.ReadKey();
+
+//bool isPari = somma % 2 == 0 

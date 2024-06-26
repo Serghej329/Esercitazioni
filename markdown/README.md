@@ -21,6 +21,10 @@ esempio di _italic_
 - [x] ciaoooooo
 - [ ] primoooooo
 
+|syntax|balalalsd|ciaooo|
+|---------|---------|----|
+|header|------|
+
 
 ```
 ciaoooooooooooo
