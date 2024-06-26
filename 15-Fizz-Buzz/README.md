@@ -2,7 +2,7 @@
 
 ### Questo readme.md documenta tre diversi metodi per implementare il classico gioco FizzBuzz in C#. Il gioco consiste nel generare una sequenza di numeri da 1 a 100, sostituendo i numeri divisibili per 3 con "Fizz", quelli divisibili per 5 con "Buzz" e quelli divisibili per entrambi 3 e 5 con "FizzBuzz". 
 
-```Mermaid
+```mermaid
 flowchart TD
     A(15) --> B[ FIZZBUZZ ]
     C(3) --> D[ FIZZ ]
