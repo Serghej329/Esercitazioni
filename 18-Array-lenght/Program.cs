@@ -1,5 +1,4 @@
-﻿
-int[] num = new int[4];
+﻿int[] num = new int[4];
 num[0] = 5;
 num[1] = 10;
 num[2] = 20;
