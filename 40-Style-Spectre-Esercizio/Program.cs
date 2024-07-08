@@ -20,11 +20,12 @@ Passaggi per l'implementazione:
 - Mostra il risultato di ogni dado e il totale.
 - Conserva il risultato totale di ogni turno in un'altra lista.
 */
+using Spectre.Console;
+
 
 // Chiede all'utente quanti dadi vuole lanciare
-Console.WriteLine("Quanti dadi vuoi lanciare? (scrivi un numero):");
+AnsiConsole.Markup("[bold]Quanti dadi vuoi lanciare? (scrivi un numero):[/] ");
 int numDadi = int.Parse(Console.ReadLine()!);
-
 
 // Crea un array per memorizzare i risultati di ogni dado
 int[] risultatiDado = new int[numDadi];
@@ -32,30 +33,49 @@ int[] risultatiDado = new int[numDadi];
 // Crea una lista per memorizzare il totale dei numeri ottenuti ad ogni turno
 List<int> totNumeri = new List<int>();
 
-/*
-// Crea una lista per memorizzare il risultato totale di ogni turno
-List<int> risultatiTotaliTurni = new List<int>();
-*/
 int[] freqNum = new int[6];
 
 int turni = 0;
 Random random = new Random();
 
-
 while (true)
 {
     turni++;
-    Console.WriteLine($"\nTurno:  {turni}");
+    AnsiConsole.Markup($"\n[bold yellow]Turno: {turni}[/]\n");
 
     // Svuotare array freqNum
     freqNum = new int[freqNum.Length];
-    // 
 
+    /*Animazione 1.0
+        // Simula l'animazione del lancio dei dadi
+        AnsiConsole.Markup("[italic]Lanciando i dadi[/]");
+        for (int i = 0; i < 3; i++)
+        {
+            AnsiConsole.Markup(".");
+            Thread.Sleep(500);  // Aspetta mezzo secondo per simulare l'animazione
+        }
+        AnsiConsole.MarkupLine("");
+    */
+
+    //Animazione 2.0
+    for (int i = 0; i < numDadi; i++)
+    {
+        Console.Write("\r");
+        Console.Write("🎲");
+        Thread.Sleep(200);
+        Console.Write("\r");
+        Thread.Sleep(200);    
+    }
+    Console.Write("\r "); // Canncella il carattere di rotazione
     // Lancia i dadi e memorizza i risultati nell'array
+    var diceTable = new Table();
+    diceTable.AddColumn("[bold]Dado[/]");
+    diceTable.AddColumn("[bold]Risultato[/]");
+
     for (int i = 0; i < numDadi; i++)
     {
         risultatiDado[i] = random.Next(1, 7);
-        Console.Write($" |{risultatiDado[i]}|"); // Visualizza il risultato del dado
+        diceTable.AddRow((i + 1).ToString(), risultatiDado[i].ToString());
 
         int risultatoDadoCorrente = risultatiDado[i];
 
@@ -81,10 +101,13 @@ while (true)
                 break;
             default:
                 // Gestione errore, ma in teoria non dovrebbe mai accadere con risultatiDado[i] = random.Next(1, 7);
-                Console.WriteLine($"ERRORE! Come avresti fatto... Spiegami!");
+                AnsiConsole.MarkupLine($"[bold red]ERRORE! Come avresti fatto... Spiegami![/]");
                 break;
         }
     }
+
+    // Visualizza la tabella dei risultati dei dadi
+    AnsiConsole.Write(diceTable);
 
     // Calcolo il totale dei risultati dei dadi
     int totNumero = 0;
@@ -93,24 +116,28 @@ while (true)
         totNumero += risultatiDado[i];
     }
 
-    // Visualizz il totale dei numeri ottenuti in questo turno
-    Console.WriteLine($"\nTotale: {totNumero}");
+    // Visualizza il totale dei numeri ottenuti in questo turno
+    AnsiConsole.MarkupLine($"\n[bold green]Totale: {totNumero}[/]");
 
     // Aggiunge il totale del turno alla lista dei totali
     totNumeri.Add(totNumero);
 
     // Stampa la frequenza di ogni numero alla fine del turno
+    var freqTable = new Table();
+    freqTable.AddColumn("Numero");
+    freqTable.AddColumn("Frequenza");
+
     for (int i = 0; i < 6; i++)
     {
-        Console.WriteLine($"Frequenza numero {i + 1}: {freqNum[i]} volte uscito");
+        // Aggiunge una riga alla tabella delle frequenze.
+        // La prima colonna è il numero del dado (da 1 a 6), la seconda colonna è quante volte è uscito quel numero.
+        freqTable.AddRow((i + 1).ToString(), freqNum[i].ToString());
     }
 
-    /*
-        // Aggiunge il risultato totale del turno alla lista apposita
-        risultatiTotaliTurni.Add(turni);
-    */
+    // Visualizza la tabella delle frequenze
+    AnsiConsole.Write(freqTable);
 
-    Console.WriteLine("\nVuoi lanciare di nuovo? (s/n):");
+    AnsiConsole.MarkupLine("\n[bold]Vuoi lanciare di nuovo? (s/n):[/]");
     string risposta = Console.ReadLine()!.ToLower();
     if (risposta != "s")
     {
@@ -119,8 +146,8 @@ while (true)
 }
 
 // Esempio di visualizzazione dei risultati totali di ogni turno
-Console.WriteLine("\nRisultati totali di ogni turno:");
+AnsiConsole.MarkupLine("\n[bold]Risultati totali di ogni turno:[/]");
 for (int i = 0; i < totNumeri.Count; i++)
 {
-    Console.WriteLine($"Turno {i + 1}: {totNumeri[i]}");
+    AnsiConsole.MarkupLine($"[bold yellow]Turno {i + 1}[/]: [green]{totNumeri[i]}[/]");
 }
