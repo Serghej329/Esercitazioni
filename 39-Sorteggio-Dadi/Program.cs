@@ -20,7 +20,7 @@ Passaggi per l'implementazione:
 - Mostra il risultato di ogni dado e il totale.
 - Conserva il risultato totale di ogni turno in un'altra lista.
 */
-
+/*
 // Chiede all'utente quanti dadi vuole lanciare
 Console.WriteLine("Quanti dadi vuoi lanciare? (scrivi un numero):");
 int numDadi = int.Parse(Console.ReadLine()!);
@@ -35,7 +35,7 @@ List<int> totNumeri = new List<int>();
 /*
 // Crea una lista per memorizzare il risultato totale di ogni turno
 List<int> risultatiTotaliTurni = new List<int>();
-*/
+*//*
 int[] freqNum = new int[6];
 
 int turni = 0;
@@ -77,7 +77,7 @@ while (true)
                 freqNum[4]++;
                 break;
             case 6:
-                freqNum[5]++;
+                freqNum[5]++;  
                 break;
             default:
                 // Gestione errore, ma in teoria non dovrebbe mai accadere con risultatiDado[i] = random.Next(1, 7);
@@ -109,7 +109,7 @@ while (true)
         // Aggiunge il risultato totale del turno alla lista apposita
         risultatiTotaliTurni.Add(turni);
     */
-
+/*
     Console.WriteLine("\nVuoi lanciare di nuovo? (s/n):");
     string risposta = Console.ReadLine()!.ToLower();
     if (risposta != "s")
@@ -124,3 +124,126 @@ for (int i = 0; i < totNumeri.Count; i++)
 {
     Console.WriteLine($"Turno {i + 1}: {totNumeri[i]}");
 }
+*/
+
+        // Chiede all'utente quanti dadi vuole lanciare
+        Console.WriteLine("Quanti dadi vuoi lanciare? (scrivi un numero):");
+        int numDadi = int.Parse(Console.ReadLine()!);
+
+        // Verifica che il numero di dadi sia valido
+        if (numDadi <= 0)
+        {
+            Console.WriteLine("Il numero di dadi deve essere maggiore di zero.");
+            return;
+        }
+
+        // Crea un array per memorizzare i risultati di ogni dado
+        int[] risultatiDado = new int[numDadi];
+
+        // Crea una lista per memorizzare il totale dei numeri ottenuti ad ogni turno
+        List<int> totNumeri = new List<int>();
+
+        // Crea un array per la frequenza di ogni numero
+        int[] freqNum = new int[6];
+
+        int turni = 0;
+        Random random = new Random();
+
+        while (true)
+        {
+            turni++;
+            Console.WriteLine($"\nTurno:  {turni}");
+
+            // Svuotare array freqNum
+            Array.Clear(freqNum, 0, freqNum.Length);
+
+            // Lancia i dadi e memorizza i risultati nell'array
+            for (int i = 0; i < numDadi; i++)
+            {
+                risultatiDado[i] = random.Next(1, 7);
+                Console.Write($" |{risultatiDado[i]}|"); // Visualizza il risultato del dado
+
+                // Incrementa la frequenza del risultato corrente
+                freqNum[risultatiDado[i] - 1]++;
+            }
+
+            // Calcolo il totale dei risultati dei dadi
+            int totNumero = 0;
+            for (int i = 0; i < numDadi; i++)
+            {
+                totNumero += risultatiDado[i];
+            }
+
+            // Visualizza il totale dei numeri ottenuti in questo turno
+            Console.WriteLine($"\nTotale: {totNumero}");
+
+            // Aggiunge il totale del turno alla lista dei totali
+            totNumeri.Add(totNumero);
+
+            // Stampa la frequenza di ogni numero alla fine del turno
+            for (int i = 0; i < 6; i++)
+            {
+                Console.WriteLine($"Frequenza numero {i + 1}: {freqNum[i]} volte uscito");
+            }
+
+            // Chiede all'utente se vuole lanciare di nuovo
+            Console.WriteLine("\nVuoi lanciare di nuovo? (s/n):");
+            string risposta = Console.ReadLine()!.ToLower();
+            if (risposta != "n")
+            {
+                continue;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        // Esempio di visualizzazione dei risultati totali di ogni turno
+        Console.WriteLine("\nRisultati totali di ogni turno:");
+        for (int i = 0; i < totNumeri.Count; i++)
+        {
+            Console.WriteLine($"Turno {i + 1}: {totNumeri[i]}");
+        }
+
+        // Calcolo statistiche finali
+        if (totNumeri.Count > 0)
+        {
+            // Media dei punteggi totali
+            int somma = 0;
+            foreach (int numero in totNumeri)
+            {
+                somma += numero;
+            }
+            double media = (double)somma / totNumeri.Count;
+            Console.WriteLine($"\nMedia dei punteggi totali: {media:F2}");
+
+            // Punteggio più frequente
+            Dictionary<int, int> frequenze = new Dictionary<int, int>();
+            foreach (int numero in totNumeri)
+            {
+                if (frequenze.ContainsKey(numero))
+                {
+                    frequenze[numero]++;
+                }
+                else
+                {
+                    frequenze[numero] = 1;
+                }
+            }
+
+            int punteggioFrequente = 0;
+            int maxFrequenza = 0;
+
+            foreach (KeyValuePair<int, int> entry in frequenze)
+            {
+                if (entry.Value > maxFrequenza)
+                {
+                    maxFrequenza = entry.Value;
+                    punteggioFrequente = entry.Key;
+                }
+            }
+
+            Console.WriteLine($"Punteggio più frequente: {punteggioFrequente}");
+        }
+
