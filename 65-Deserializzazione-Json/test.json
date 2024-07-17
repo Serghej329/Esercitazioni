@@ -1,0 +1,29 @@
+[
+{
+    "nome": "antonio",
+    "cognome": "rossi",
+    "eta": 20,
+    "indirizzo": {
+        "via": " via roma",
+        "citta": " Roma"
+    }
+},
+{
+    "nome": "mario",
+    "cognome": "Verdi",
+    "eta": 21,
+    "indirizzo": {
+        "via": " via milano",
+        "citta": " milano"
+    }
+},
+{
+    "nome": "luigi",
+    "cognome": "marrone",
+    "eta": 25,
+    "indirizzo": {
+        "via": " via alla chiesa di pra",
+        "citta": " Genova"
+    }
+}
+]
