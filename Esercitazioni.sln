@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "42-Yahzee", "42-Yahzee\42-Y
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "64-Persistenza-dati-Deserializzazione", "64-Persistenza-dati-Deserializzazione\64-Persistenza-dati-Deserializzazione.csproj", "{B0C65767-69C1-4B3E-8141-F7E2F45F4178}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestionale-Spese-Aziendali", "Gestionale-Spese-Aziendali\Gestionale-Spese-Aziendali.csproj", "{719F35C6-D9F7-4AD6-8458-3180ABA1BD06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{B0C65767-69C1-4B3E-8141-F7E2F45F4178}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0C65767-69C1-4B3E-8141-F7E2F45F4178}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0C65767-69C1-4B3E-8141-F7E2F45F4178}.Release|Any CPU.Build.0 = Release|Any CPU
+		{719F35C6-D9F7-4AD6-8458-3180ABA1BD06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{719F35C6-D9F7-4AD6-8458-3180ABA1BD06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{719F35C6-D9F7-4AD6-8458-3180ABA1BD06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{719F35C6-D9F7-4AD6-8458-3180ABA1BD06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E5CE7024-7F8F-485D-B428-6D24A678BF89} = {C026496B-A9A9-4460-9A81-D2D1E89580FC}
