@@ -121,7 +121,7 @@ class Program
                                                     if (ordine == "Crescente")
                                                     {
                                                         prodottiOrdinati = Prodotti.ToList();
-                                                        prodottiOrdinati.OrderBy(Prodotti.Prodotto);
+                                                       /* prodottiOrdinati.OrderBy(prodotto);*/
                                                     }
                                                     else
                                                     {
