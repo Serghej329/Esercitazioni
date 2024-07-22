@@ -21,7 +21,7 @@ Il **Gestionale delle Spese Aziendali** è un'applicazione console sviluppata in
 
 ### Categorie di Spesa
 
-- [ ] **Gestione Categorie**: Crea e gestisci categorie di spesa personalizzate.
+- [ ] **Gestione Categorie**: Crea e gestisci categorie di spesa personalizzate automatizzata (se aggiungo nuovo prod. categoria 'legumi'  tutti i prodotti presenti in GestioneProdotti con categoria legumi allora alla selezione di categoria di prodotto nel menù principale verrà aggiunta la categoria "legumi" da poter selezionare per poter vedere tutti i prodotti con categoria legumi e così via).
 - [ ] **Assegna Categorie**: Collega i prodotti alle categorie appropriate per una gestione più organizzata.
 
 ### Report e Analisi

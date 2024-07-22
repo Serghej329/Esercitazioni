@@ -33,5 +33,26 @@
     "Prodotto": "ser",
     "Categoria": "ser",
     "Descrizione": "ser"
+  },
+  {
+    "Data": "2024-07-22T15:27:38.6354991+02:00",
+    "Importo": 444.0,
+    "Prodotto": "serrr",
+    "Categoria": "serr",
+    "Descrizione": "serrrrrrrrr"
+  },
+  {
+    "Data": "2024-07-22T15:39:39.4117215+02:00",
+    "Importo": 3434.0,
+    "Prodotto": "serrr",
+    "Categoria": "serrrr",
+    "Descrizione": "serrrrrrrrrrr"
+  },
+  {
+    "Data": "2024-07-22T15:50:28.215281+02:00",
+    "Importo": 500.0,
+    "Prodotto": "ser",
+    "Categoria": "serrrr",
+    "Descrizione": "serrrrrrrr"
   }
 ]

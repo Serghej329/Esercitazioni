@@ -10,6 +10,7 @@ class Program
         decimal importo = 0;
         string categoria = "";
         string descrizione = "";
+
         // Definizione dell'oggetto del prodotto con valori vuoti
         dynamic ProdottoBase = new
         {
@@ -23,26 +24,31 @@ class Program
         // Stampa il titolo dell'applicazione
         AnsiConsole.MarkupLine("[bold green]Gestionale delle Prodotti Aziendali[/]");
 
-        string path = @"GestioneProdotti.json";
-        var Prodotti = new List<dynamic>();
+        string pathProdotti = @"GestioneProdotti.json";
+        string pathCategorie = @"Categorie.json";
 
-        if (File.Exists(path))
+        // Carica i dati dei prodotti
+        List<dynamic> Prodotti;
+        if (File.Exists(pathProdotti))
         {
-            // Leggi il contenuto del file JSON
-            string json = File.ReadAllText(path);
-
-            // Deserializza il contenuto del file JSON
-            var deserializedProdotti = JsonConvert.DeserializeObject<List<dynamic>>(json);
-            if (deserializedProdotti != null)
-            {
-                Prodotti = deserializedProdotti;
-            }
+            string jsonProdotti = File.ReadAllText(pathProdotti);
+            Prodotti = JsonConvert.DeserializeObject<List<dynamic>>(jsonProdotti) ?? new List<dynamic>();
         }
         else
         {
-            // Se il file non esiste, inizializza una lista vuota e crea un file JSON vuoto
             Prodotti = new List<dynamic>();
-            File.WriteAllText(path, "[]");
+        }
+
+        // Carica le categorie
+        List<string> Categorie;
+        if (File.Exists(pathCategorie))
+        {
+            string jsonCategorie = File.ReadAllText(pathCategorie);
+            Categorie = JsonConvert.DeserializeObject<List<string>>(jsonCategorie) ?? new List<string>();
+        }
+        else
+        {
+            Categorie = new List<string>();
         }
 
         while (true)
@@ -67,7 +73,7 @@ class Program
                         switch (sottoMenu)
                         {
                             case "Aggiungi Prodotto":
-                                {                                    
+                                {
                                     data = DateTime.Now;
                                     prodotto = AnsiConsole.Prompt(new TextPrompt<string>("Inserisci il nome del prodotto:"));
                                     importo = AnsiConsole.Prompt(new TextPrompt<decimal>("Inserisci l'importo del prodotto:"));
@@ -85,9 +91,18 @@ class Program
 
                                     Prodotti.Add(nuovoProdotto);
 
-                                    // Serializza la lista di Prodotti in JSON e scrivilo nel file
-                                    string json = JsonConvert.SerializeObject(Prodotti, Formatting.Indented);
-                                    File.WriteAllText(path, json);
+                                    // Verifica e aggiungi la categoria se non esiste già
+                                    if (!Categorie.Contains(categoria))
+                                    {
+                                        Categorie.Add(categoria);
+                                        // Salva le categorie aggiornate nel file
+                                        string jsonCategorie = JsonConvert.SerializeObject(Categorie, Formatting.Indented);
+                                        File.WriteAllText(pathCategorie, jsonCategorie);
+                                    }
+
+                                    // Salva i prodotti aggiornati nel file
+                                    string jsonProdotti = JsonConvert.SerializeObject(Prodotti, Formatting.Indented);
+                                    File.WriteAllText(pathProdotti, jsonProdotti);
 
                                     AnsiConsole.MarkupLine("[green]Prodotto aggiunto con successo![/]");
                                 }
@@ -107,25 +122,24 @@ class Program
                                                 .AddChoices("Alfabetico", "Di inserimento", "Di data", "Di categoria", "Di prezzo (alto a basso)", "Di prezzo (basso ad alto)"));
 
                                         // Crea una copia della lista per l'ordinamento
-                                        var prodottiOrdinati = Prodotti.ToList();
+                                        List<dynamic> prodottiOrdinati = Prodotti.ToList();
 
                                         switch (criterio)
                                         {
                                             case "Alfabetico":
                                                 {
-                                                    var ordine = AnsiConsole.Prompt(
+                                                    string ordine = AnsiConsole.Prompt(
                                                         new SelectionPrompt<string>()
                                                             .Title("Scegli l'ordine di visualizzazione:")
                                                             .AddChoices("Crescente", "Decrescente"));
 
                                                     if (ordine == "Crescente")
                                                     {
-                                                        prodottiOrdinati = Prodotti.ToList();
-                                                       /* prodottiOrdinati.OrderBy(prodotto);*/
+                                                        prodottiOrdinati = Prodotti.OrderBy(p => (string)p.Prodotto).ToList();
                                                     }
                                                     else
                                                     {
-
+                                                        prodottiOrdinati = Prodotti.OrderByDescending(p => (string)p.Prodotto).ToList();
                                                     }
                                                 }
                                                 break;
@@ -133,16 +147,16 @@ class Program
                                                 prodottiOrdinati = Prodotti.ToList();
                                                 break;
                                             case "Di data":
-
+                                                prodottiOrdinati = Prodotti.OrderBy(p => (DateTime)p.Data).ToList();
                                                 break;
                                             case "Di categoria":
-
+                                                prodottiOrdinati = Prodotti.OrderBy(p => (string)p.Categoria).ToList();
                                                 break;
                                             case "Di prezzo (alto a basso)":
-
+                                                prodottiOrdinati = Prodotti.OrderByDescending(p => (decimal)p.Importo).ToList();
                                                 break;
                                             case "Di prezzo (basso ad alto)":
-
+                                                prodottiOrdinati = Prodotti.OrderBy(p => (decimal)p.Importo).ToList();
                                                 break;
                                         }
 
@@ -157,9 +171,9 @@ class Program
 
                                         for (int i = 0; i < prodottiOrdinati.Count; i++)
                                         {
-                                            var Prodotto = prodottiOrdinati[i];
-                                            string orario = ((DateTime)Prodotto.Data).ToString("HH:mm");
-                                            tabella.AddRow(i.ToString(), ((DateTime)Prodotto.Data).ToShortDateString(), orario, ((decimal)Prodotto.Importo).ToString("C"), (string)Prodotto.Prodotto, (string)Prodotto.Categoria, (string)Prodotto.Descrizione);
+                                            var prodottoItem = prodottiOrdinati[i];
+                                            string orario = ((DateTime)prodottoItem.Data).ToString("HH:mm");
+                                            tabella.AddRow(i.ToString(), ((DateTime)prodottoItem.Data).ToShortDateString(), orario, ((decimal)prodottoItem.Importo).ToString("C"), (string)prodottoItem.Prodotto, (string)prodottoItem.Categoria, (string)prodottoItem.Descrizione);
                                         }
 
                                         AnsiConsole.Write(tabella);
@@ -186,9 +200,9 @@ class Program
 
                                         for (int i = 0; i < Prodotti.Count; i++)
                                         {
-                                            var Prodotto = Prodotti[i];
-                                            string orario = ((DateTime)Prodotto.Data).ToString("HH:mm");
-                                            tabella.AddRow(i.ToString(), ((DateTime)Prodotto.Data).ToShortDateString(), orario, ((decimal)Prodotto.Importo).ToString("C"), (string)Prodotto.Prodotto, (string)Prodotto.Categoria, (string)Prodotto.Descrizione);
+                                            var prodottoItem = Prodotti[i];
+                                            string orario = ((DateTime)prodottoItem.Data).ToString("HH:mm");
+                                            tabella.AddRow(i.ToString(), ((DateTime)prodottoItem.Data).ToShortDateString(), orario, ((decimal)prodottoItem.Importo).ToString("C"), (string)prodottoItem.Prodotto, (string)prodottoItem.Categoria, (string)prodottoItem.Descrizione);
                                         }
 
                                         AnsiConsole.Write(tabella);
@@ -207,7 +221,7 @@ class Program
                                             }
                                         }
 
-                                        var ProdottoDaModificare = Prodotti[index];
+                                        var prodottoDaModificare = Prodotti[index];
 
                                         var campoDaModificare = AnsiConsole.Prompt(
                                             new SelectionPrompt<string>()
@@ -217,25 +231,34 @@ class Program
                                         switch (campoDaModificare)
                                         {
                                             case "Data":
-                                                ProdottoDaModificare.Data = AnsiConsole.Prompt(new TextPrompt<DateTime>("Inserisci la nuova data (YYYY-MM-DD):"));
+                                                prodottoDaModificare.Data = AnsiConsole.Prompt(new TextPrompt<DateTime>("Inserisci la nuova data (YYYY-MM-DD):"));
                                                 break;
                                             case "Importo":
-                                                ProdottoDaModificare.Importo = AnsiConsole.Prompt(new TextPrompt<decimal>("Inserisci il nuovo importo:"));
+                                                prodottoDaModificare.Importo = AnsiConsole.Prompt(new TextPrompt<decimal>("Inserisci il nuovo importo:"));
                                                 break;
                                             case "Prodotto":
-                                                ProdottoDaModificare.Prodotto = AnsiConsole.Prompt(new TextPrompt<string>("Inserisci il nuovo nome del prodotto:"));
+                                                prodottoDaModificare.Prodotto = AnsiConsole.Prompt(new TextPrompt<string>("Inserisci il nuovo nome del prodotto:"));
                                                 break;
                                             case "Categoria":
-                                                ProdottoDaModificare.Categoria = AnsiConsole.Prompt(new TextPrompt<string>("Inserisci la nuova categoria:"));
+                                                prodottoDaModificare.Categoria = AnsiConsole.Prompt(new TextPrompt<string>("Inserisci la nuova categoria:"));
+
+                                                // Verifica e aggiungi la categoria se non esiste già
+                                                if (!Categorie.Contains((string)prodottoDaModificare.Categoria))
+                                                {
+                                                    Categorie.Add((string)prodottoDaModificare.Categoria);
+                                                    // Salva le categorie aggiornate nel file
+                                                    string jsonCategorie = JsonConvert.SerializeObject(Categorie, Formatting.Indented);
+                                                    File.WriteAllText(pathCategorie, jsonCategorie);
+                                                }
                                                 break;
                                             case "Descrizione":
-                                                ProdottoDaModificare.Descrizione = AnsiConsole.Prompt(new TextPrompt<string>("Inserisci la nuova descrizione:"));
+                                                prodottoDaModificare.Descrizione = AnsiConsole.Prompt(new TextPrompt<string>("Inserisci una nuova descrizione:"));
                                                 break;
                                         }
 
-                                        // Serializza la lista di Prodotti in JSON e scrivilo nel file
-                                        string json = JsonConvert.SerializeObject(Prodotti, Formatting.Indented);
-                                        File.WriteAllText(path, json);
+                                        // Salva i prodotti aggiornati nel file
+                                        string jsonProdotti = JsonConvert.SerializeObject(Prodotti, Formatting.Indented);
+                                        File.WriteAllText(pathProdotti, jsonProdotti);
 
                                         AnsiConsole.MarkupLine("[green]Prodotto modificato con successo![/]");
                                     }
@@ -261,9 +284,9 @@ class Program
 
                                         for (int i = 0; i < Prodotti.Count; i++)
                                         {
-                                            var Prodotto = Prodotti[i];
-                                            string orario = ((DateTime)Prodotto.Data).ToString("HH:mm");
-                                            tabella.AddRow(i.ToString(), ((DateTime)Prodotto.Data).ToShortDateString(), orario, ((decimal)Prodotto.Importo).ToString("C"), (string)Prodotto.Prodotto, (string)Prodotto.Categoria, (string)Prodotto.Descrizione);
+                                            var prodottoItem = Prodotti[i];
+                                            string orario = ((DateTime)prodottoItem.Data).ToString("HH:mm");
+                                            tabella.AddRow(i.ToString(), ((DateTime)prodottoItem.Data).ToShortDateString(), orario, ((decimal)prodottoItem.Importo).ToString("C"), (string)prodottoItem.Prodotto, (string)prodottoItem.Categoria, (string)prodottoItem.Descrizione);
                                         }
 
                                         AnsiConsole.Write(tabella);
@@ -284,36 +307,72 @@ class Program
 
                                         Prodotti.RemoveAt(index);
 
-                                        // Serializza la lista di Prodotti in JSON e scrivilo nel file
-                                        string json = JsonConvert.SerializeObject(Prodotti, Formatting.Indented);
-                                        File.WriteAllText(path, json);
+                                        // Salva i prodotti aggiornati nel file
+                                        string jsonProdotti = JsonConvert.SerializeObject(Prodotti, Formatting.Indented);
+                                        File.WriteAllText(pathProdotti, jsonProdotti);
 
-                                        AnsiConsole.MarkupLine("[green]Prodotto eliminato con successo![/]");
+                                        AnsiConsole.MarkupLine("[red]Prodotto eliminato con successo![/]");
                                     }
                                 }
                                 break;
 
                             case "Torna al Menù Principale":
-                                break;
-                        }
-
-                        if (sottoMenu == "Torna al Menù Principale")
-                        {
-                            break;
+                                return;
                         }
                     }
                     break;
 
                 case "Categorie di Prodotto":
-                    AnsiConsole.MarkupLine("[yellow]Categorie di Prodotto - Funzionalità non implementata.[/]");
+                    {
+                        if (Categorie.Count == 0)
+                        {
+                            AnsiConsole.MarkupLine("[yellow]Nessuna categoria registrata.[/]");
+                        }
+                        else
+                        {
+                            var categoriaSelezionata = AnsiConsole.Prompt(
+                                new SelectionPrompt<string>()
+                                    .Title("Categorie disponibili:")
+                                    .AddChoices(Categorie));
+
+                            var prodottiFiltrati = Prodotti.Where(p => (string)p.Categoria == categoriaSelezionata).ToList();
+
+                            if (prodottiFiltrati.Count == 0)
+                            {
+                                AnsiConsole.MarkupLine("[yellow]Nessun prodotto trovato per la categoria selezionata.[/]");
+                            }
+                            else
+                            {
+                                var tabella = new Table();
+                                tabella.AddColumn("Indice");
+                                tabella.AddColumn("Data");
+                                tabella.AddColumn("Orario");
+                                tabella.AddColumn("Importo");
+                                tabella.AddColumn("Prodotto");
+                                tabella.AddColumn("Categoria");
+                                tabella.AddColumn("Descrizione");
+
+                                for (int i = 0; i < prodottiFiltrati.Count; i++)
+                                {
+                                    var prodottoItem = prodottiFiltrati[i];
+                                    string orario = ((DateTime)prodottoItem.Data).ToString("HH:mm");
+                                    tabella.AddRow(i.ToString(), ((DateTime)prodottoItem.Data).ToShortDateString(), orario, ((decimal)prodottoItem.Importo).ToString("C"), (string)prodottoItem.Prodotto, (string)prodottoItem.Categoria, (string)prodottoItem.Descrizione);
+                                }
+
+                                AnsiConsole.Write(tabella);
+                            }
+                        }
+                    }
                     break;
 
                 case "Report e Analisi":
-                    AnsiConsole.MarkupLine("[yellow]Report e Analisi - Funzionalità non implementata.[/]");
+                    {
+                        AnsiConsole.MarkupLine("[yellow]Questa sezione è ancora in fase di sviluppo.[/]");
+                    }
                     break;
 
                 case "Esci":
-                    return; // Esci dall'applicazione
+                    return;
             }
         }
     }
