@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Spectre.Console;
+
 class Program
 {
     static void Main(string[] args)
@@ -157,16 +158,16 @@ class Program
                 prodottiOrdinati = new List<dynamic>(Prodotti);
                 break;
             case "Di data":
-               /* prodottiOrdinati.Sort((a, b) => ((DateTime)a.Data).CompareTo((DateTime)b.Data));*/
+                prodottiOrdinati.Sort(/*OrdinaPerData*/);
                 break;
             case "Di categoria":
-               /* prodottiOrdinati.Sort((a, b) => ((string)a.Categoria).CompareTo((string)b.Categoria));*/
+                prodottiOrdinati.Sort(/*OrdinaPerCategoria*/);
                 break;
             case "Di prezzo (alto a basso)":
-                /*prodottiOrdinati.Sort((a, b) => ((decimal)b.Importo).CompareTo((decimal)a.Importo));*/
+                prodottiOrdinati.Sort(/*OrdinaPerPrezzoDecrescente*/);
                 break;
             case "Di prezzo (basso ad alto)":
-                /*prodottiOrdinati.Sort((a, b) => ((decimal)a.Importo).CompareTo((decimal)b.Importo));*/
+                prodottiOrdinati.Sort(/*OrdinaPerPrezzoCrescente*/);
                 break;
         }
 
@@ -182,11 +183,11 @@ class Program
 
         if (ordine == "Crescente")
         {
-            /*prodottiOrdinati.Sort((a, b) => ((string)a.Prodotto).CompareTo((string)b.Prodotto));*/
+            prodottiOrdinati.Sort(/*OrdinaPerNomeCrescente*/);
         }
         else
         {
-           /* prodottiOrdinati.Sort((a, b) => ((string)b.Prodotto).CompareTo((string)a.Prodotto));*/
+            prodottiOrdinati.Sort(/*OrdinaPerNomeDecrescente*/);
         }
     }
 
@@ -323,7 +324,14 @@ class Program
                 .Title("Categorie disponibili:")
                 .AddChoices(Categorie));
 
-       /* var prodottiFiltrati = Prodotti.Where(p => (string)p.Categoria == categoriaSelezionata).ToList();*/
+        var prodottiFiltrati = new List<dynamic>();
+        foreach (var prodotto in Prodotti)
+        {
+            if ((string)prodotto.Categoria == categoriaSelezionata)
+            {
+                prodottiFiltrati.Add(prodotto);
+            }
+        }
 
         if (prodottiFiltrati.Count == 0)
         {
@@ -334,4 +342,6 @@ class Program
             VisualizzaProdottiInTabella(prodottiFiltrati);
         }
     }
+
+    // Funzioni di ordinamento esplicite
 }
