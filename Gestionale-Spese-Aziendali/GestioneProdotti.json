@@ -1,58 +1,9 @@
 [
   {
-    "Data": "2024-07-22T11:39:33.9746301+02:00",
-    "Importo": 34.0,
-    "Prodotto": "patatine",
+    "Data": "2024-07-23T12:41:41.8854829+02:00",
+    "Importo": 50.0,
+    "Prodotto": "patate",
     "Categoria": "tuberi",
-    "Descrizione": "patatine fritte per Mac"
-  },
-  {
-    "Data": "2024-07-22T11:47:23.1777414+02:00",
-    "Importo": 12.0,
-    "Prodotto": "ananas",
-    "Categoria": "frutta",
-    "Descrizione": "ananas di mahe"
-  },
-  {
-    "Data": "2024-07-22T11:50:26.940592+02:00",
-    "Importo": 30.0,
-    "Prodotto": "pigne",
-    "Categoria": "varie",
-    "Descrizione": "persona mario"
-  },
-  {
-    "Data": "2024-07-22T13:27:44.8431345+02:00",
-    "Importo": 500.0,
-    "Prodotto": "mario",
-    "Categoria": "persona",
-    "Descrizione": "persona mario bla bla bla"
-  },
-  {
-    "Data": "2024-07-22T13:36:24.3914527+02:00",
-    "Importo": 34.0,
-    "Prodotto": "ser",
-    "Categoria": "ser",
-    "Descrizione": "ser"
-  },
-  {
-    "Data": "2024-07-22T15:27:38.6354991+02:00",
-    "Importo": 444.0,
-    "Prodotto": "serrr",
-    "Categoria": "serr",
-    "Descrizione": "serrrrrrrrr"
-  },
-  {
-    "Data": "2024-07-22T15:39:39.4117215+02:00",
-    "Importo": 3434.0,
-    "Prodotto": "serrr",
-    "Categoria": "serrrr",
-    "Descrizione": "serrrrrrrrrrr"
-  },
-  {
-    "Data": "2024-07-22T15:50:28.215281+02:00",
-    "Importo": 500.0,
-    "Prodotto": "ser",
-    "Categoria": "serrrr",
-    "Descrizione": "serrrrrrrr"
+    "Descrizione": "patate gialle dolciastre"
   }
 ]

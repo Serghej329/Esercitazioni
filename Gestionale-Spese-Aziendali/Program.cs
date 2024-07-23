@@ -195,17 +195,17 @@ class Program
 
         VisualizzaProdottiInTabella(prodottiOrdinati);
 
-         var esporta = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
-                .Title("Vuoi esportare in csv? (excel)")
-                .AddChoices("si", "no"));
+        var esporta = AnsiConsole.Prompt(
+           new SelectionPrompt<string>()
+               .Title("Vuoi esportare in csv? (excel)")
+               .AddChoices("si", "no"));
 
         if (esporta == "si")
         {
-           EsportaCSV(Prodotti);
+            EsportaCsvProd(Prodotti);
         }
 
-        
+
     }
 
     static void OrdinaAlfabetico(List<dynamic> prodottiOrdinati)
@@ -369,15 +369,26 @@ class Program
 
         if (prodottiFiltrati.Count == 0)
         {
-            AnsiConsole.MarkupLine("[yellow]Nessun prodotto trovato per la categoria selezionata.[/]");
+            AnsiConsole.MarkupLine("[yellow]Nessun prodotto trovato per la selezione della categoria.[/]");
         }
         else
         {
             VisualizzaProdottiInTabella(prodottiFiltrati);
+            /**********************************************************************************************/
+            var esporta = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("Vuoi esportare in csv? (excel)")
+                    .AddChoices("si", "no"));
+
+            if (esporta == "si")
+            {
+                EsportaCsvCat(Prodotti, categoriaSelezionata);
+            }
+
         }
     }
 
-    static void EsportaCSV(List<dynamic> Prodotti)
+    static void EsportaCsvProd(List<dynamic> Prodotti)
     {
         if (Prodotti.Count == 0)
         {
@@ -386,7 +397,7 @@ class Program
         }
 
         // Percorso del file CSV
-        string pathCSV = "Prodotti.csv";
+        string pathCSV = "ProdottiCompleti.csv";
 
 
         using (var writer = new StreamWriter(pathCSV))
@@ -416,10 +427,63 @@ class Program
 
         if (apriFile == "si")
         {
-            Process.Start("excel.exe", "Prodotti.csv");
+            Process.Start("excel.exe", "ProdottiCompleti.csv");
         }
 
     }
+
+    static void EsportaCsvCat(List<dynamic> Prodotti, string categoriaSelezionata)
+    {
+        // Filtra i prodotti per la categoria selezionata
+        var prodottiCategoria = new List<dynamic>();
+        foreach (var prodotto in Prodotti)
+        {
+            if (prodotto.Categoria == categoriaSelezionata)
+            {
+                prodottiCategoria.Add(prodotto);
+            }
+        }
+
+        if (prodottiCategoria.Count == 0)
+        {
+            AnsiConsole.MarkupLine("[yellow]Nessun prodotto trovato per la categoria selezionata.[/]");
+            return;
+        }
+
+        // Percorso del file CSV
+        string pathCSV = "ProdottiCategoria_" + categoriaSelezionata + ".csv";
+
+        using (var writer = new StreamWriter(pathCSV))
+        {
+            // Scrivi l'intestazione del file CSV
+            writer.WriteLine("Indice,Data,Orario,Importo,Prodotto,Categoria,Descrizione");
+
+            // Scrivi i dati dei prodotti della categoria scelta
+            for (int i = 0; i < prodottiCategoria.Count; i++)
+            {
+                var prodottoItem = prodottiCategoria[i];
+                string data = ((DateTime)prodottoItem.Data).ToShortDateString();
+                string orario = ((DateTime)prodottoItem.Data).ToString("HH:mm");
+                string importo = ((decimal)prodottoItem.Importo).ToString("F2");
+                string prodotto = (string)prodottoItem.Prodotto;
+                string categoria = (string)prodottoItem.Categoria;
+                string descrizione = (string)prodottoItem.Descrizione;
+
+                writer.WriteLine($"{i},{data},{orario},{importo},{prodotto},{categoria},{descrizione}");
+            }
+        }
+
+        var apriFile = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("Vuoi aprire il file?")
+                .AddChoices("si", "no"));
+
+        if (apriFile == "si")
+        {
+            Process.Start("excel.exe", pathCSV);
+        }
+    }
+
 
 
 
