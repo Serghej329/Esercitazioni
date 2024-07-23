@@ -20,13 +20,13 @@ Il **Gestionale delle Spese Aziendali** è un'applicazione console sviluppata in
 
 ### Categorie di Spesa
 
-- [ ] **Gestione Categorie**: Crea e gestisci categorie di spesa personalizzate.
-- [ ] **Assegna Categorie**: Collega i prodotti alle categorie appropriate per una gestione più organizzata.
+- [x] **Gestione Categorie**: Crea e gestisci categorie di spesa personalizzate.
+- [x] **Assegna Categorie**: Collega i prodotti alle categorie appropriate per una gestione più organizzata.
 
 ### Report e Analisi
 
 - [ ] **Esporta in CSV**: Genera file CSV contenenti i dettagli delle spese per analisi finanziaria e contabilità.
-- [ ] **Creazione di Grafici**: Analizza le spese attraverso grafici incorporati nel file CSV (in fase di valutazione).
+- [ ] **Creazione di Grafici**: Analizza le spese attraverso grafici incorporati nel file CSV (in fase di valutazione "Microsoft.Office.Interop.Excel").
 
 ### Funzionalità Future
 
@@ -109,4 +109,5 @@ flowchart TD
         EliminaProdotto
         VisualizzaProdotti
     end
+
 ```

@@ -87,7 +87,7 @@ class Program
 try
 {
     int zero = 0;
-    int numero = 1 / zero; // il programma si blocca perché non si può dividere per zero
+    int numero = 1 / ; // il programma si blocca perché non si può dividere per zero
 }
 catch (Exception e)
 {

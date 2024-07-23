@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Spectre.Console;
+using System.Diagnostics;
 
 class Program
 {
@@ -33,7 +34,7 @@ class Program
                     break;
 
                 case "Report e Analisi":
-                    AnsiConsole.MarkupLine("[yellow]Questa sezione è ancora in fase di sviluppo.[/]");
+                    /*ReportAnalisi();*/
                     break;
 
                 case "Esci":
@@ -44,10 +45,20 @@ class Program
 
     static List<dynamic> CaricaProdotti(string path)
     {
-        if (File.Exists(path))
+        if (File.Exists(path)) // Viene mantenuto il controllo per verificare se il file esiste.
         {
-            string json = File.ReadAllText(path);
-            return JsonConvert.DeserializeObject<List<dynamic>>(json) ?? new List<dynamic>();
+            //si tenta di leggere il contenuto e deserializzarlo.
+            try
+            {
+                string json = File.ReadAllText(path);
+                return JsonConvert.DeserializeObject<List<dynamic>>(json)!;
+            }
+            catch (Exception ex) // In caso di eccezione durante la deserializzazione, viene stampato un messaggio di errore e viene restituita una lista vuota.
+            {
+                // Gestione dell'errore
+                Console.WriteLine($"Errore durante il caricamento dei prodotti: {ex.Message}");
+                return new List<dynamic>();
+            }
         }
         else
         {
@@ -57,16 +68,27 @@ class Program
 
     static List<string> CaricaCategorie(string path)
     {
-        if (File.Exists(path))
+        if (File.Exists(path)) // Viene mantenuto il controllo per verificare se il file esiste.
         {
-            string json = File.ReadAllText(path);
-            return JsonConvert.DeserializeObject<List<string>>(json) ?? new List<string>();
+            //si tenta di leggere il contenuto e deserializzarlo.
+            try
+            {
+                string json = File.ReadAllText(path);
+                return JsonConvert.DeserializeObject<List<string>>(json)!;
+            }
+            catch (Exception ex) // In caso di eccezione durante la deserializzazione, viene stampato un messaggio di errore e viene restituita una lista vuota.
+            {
+                // Gestione dell'errore
+                Console.WriteLine($"Errore durante il caricamento delle categorie: {ex.Message}");
+                return new List<string>();
+            }
         }
         else
         {
             return new List<string>();
         }
     }
+
 
     static void GestioneProdotti(List<dynamic> Prodotti, List<string> Categorie, string pathProdotti, string pathCategorie)
     {
@@ -158,20 +180,32 @@ class Program
                 prodottiOrdinati = new List<dynamic>(Prodotti);
                 break;
             case "Di data":
-                prodottiOrdinati.Sort(/*OrdinaPerData*/);
+                prodottiOrdinati = new List<dynamic>(Prodotti);
                 break;
             case "Di categoria":
-                prodottiOrdinati.Sort(/*OrdinaPerCategoria*/);
+                prodottiOrdinati = new List<dynamic>(Prodotti);
                 break;
             case "Di prezzo (alto a basso)":
-                prodottiOrdinati.Sort(/*OrdinaPerPrezzoDecrescente*/);
+                prodottiOrdinati = new List<dynamic>(Prodotti);
                 break;
             case "Di prezzo (basso ad alto)":
-                prodottiOrdinati.Sort(/*OrdinaPerPrezzoCrescente*/);
+                prodottiOrdinati = new List<dynamic>(Prodotti);
                 break;
         }
 
         VisualizzaProdottiInTabella(prodottiOrdinati);
+
+         var esporta = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("Vuoi esportare in csv? (excel)")
+                .AddChoices("si", "no"));
+
+        if (esporta == "si")
+        {
+           EsportaCSV(Prodotti);
+        }
+
+        
     }
 
     static void OrdinaAlfabetico(List<dynamic> prodottiOrdinati)
@@ -342,6 +376,52 @@ class Program
             VisualizzaProdottiInTabella(prodottiFiltrati);
         }
     }
+
+    static void EsportaCSV(List<dynamic> Prodotti)
+    {
+        if (Prodotti.Count == 0)
+        {
+            AnsiConsole.MarkupLine("[yellow]Nessun prodotto registrato.[/]");
+            return;
+        }
+
+        // Percorso del file CSV
+        string pathCSV = "Prodotti.csv";
+
+
+        using (var writer = new StreamWriter(pathCSV))
+        {
+            // Scrivi l'intestazione del file CSV
+            writer.WriteLine("Indice,Data,Orario,Importo,Prodotto,Categoria,Descrizione");
+
+            // Scrivi i dati dei prodotti
+            for (int i = 0; i < Prodotti.Count; i++)
+            {
+                var prodottoItem = Prodotti[i];
+                string data = ((DateTime)prodottoItem.Data).ToShortDateString();
+                string orario = ((DateTime)prodottoItem.Data).ToString("HH:mm");
+                string importo = ((decimal)prodottoItem.Importo).ToString("F2");
+                string prodotto = (string)prodottoItem.Prodotto;
+                string categoria = (string)prodottoItem.Categoria;
+                string descrizione = (string)prodottoItem.Descrizione;
+
+                writer.WriteLine($"{i},{data},{orario},{importo},{prodotto},{categoria},{descrizione}");
+            }
+        }
+
+        var apriFile = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("Vuoi aprire il file :")
+                .AddChoices("si", "no"));
+
+        if (apriFile == "si")
+        {
+            Process.Start("excel.exe", "Prodotti.csv");
+        }
+
+    }
+
+
 
     // Funzioni di ordinamento esplicite
 }
