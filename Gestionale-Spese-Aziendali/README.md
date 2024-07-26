@@ -48,7 +48,7 @@ Esportazione CSV: gli utenti possono esportare l'elenco filtrato di prodotti o p
 - [x] **Aggiungi Nuove Spese**: Registra nuove spese con dettagli come data, importo, categoria e descrizione.
 - [x] **Modifica e Elimina Spese**: Aggiorna o rimuovi spese esistenti.
 - [x] **Visualizza Riepilogo**: Consulta un riepilogo dettagliato delle spese registrate.
-- [ ] **Ordinamento Visualizzazione**: Ordinamento della visualizzazione delle spese registrate in ordine alfabetico, di data, di inserimento, di categoria, di prezzo (alto - basso / basso - alto).
+- [x] **Ordinamento Visualizzazione**: Ordinamento della visualizzazione delle spese registrate in ordine alfabetico, di data, di inserimento, di categoria, di prezzo (alto - basso / basso - alto).
 
 ### Categorie di Spesa
 
