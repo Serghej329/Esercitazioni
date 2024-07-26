@@ -9,7 +9,39 @@ Il **Gestionale delle Spese Aziendali** è un'applicazione console sviluppata in
 - I **contabili** e i **professionisti della contabilità** sono il target che probabilmente trarrà il massimo vantaggio dal _Gestionale delle Spese Aziendali_ grazie alla sua capacità di gestire e analizzare le spese in modo dettagliato.
 - **Manager e Responsabili Finanziari**: Anche se il loro utilizzo potrebbe essere più orientato verso la visualizzazione e l'analisi dei dati piuttosto che la gestione quotidiana. Tuttavia, l'analisi dei report generati dal software sarà comunque utile per loro.
 
-## Funzionalità
+# Funzionalità
+
+Il codice C# definisce un'applicazione completa per la gestione dell'inventario dei prodotti di un'azienda, incluse funzionalità per aggiungere, visualizzare, modificare ed eliminare prodotti, nonché generare vari report. Ecco una ripartizione dei componenti e delle funzionalità chiave:
+
+## Struttura principale:
+
+L'applicazione presenta un menu principale per la gestione dei prodotti, la visualizzazione delle categorie, la generazione di report e l'uscita dal programma.
+
+## Caricamento e salvataggio dei dati:
+
+I prodotti e le categorie vengono caricati da file JSON (GestioneProdotti.json e Categorie.json). L'applicazione supporta la serializzazione e la deserializzazione tramite Newtonsoft.Json.
+
+## Gestione dei prodotti:
+
+- Aggiungi prodotto: consente agli utenti di aggiungere un nuovo prodotto con dettagli quali nome, prezzo, categoria e descrizione. Se viene introdotta una nuova categoria, questa viene aggiunta all'elenco delle categorie.
+- Visualizza prodotti: visualizza i prodotti in una tabella, con opzioni di ordinamento quali alfabetico, per data, categoria o prezzo. Gli utenti possono anche esportare l'elenco in CSV.
+- Modifica prodotto: consente agli utenti di modificare i dettagli dei prodotti esistenti, inclusi nome, prezzo, categoria e descrizione. Aggiorna anche l'elenco delle categorie se la categoria di un prodotto cambia.
+- Elimina prodotto: consente agli utenti di eliminare un prodotto e aggiorna l'elenco delle categorie se necessario.
+
+## Gestione categorie:
+
+- Gli utenti possono visualizzare i prodotti per categoria ed esportare i dati in CSV.
+
+## Report:
+
+- Vendite mensili: calcola le vendite totali per ogni mese.
+- Vendite per prodotto: elenca le vendite totali per ogni prodotto.
+- Vendite per fascia di prezzo: visualizza le vendite raggruppate per fasce di prezzo predefinite.
+- Vendite per giorno della settimana: aggrega i dati di vendita in base al giorno della settimana.
+
+Funzioni di ordinamento e visualizzazione: sono implementate varie funzioni di confronto per ordinare i prodotti in base a diversi criteri come nome, data, categoria e prezzo.
+
+Esportazione CSV: gli utenti possono esportare l'elenco filtrato di prodotti o prodotti categorizzati in un file CSV per uso esterno.
 
 ### Gestione Spese
 
@@ -25,11 +57,22 @@ Il **Gestionale delle Spese Aziendali** è un'applicazione console sviluppata in
 
 ### Report e Analisi
 
-- [ ] **Esporta in CSV**: Genera file CSV contenenti i dettagli delle spese per analisi finanziaria e contabilità.
+- [x] **Vendite per Categoria**: Analizza il totale delle vendite suddiviso per categoria di prodotto. Fornisce una panoramica di quanto ciascuna categoria contribuisce alle vendite complessive.
+      Tabella con le categorie e i relativi totali delle vendite.
+- [x] **Vendite Mensili**: Analizza il totale delle vendite per mese, offrendo una panoramica delle vendite mensili e aiutando a identificare tendenze stagionali o periodiche.
+      Tabella con i mesi e i totali delle vendite per ciascun mese.
+- [x] **Vendite per Prodotto**: Analizza il totale delle vendite per ciascun prodotto, permettendo di identificare quali prodotti generano i maggiori ricavi.
+      Tabella con i prodotti e i totali delle vendite per ciascun prodotto
+- [x] **Fasce di Prezzo**: Analizza le vendite suddivise per fasce di prezzo, fornendo una panoramica su come le vendite si distribuiscono tra diverse fasce di prezzo.
+      Tabella con le fasce di prezzo e i totali delle vendite per ciascuna fascia.
+- [x] **Giorni della Settimana**: Analizza il totale delle vendite suddiviso per giorno della settimana, utile per comprendere le variazioni delle vendite nei diversi giorni della settimana.
+      Tabella con i giorni della settimana e i totali delle vendite per ciascun giorno
 - [ ] **Creazione di Grafici**: Analizza le spese attraverso grafici incorporati nel file CSV (in fase di valutazione "Microsoft.Office.Interop.Excel").
 
 ### Funzionalità Future
 
+- [x] **Esporta in CSV**: Genera file CSV contenenti i dettagli delle spese per analisi finanziaria e contabilità.
+- [x] **Apertura del File.csv**: Una volta generato ed esportato in file .CSV richiedere all'utente se desidera aprirlo e se si aprire il file appena generato. 2 esportazioni differenti: 1 esporta tutti quanti i prodotti (completi) 2 esporta tutti quanti i prodotti della categoria selezionata.
 - [ ] **Gestione degli Utenti**: Implementa registrazione e login degli utenti con ruoli e permessi.
 - [ ] **Gestione Spese Carte di Credito Aziendali**: Monitoraggio delle spese effettuate tramite carte di credito aziendali.
 - [ ] **Monitoraggio Spese Viaggi e Vitto**: Gestisci le spese relative a viaggi e vitto.
@@ -37,77 +80,116 @@ Il **Gestionale delle Spese Aziendali** è un'applicazione console sviluppata in
 - [ ] **Analisi Finanziaria**: Analisi complessiva del fatturato, utili e perdite.
 - [ ] **Budget e Avvisi**: Imposta e monitora budget per categorie con notifiche sui superamenti.
 - [ ] **Gestione Multi-Valuta**: Gestisci spese in diverse valute e esegui conversioni tra valute.
-- [ ] **Persistenza dei Dati**: Implementazione della persistenza dei dati usando JSON e supporto per database.
+- [x] **Persistenza dei Dati**: Implementazione della persistenza dei dati usando JSON e supporto per database.
 
 ## Architettura del Progetto
 
 ```mermaid
-graph TD
-    A[Inizio] --> B[Definizione dei Requisiti]
-    B --> C[Progettazione dell'Architettura]
-    C --> D[Configurazione dell'Ambiente di Sviluppo]
-    D --> E[Sviluppo delle Funzionalità]
-    E --> F[Implementazione Gestione Spese]
-    E --> G[Implementazione Gestione Categorie]
-    E --> H[Implementazione Report e Analisi]
-    F --> I[Test delle Funzionalità di Spesa]
-    G --> J[Test delle Funzionalità di Categoria]
-    H --> K[Test di Report e Analisi]
-    I --> L[Debug e Correzione Errori]
-    J --> L
-    K --> L
-    L --> M[Documentazione]
-    M --> N[Esportazione e Versionamento]
-    N --> O[Deployment e Rilascio]
-    O --> P[Feedback e Iterazioni]
-    P --> Q[Fine]
+---
+title: Diagramma di flusso Codice Gestionale Spese Aziendali
+---
+stateDiagram-v2
+    [*] --> MenuPrincipale
 
-    classDef startend fill:Green,stroke:#333,stroke-width:2px;
-    class A,Q startend;
-```
+    state MenuPrincipale {
+        [*] --> MostraMenuPrincipale
+        MostraMenuPrincipale --> GestisciProdotti : Seleziona Gestisci Prodotti
+        MostraMenuPrincipale --> GestisciCategorie : Seleziona Gestisci Categorie
+        MostraMenuPrincipale --> GeneraReport : Seleziona Genera Report
+        MostraMenuPrincipale --> Esci : Seleziona Esci
+    }
 
-```mermaid
-flowchart TD
-    Main[Main]
-    Main -->|Scegli un'opzione| Menu[Menu Principale]
-    Menu -->|Gestione Prodotti| GestioneProdotti[Gestione Prodotti]
-    Menu -->|Categorie di Prodotto| VisualizzaCategorie[Visualizza Categorie]
-    Menu -->|Report e Analisi| ReportAnalisi[Report e Analisi]
-    Menu -->|Esci| Esci[Esci]
+    state GestisciProdotti {
+        [*] --> MostraMenuProdotti
+        MostraMenuProdotti --> AggiungiProdotto : Seleziona Aggiungi Prodotto
+        MostraMenuProdotti --> VisualizzaProdotti : Seleziona Visualizza Prodotti
+        MostraMenuProdotti --> ModificaProdotto : Seleziona Modifica Prodotto
+        MostraMenuProdotti --> EliminaProdotto : Seleziona Elimina Prodotto
+        MostraMenuProdotti --> TornaMenuPrincipale : Seleziona Torna al Menu Principale
 
-    GestioneProdotti -->|Aggiungi Prodotto| AggiungiProdotto[Aggiungi Prodotto]
-    GestioneProdotti -->|Visualizza Prodotti| VisualizzaProdotti[Visualizza Prodotti]
-    GestioneProdotti -->|Modifica Prodotto| ModificaProdotto[Modifica Prodotto]
-    GestioneProdotti -->|Elimina Prodotto| EliminaProdotto[Elimina Prodotto]
-    GestioneProdotti -->|Torna al Menù Principale| Menu
+        state AggiungiProdotto {
+            [*] --> InserisciDettagli
+            InserisciDettagli --> VerificaDati : Dati Inseriti
+            VerificaDati --> Salvato : Dati Validi
+            VerificaDati --> Errore : Dati Non Validi
+            Salvato --> TornaMenuPrincipale
+            Errore --> TornaMenuPrincipale
+        }
 
-    VisualizzaProdotti -->|Ordina Alfabetico| OrdinaAlfabetico[Ordina Alfabetico]
-    VisualizzaProdotti -->|Ordina di Inserimento| OrdinaInserimento[Ordina di Inserimento]
-    VisualizzaProdotti -->|Ordina di Data| OrdinaData[Ordina di Data]
-    VisualizzaProdotti -->|Ordina di Categoria| OrdinaCategoria[Ordina di Categoria]
-    VisualizzaProdotti -->|Ordina di Prezzo| OrdinaPrezzo[Ordina di Prezzo]
+        state VisualizzaProdotti {
+            [*] --> MostraTabella
+            MostraTabella --> EsportaCSV : Seleziona Esporta in CSV
+            MostraTabella --> TornaMenuPrincipale : Seleziona Torna al Menu Principale
 
-    AggiungiProdotto -->|Salva e Aggiorna| GestioneProdotti
-    ModificaProdotto -->|Salva e Aggiorna| GestioneProdotti
-    EliminaProdotto -->|Salva e Aggiorna| GestioneProdotti
-    VisualizzaCategorie -->|Seleziona Categoria| FiltraProdotti[Filtra Prodotti per Categoria]
+            state EsportaCSV {
+                [*] --> GeneraCSV
+                GeneraCSV --> ApriCSV : Seleziona Apri File CSV
+                GeneraCSV --> TornaMenuPrincipale
 
-    FiltraProdotti -->|Visualizza| VisualizzaProdottiInTabella[Visualizza Prodotti in Tabella]
-    VisualizzaProdottiInTabella -->|Ritorna| VisualizzaCategorie
+                state ApriCSV {
+                    [*] --> ApriFile
+                    ApriFile --> TornaMenuPrincipale
+                }
+            }
+        }
 
-    subgraph Funzioni di Ordinamento
-        OrdinaAlfabetico
-        OrdinaInserimento
-        OrdinaData
-        OrdinaCategoria
-        OrdinaPrezzo
-    end
+        state ModificaProdotto {
+            [*] --> SelezionaProdotto
+            SelezionaProdotto --> InserisciNuoviDettagli
+            InserisciNuoviDettagli --> VerificaNuoviDati : Dati Inseriti
+            VerificaNuoviDati --> Aggiornato : Dati Validi
+            VerificaNuoviDati --> Errore : Dati Non Validi
+            Aggiornato --> TornaMenuPrincipale
+            Errore --> TornaMenuPrincipale
+        }
 
-    subgraph Funzioni di Gestione Prodotti
-        AggiungiProdotto
-        ModificaProdotto
-        EliminaProdotto
-        VisualizzaProdotti
-    end
+        state EliminaProdotto {
+            [*] --> SelezionaProdotto
+            SelezionaProdotto --> RimuoviProdotto
+            RimuoviProdotto --> TornaMenuPrincipale
+        }
+    }
+
+    state GestisciCategorie {
+        [*] --> MostraMenuCategorie
+        MostraMenuCategorie --> AggiungiCategoria : Seleziona Aggiungi Categoria
+        MostraMenuCategorie --> VisualizzaCategorie : Seleziona Visualizza Categorie
+        MostraMenuCategorie --> TornaMenuPrincipale : Seleziona Torna al Menu Principale
+
+        state AggiungiCategoria {
+            [*] --> InserisciCategoria
+            InserisciCategoria --> CategoriaAggiunta : Categoria Aggiunta
+            CategoriaAggiunta --> TornaMenuPrincipale
+        }
+
+        state VisualizzaCategorie {
+            [*] --> MostraCategorie
+            MostraCategorie --> EsportaCSV : Seleziona Esporta in CSV
+            MostraCategorie --> TornaMenuPrincipale : Seleziona Torna al Menu Principale
+
+            state EsportaCSV {
+                [*] --> GeneraCSV
+                GeneraCSV --> ApriCSV : Seleziona Apri File CSV
+                GeneraCSV --> TornaMenuPrincipale
+
+                state ApriCSV {
+                    [*] --> ApriFile
+                    ApriFile --> TornaMenuPrincipale
+                }
+            }
+        }
+    }
+
+    state GeneraReport {
+        [*] --> MostraMenuReport
+        MostraMenuReport --> VenditePerCategoria : Seleziona Vendite per Categoria
+        MostraMenuReport --> VenditeMensili : Seleziona Vendite Mensili
+        MostraMenuReport --> VenditePerProdotto : Seleziona Vendite per Prodotto
+        MostraMenuReport --> FasceDiPrezzo : Seleziona Fasce di Prezzo
+        MostraMenuReport --> VenditePerGiorno : Seleziona Vendite per Giorno della Settimana
+        MostraMenuReport --> TornaMenuPrincipale : Seleziona Torna al Menu Principale
+    }
+
+    Esci --> [*]
 
 ```

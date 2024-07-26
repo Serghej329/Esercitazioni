@@ -1,9 +1,23 @@
 [
   {
-    "Data": "2024-07-23T12:41:41.8854829+02:00",
-    "Importo": 50.0,
-    "Prodotto": "patate",
-    "Categoria": "tuberi",
-    "Descrizione": "patate gialle dolciastre"
+    "Data": "2024-07-25T12:31:31.7660088+02:00",
+    "Importo": 14.5,
+    "Prodotto": "Amaretti",
+    "Categoria": "Dolci",
+    "Descrizione": "Dolci Amaretti di Sambuco da spedire alla coop"
+  },
+  {
+    "Data": "2024-06-20T00:00:00",
+    "Importo": 100.0,
+    "Prodotto": "brioche",
+    "Categoria": "Dolci",
+    "Descrizione": "biorche al pistacchio per coop"
+  },
+  {
+    "Data": "2024-07-25T15:30:25.5299456+02:00",
+    "Importo": 2.5,
+    "Prodotto": "MAEH",
+    "Categoria": "CESTELLI",
+    "Descrizione": "AWWERW"
   }
 ]
