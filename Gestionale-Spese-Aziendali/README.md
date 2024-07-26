@@ -69,6 +69,10 @@ Esportazione CSV: gli utenti possono esportare l'elenco filtrato di prodotti o p
       Tabella con i giorni della settimana e i totali delle vendite per ciascun giorno
 - [ ] **Creazione di Grafici**: Analizza le spese attraverso grafici incorporati nel file CSV (in fase di valutazione "Microsoft.Office.Interop.Excel").
 
+### Ricerca del prodotto
+- StartWith
+- [ ] **Ricerca per Categoria/prodotto/descrizione/data/orario**: analizza e cerca tutti prodotti presenti e fa una ricerca del prodotto tramite classico metodo nel nome e tramite i suoi dettagli specifici
+
 ### Funzionalità Future
 
 - [x] **Esporta in CSV**: Genera file CSV contenenti i dettagli delle spese per analisi finanziaria e contabilità.
@@ -81,6 +85,7 @@ Esportazione CSV: gli utenti possono esportare l'elenco filtrato di prodotti o p
 - [ ] **Budget e Avvisi**: Imposta e monitora budget per categorie con notifiche sui superamenti.
 - [ ] **Gestione Multi-Valuta**: Gestisci spese in diverse valute e esegui conversioni tra valute.
 - [x] **Persistenza dei Dati**: Implementazione della persistenza dei dati usando JSON e supporto per database.
+- [ ] **Recuperare e convertire info file**: Comprendere la conversione del file selezionato in scv che si vuole convertire in informazioni che vadano ad aggiungersi nel file "GesioneProdotti.json"
 
 ## Architettura del Progetto
 

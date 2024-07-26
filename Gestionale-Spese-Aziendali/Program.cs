@@ -2,6 +2,7 @@
 using Spectre.Console;
 using System.Diagnostics;
 
+
 class Program
 {
     static void Main(string[] args)
@@ -21,7 +22,7 @@ class Program
             var menu = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
                     .Title("Scegli un'opzione:")
-                    .AddChoices("Gestione Prodotti", "Categorie di Prodotto", "Report e Analisi", "Esci"));
+                    .AddChoices("Gestione Prodotti", "Categorie di Prodotto", "Report e Analisi", "Ricerca Prodotto", "Esci"));
 
             switch (menu)
             {
@@ -51,7 +52,7 @@ class Program
                             break;
 
                         case "Fasce di Prezzo":
-                            ReportVenditeFasceDiPrezzo(Prodotti);
+                            ReportVenditeFascePrezzo(Prodotti);
                             break;
 
                         case "Giorni della Settimana":
@@ -60,11 +61,16 @@ class Program
                     }
                     break;
 
+                case "Ricerca Prodotto":
+                    RicercaProdotti(Prodotti);
+                    break;
+
                 case "Esci":
                     return;
             }
         }
     }
+
     static List<dynamic> CaricaProdotti(string path)
     {
         if (File.Exists(path))
@@ -139,7 +145,6 @@ class Program
             }
         }
     }
-
     static void AggiungiProdotto(List<dynamic> Prodotti, List<string> Categorie, string pathProdotti, string pathCategorie)
     {
         DateTime data = DateTime.Now;
@@ -172,7 +177,6 @@ class Program
 
         AnsiConsole.MarkupLine("[green]Prodotto aggiunto con successo![/]");
     }
-
 
     static void VisualizzaProdotti(List<dynamic> Prodotti)
     {
@@ -255,12 +259,16 @@ class Program
             tabella.AddRow(i.ToString(), ((DateTime)prodottoItem.Data).ToShortDateString(), orario, importo.ToString("C"), (string)prodottoItem.Prodotto, (string)prodottoItem.Categoria, (string)prodottoItem.Descrizione);
         }
 
-        AnsiConsole.Write(tabella);
+        var panel = new Panel(tabella)
+        {
+            Header = new PanelHeader("[bold blue]Dettagli Prodotti[/]")
+        };
+
+        AnsiConsole.Write(panel);
 
         // Visualizza il totale
         AnsiConsole.MarkupLine($"[bold cyan]Totale Importi: {totaleImporti:C}[/]");
     }
-
 
     static void ModificaProdotto(List<dynamic> Prodotti, List<string> Categorie, string pathProdotti, string pathCategorie)
     {
@@ -347,7 +355,6 @@ class Program
         AnsiConsole.MarkupLine("[green]Prodotto modificato con successo![/]");
     }
 
-
     static void EliminaProdotto(List<dynamic> Prodotti, List<string> Categorie, string pathProdotti, string pathCategorie)
     {
         if (Prodotti.Count == 0)
@@ -397,7 +404,6 @@ class Program
         AnsiConsole.MarkupLine("[red]Prodotto eliminato con successo![/]");
     }
 
-
     static void VisualizzaCategorie(List<dynamic> Prodotti, List<string> Categorie)
     {
         if (Categorie.Count == 0)
@@ -406,29 +412,37 @@ class Program
             return;
         }
 
-        var categoriaSelezionata = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
-                .Title("Categorie disponibili:")
-                .AddChoices(Categorie));
+        // Permetti la selezione multipla delle categorie
+        var categorieSelezionate = AnsiConsole.Prompt(
+            new MultiSelectionPrompt<string>()
+                .Title("Seleziona le categorie:")
+                .AddChoices(Categorie)
+                .MoreChoicesText("[grey](Usa [green]spazio[grey] per selezionare, [green]Invio[grey] per confermare)[/]"));
 
+        if (categorieSelezionate.Count == 0)
+        {
+            AnsiConsole.MarkupLine("[yellow]Nessuna categoria selezionata.[/]");
+            return;
+        }
+
+        // Filtra i prodotti in base alle categorie selezionate
         var prodottiFiltrati = new List<dynamic>();
         foreach (var prodotto in Prodotti)
         {
-            if ((string)prodotto.Categoria == categoriaSelezionata)
+            if (categorieSelezionate.Contains((string)prodotto.Categoria))
             {
                 prodottiFiltrati.Add(prodotto);
-
             }
         }
 
         if (prodottiFiltrati.Count == 0)
         {
-            AnsiConsole.MarkupLine("[yellow]Nessun prodotto trovato per la selezione della categoria.[/]");
+            AnsiConsole.MarkupLine("[yellow]Nessun prodotto trovato per le categorie selezionate.[/]");
         }
         else
         {
             VisualizzaProdottiInTabella(prodottiFiltrati);
-            /*******************************************IMPAZZISCOOOO***************************************************/
+
             var esporta = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
                     .Title("Vuoi esportare in csv? (excel)")
@@ -436,11 +450,14 @@ class Program
 
             if (esporta == "si")
             {
-                EsportaCsvCat(Prodotti, categoriaSelezionata);
+                foreach (var categoria in categorieSelezionate)
+                {
+                    EsportaCsvCat(Prodotti, categoria);
+                }
             }
-
         }
     }
+
 
     static void EsportaCsvProd(List<dynamic> ProdottiOrdinati)
     {
@@ -537,13 +554,33 @@ class Program
         }
     }
 
+
+    static void DisegnaGraficoBarre(string titolo, Dictionary<string, decimal> dati)
+    {
+        var tabella = new Table();
+        tabella.AddColumn(titolo);
+        tabella.AddColumn("Valore");
+
+        foreach (var item in dati)
+        {
+            string etichetta = item.Key;
+            decimal valore = item.Value;
+
+            // Creazione della barra
+            string barra = new string('█', (int)(valore / 10)); // Scalare per la visualizzazione
+
+            tabella.AddRow(etichetta, $"{valore:C} {barra}");
+        }
+
+        AnsiConsole.Write(tabella);
+    }
     static void ReportVenditeGiorni(List<dynamic> Prodotti)
     {
         decimal[] venditeGiorni = new decimal[7];
         string[] giorniSettimana =
-        [
-             "Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"
-        ];
+        {
+        "Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"
+    };
 
         // Calcola il totale delle vendite per ogni giorno della settimana
         foreach (var prodotto in Prodotti)
@@ -566,35 +603,41 @@ class Program
         tabella.AddRow("[red]TOTALE DELLA SETTIMANA[/]", venditeGiorni.Sum().ToString("C"));
 
         AnsiConsole.Write(tabella);
-    }
 
+        // Disegna il grafico a barre
+        var datiGrafico = new Dictionary<string, decimal>();
+        for (int i = 0; i < giorniSettimana.Length; i++)
+        {
+            datiGrafico[giorniSettimana[i]] = venditeGiorni[i];
+        }
+        DisegnaGraficoBarre("Vendite per Giorno della Settimana", datiGrafico);
+    }
     static void ReportVenditeMese(List<dynamic> Prodotti)
     {
         decimal[] venditeMese = new decimal[12];
         string[] Mesi =
-        [
-             "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
-        ];
+        {
+        "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
+    };
 
         foreach (var prodotto in Prodotti)
         {
             DateTime data = (DateTime)prodotto.Data;
-            int meseIndex = data.Month;
+            int meseIndex = data.Month - 1; // Indice mese corretto (0-11)
             venditeMese[meseIndex] += (decimal)prodotto.Importo;
         }
-        // Visualizza i risultati
-        var tabella = new Table();
-        tabella.AddColumn("Mese");
-        tabella.AddColumn("Totale");
 
+        // Creazione del dizionario per il grafico
+        var datiGrafico = new Dictionary<string, decimal>();
         for (int i = 0; i < Mesi.Length; i++)
         {
-            tabella.AddRow(Mesi[i], venditeMese[i].ToString("C"));
+            datiGrafico[Mesi[i]] = venditeMese[i];
         }
 
-        tabella.AddRow("[red]TOTALE DEL MESE[/]", venditeMese.Sum().ToString("C"));
+        DisegnaGraficoBarre("Vendite Mensili", datiGrafico);
 
-        AnsiConsole.Write(tabella);
+        // Stampa del totale
+        AnsiConsole.MarkupLine($"[red]TOTALE DEL MESE[/]: {venditeMese.Sum().ToString("C")}");
     }
 
     static void ReportVenditeProdotto(List<dynamic> Prodotti)
@@ -626,9 +669,12 @@ class Program
         }
 
         AnsiConsole.Write(tabella);
+
+        // Disegna il grafico a barre
+        DisegnaGraficoBarre("Vendite per Prodotto", venditePerProdotto);
     }
 
-    static void ReportVenditeFasceDiPrezzo(List<dynamic> Prodotti)
+    static void ReportVenditeFascePrezzo(List<dynamic> Prodotti)
     {
         // Definire le fasce di prezzo
         decimal[] limitiFasce = { 0, 10, 50, 100, 200, 500, 1000 };
@@ -680,6 +726,75 @@ class Program
         }
 
         AnsiConsole.Write(tabella);
+
+        // Disegna il grafico a barre
+        var datiGrafico = new Dictionary<string, decimal>();
+        for (int i = 0; i < venditePerFascia.Length; i++)
+        {
+            string fascia = i < limitiFasce.Length ? descrizioniFasce[i] : "Oltre 1000 €";
+            datiGrafico[fascia] = venditePerFascia[i];
+        }
+        DisegnaGraficoBarre("Vendite per Fascia di Prezzo", datiGrafico);
+    }
+
+    static void RicercaProdotti(List<dynamic> prodotti)
+    {
+        // Chiedi all'utente di scegliere il criterio di ricerca
+        var criterioRicerca = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("Scegli il criterio di ricerca:")
+                .AddChoices("Tutti i campi", "Importo", "Nome del prodotto", "Categoria")
+        );
+
+        // Chiedi all'utente di inserire il valore da cercare
+        string valoreRicerca = AnsiConsole.Prompt(new TextPrompt<string>("Inserisci cosa vuoi cercare:")).ToLower();
+
+        // Lista per i risultati della ricerca
+        var risultatiRicerca = new List<dynamic>();
+
+        // Filtra i prodotti basandosi sul criterio scelto
+        foreach (var prodotto in prodotti)
+        {
+            bool trovato = false;
+
+            switch (criterioRicerca)
+            {
+                case "Tutti i campi":
+                    // Cerca in tutti i campi come stringa
+                    trovato = prodotto.ToString().ToLower().Contains(valoreRicerca);
+                    break;
+
+                case "Importo":
+                    // Controlla se il valore di ricerca è contenuto nel campo Importo
+                    trovato = prodotto.Importo != null && prodotto.Importo.ToString().ToLower().Contains(valoreRicerca);
+                    break;
+
+                case "Nome del prodotto":
+                    // Controlla se il valore di ricerca è contenuto nel campo Nome del prodotto
+                    trovato = prodotto.Prodotto != null && prodotto.Prodotto.ToString().ToLower().Contains(valoreRicerca);
+                    break;
+
+                case "Categoria":
+                    // Controlla se il valore di ricerca è contenuto nel campo Categoria
+                    trovato = prodotto.Categoria != null && prodotto.Categoria.ToString().ToLower().Contains(valoreRicerca);
+                    break;
+            }
+
+            if (trovato)
+            {
+                risultatiRicerca.Add(prodotto);
+            }
+        }
+
+        // Mostra i risultati della ricerca o un messaggio se non ci sono risultati
+        if (risultatiRicerca.Count == 0)
+        {
+            AnsiConsole.MarkupLine("[yellow]Nessun prodotto trovato.[/]");
+        }
+        else
+        {
+            VisualizzaProdottiInTabella(risultatiRicerca);
+        }
     }
 
 
