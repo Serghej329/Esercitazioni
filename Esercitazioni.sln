@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "64-Persistenza-dati-Deseria
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestionale-Spese-Aziendali", "Gestionale-Spese-Aziendali\Gestionale-Spese-Aziendali.csproj", "{719F35C6-D9F7-4AD6-8458-3180ABA1BD06}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "73-Libreria-Math", "73-Libreria-Math\73-Libreria-Math.csproj", "{BC1A90D3-B472-416C-A26E-7221A357B9FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{719F35C6-D9F7-4AD6-8458-3180ABA1BD06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{719F35C6-D9F7-4AD6-8458-3180ABA1BD06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{719F35C6-D9F7-4AD6-8458-3180ABA1BD06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC1A90D3-B472-416C-A26E-7221A357B9FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC1A90D3-B472-416C-A26E-7221A357B9FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC1A90D3-B472-416C-A26E-7221A357B9FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC1A90D3-B472-416C-A26E-7221A357B9FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E5CE7024-7F8F-485D-B428-6D24A678BF89} = {C026496B-A9A9-4460-9A81-D2D1E89580FC}
