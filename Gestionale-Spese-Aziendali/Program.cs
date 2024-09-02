@@ -39,7 +39,7 @@ class Program
                         new SelectionPrompt<string>()
                             .Title("Scegli un report:")
                             .AddChoices("Vendite Mensili", "Vendite per Prodotto",
-                                        "Fasce di Prezzo", "Giorni della Settimana", "Torna al Menù Principale"));
+                                        "Fasce di Prezzo", "Giorni della Settimana", "KPI", "Torna al Menù Principale"));
 
                     switch (reportMenu)
                     {
@@ -57,6 +57,9 @@ class Program
 
                         case "Giorni della Settimana":
                             ReportVenditeGiorni(Prodotti);
+                            break;
+                        case "KPI":
+                            /*ReportKPI(Prodotti);*/
                             break;
                     }
                     break;
@@ -152,19 +155,20 @@ class Program
         decimal importo = AnsiConsole.Prompt(new TextPrompt<decimal>("Inserisci l'importo del prodotto:"));
         string categoria = AnsiConsole.Prompt(new TextPrompt<string>("Inserisci la categoria:"));
         string descrizione = AnsiConsole.Prompt(new TextPrompt<string>("Inserisci una descrizione per il prodotto:"));
+        int quantita = AnsiConsole.Prompt(new TextPrompt<int>("Inserisci la quantità iniziale:"));
+        decimal costoUnitario = AnsiConsole.Prompt(new TextPrompt<decimal>("Inserisci il costo unitario del prodotto:"));
 
         var nuovoProdotto = new
         {
             Data = data,
-            Importo = importo,
             Prodotto = prodotto,
             Categoria = categoria,
-            Descrizione = descrizione
+            Descrizione = descrizione,
+            Quantita = quantita,
+            CostoUnitario = costoUnitario
         };
-
         Prodotti.Add(nuovoProdotto);
 
-        // Verifica e aggiungi la categoria se non esiste già
         if (!Categorie.Contains(categoria))
         {
             Categorie.Add(categoria);
@@ -177,7 +181,10 @@ class Program
 
         AnsiConsole.MarkupLine("[green]Prodotto aggiunto con successo![/]");
     }
-
+    static decimal CalcolaImportoTotale(int quantita, decimal costoUnitario)
+    {
+        return quantita * costoUnitario;
+    }
     static void VisualizzaProdotti(List<dynamic> Prodotti)
     {
         if (Prodotti.Count == 0)
@@ -243,10 +250,13 @@ class Program
         tabella.AddColumn("Indice");
         tabella.AddColumn("Data");
         tabella.AddColumn("Orario");
-        tabella.AddColumn("Importo");
-        tabella.AddColumn("Prodotto");
+        tabella.AddColumn("Nome Prod.");
         tabella.AddColumn("Categoria");
         tabella.AddColumn("Descrizione");
+        tabella.AddColumn("Quantità");
+        tabella.AddColumn("Costo Unitario");
+        tabella.AddColumn("Importo Totale");
+
 
         decimal totaleImporti = 0;
 
@@ -254,9 +264,10 @@ class Program
         {
             var prodottoItem = prodottiOrdinati[i];
             string orario = ((DateTime)prodottoItem.Data).ToString("HH:mm");
-            decimal importo = (decimal)prodottoItem.Importo;
-            totaleImporti += importo;
-            tabella.AddRow(i.ToString(), ((DateTime)prodottoItem.Data).ToShortDateString(), orario, importo.ToString("C"), (string)prodottoItem.Prodotto, (string)prodottoItem.Categoria, (string)prodottoItem.Descrizione);
+            int quantita = (int)prodottoItem.Quantita;
+            decimal costoUnitario = (decimal)prodottoItem.CostoUnitario;
+            decimal importoTotale = quantita * costoUnitario;
+            tabella.AddRow(i.ToString(), ((DateTime)prodottoItem.Data).ToShortDateString(), orario, (string)prodottoItem.Prodotto, (string)prodottoItem.Categoria, (string)prodottoItem.Descrizione, quantita.ToString(), costoUnitario.ToString("C"), importoTotale.ToString("C"));
         }
 
         var panel = new Panel(tabella)
@@ -386,12 +397,24 @@ class Program
         Prodotti.RemoveAt(index);
 
         // Verifica se la categoria deve essere rimossa
-        bool categoriaPresente = Prodotti.Any(p => (string)p.Categoria == categoriaDaEliminare);
+        bool categoriaPresente = false;
 
+        // Controlla se la categoria è presente tra i prodotti
+        foreach (var prodotto in Prodotti)
+        {
+            if ((string)prodotto.Categoria == categoriaDaEliminare)
+            {
+                categoriaPresente = true;
+                break; // Interrompe il ciclo non appena troviamo una corrispondenza
+            }
+        }
+
+        // Rimuove la categoria se non è presente tra i prodotti
         if (!categoriaPresente)
         {
             Categorie.Remove(categoriaDaEliminare);
         }
+
 
         // Salva i prodotti aggiornati nel file
         string jsonProdotti = JsonConvert.SerializeObject(Prodotti, Formatting.Indented);
@@ -473,7 +496,6 @@ class Program
         }
         AnsiConsole.MarkupLine($"[green]File CSV esportato con successo in {filePath}![/]");
     }
-
     static void EsportaCsvCat(List<dynamic> Prodotti, string categoriaSelezionata)
     {
         // Filtra i prodotti per la categoria selezionata
@@ -512,7 +534,6 @@ class Program
 
         AnsiConsole.MarkupLine("[green]Esportazione completata con successo![/]");
     }
-
     static void VisualizzaCat(List<dynamic> Prodotti, List<string> Categorie)
     {
         if (Categorie.Count == 0)
@@ -553,8 +574,6 @@ class Program
             }
         }
     }
-
-
     static void DisegnaGraficoBarre(string titolo, Dictionary<string, decimal> dati)
     {
         var tabella = new Table();
@@ -796,6 +815,7 @@ class Program
             VisualizzaProdottiInTabella(risultatiRicerca);
         }
     }
+
 
 
     // Funzioni di confronto per l'ordinamento

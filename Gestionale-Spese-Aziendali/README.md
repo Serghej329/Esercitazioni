@@ -1,91 +1,223 @@
 # Gestionale delle Spese Aziendali
 
-## Descrizione
+## Utili
+Gli oggetti di tipo ***anonimo*** in C# sono, per loro natura, **immutabili.** Una volta creati, i loro valori non possono essere modificati. Questo è un comportamento intenzionale e progettato per garantire l'integrità dei dati e prevenire errori di programmazione comuni.
 
-Il **Gestionale delle Spese Aziendali** è un'applicazione console sviluppata in C# progettata per aiutare le aziende a tracciare, gestire e analizzare le spese aziendali. L'applicazione consente di registrare le spese, gestire le categorie e generare report in formato CSV per facilitare l'analisi finanziaria e la contabilità.
+### Perché gli oggetti anonimi sono immutabili?
 
-## Target
+   - **Sicurezza:** L'immutabilità aiuta a prevenire modifiche accidentali ai dati, rendendo il codice più sicuro e affidabile.
+   - **Prestazioni:** Gli oggetti immutabili possono essere ottimizzati dal compilatore, portando a un codice più veloce.
+   - **Thread safety:** Gli oggetti immutabili sono intrinsecamente thread-safe, poiché non possono essere modificati da più thread contemporaneamente.
 
-- I **contabili** e i **professionisti della contabilità** sono il target che probabilmente trarrà il massimo vantaggio dal _Gestionale delle Spese Aziendali_ grazie alla sua capacità di gestire e analizzare le spese in modo dettagliato.
-- **Manager e Responsabili Finanziari**: Anche se il loro utilizzo potrebbe essere più orientato verso la visualizzazione e l'analisi dei dati piuttosto che la gestione quotidiana. Tuttavia, l'analisi dei report generati dal software sarà comunque utile per loro.
+### Cosa fare se hai bisogno di modificare i dati:
 
-# Funzionalità
+   - **Crea un nuovo oggetto:** Ogni volta che vuoi apportare una modifica, crea un nuovo oggetto anonimo con i valori aggiornati.
+   - **Utilizza una classe:** Se hai bisogno di modificare frequentemente i dati, definisci una classe con proprietà modificabili. Questa è generalmente la soluzione preferita quando si lavora con dati che richiedono aggiornamenti frequenti.
+   - **Utilizza un dizionario:** Un dizionario (come Dictionary<string, object>) può essere utile per rappresentare dati dinamici che possono cambiare nel tempo.
 
-Il codice C# definisce un'applicazione completa per la gestione dell'inventario dei prodotti di un'azienda, incluse funzionalità per aggiungere, visualizzare, modificare ed eliminare prodotti, nonché generare vari report. Ecco una ripartizione dei componenti e delle funzionalità chiave:
+### **Come accedere agli elementi:**
 
-## Struttura principale:
+   - **Indice:** Come con qualsiasi lista, puoi accedere a un elemento utilizzando il suo indice numerico, partendo da 0.
+   - **Ciclo foreach:** Per iterare su tutti gli elementi della lista, puoi utilizzare un ciclo foreach.
 
-L'applicazione presenta un menu principale per la gestione dei prodotti, la visualizzazione delle categorie, la generazione di report e l'uscita dal programma.
+Esempio:
 
-## Caricamento e salvataggio dei dati:
+```C#
+List<dynamic> miaLista = new List<dynamic>();
+miaLista.Add("Ciao");
+miaLista.Add(42);
+miaLista.Add(new { Nome = "Marco", Età = 30 });
 
-I prodotti e le categorie vengono caricati da file JSON (GestioneProdotti.json e Categorie.json). L'applicazione supporta la serializzazione e la deserializzazione tramite Newtonsoft.Json.
+// Accedere al primo elemento (una stringa)
+string saluto = miaLista[0];
+Console.WriteLine(saluto); // Output: Ciao
 
-## Gestione dei prodotti:
+// Iterare su tutti gli elementi
+foreach (dynamic elemento in miaLista)
+{
+    Console.WriteLine(elemento);
+}
+```
 
-- Aggiungi prodotto: consente agli utenti di aggiungere un nuovo prodotto con dettagli quali nome, prezzo, categoria e descrizione. Se viene introdotta una nuova categoria, questa viene aggiunta all'elenco delle categorie.
-- Visualizza prodotti: visualizza i prodotti in una tabella, con opzioni di ordinamento quali alfabetico, per data, categoria o prezzo. Gli utenti possono anche esportare l'elenco in CSV.
-- Modifica prodotto: consente agli utenti di modificare i dettagli dei prodotti esistenti, inclusi nome, prezzo, categoria e descrizione. Aggiorna anche l'elenco delle categorie se la categoria di un prodotto cambia.
-- Elimina prodotto: consente agli utenti di eliminare un prodotto e aggiorna l'elenco delle categorie se necessario.
 
-## Gestione categorie:
+### **Attenzione al tipo:**
 
-- Gli utenti possono visualizzare i prodotti per categoria ed esportare i dati in CSV.
+   - **Cast esplicito:** Poiché gli elementi in una List<dynamic> possono essere di qualsiasi tipo, dovrai spesso eseguire un cast esplicito per accedere alle proprietà o ai metodi specifici di un oggetto.
+   - **Operatori is e as:** Puoi utilizzare gli operatori is e as per verificare il tipo di un oggetto prima di eseguire un cast.
 
-## Report:
+### **Esempio con cast:**
+```C#
+dynamic persona = miaLista[2];
+if (persona is dynamic { Nome: string nome, Età: int eta })
+{
+    Console.WriteLine($"Il nome è {nome} e l'età è {eta}");
+}
+```
 
-- Vendite mensili: calcola le vendite totali per ogni mese.
-- Vendite per prodotto: elenca le vendite totali per ogni prodotto.
-- Vendite per fascia di prezzo: visualizza le vendite raggruppate per fasce di prezzo predefinite.
-- Vendite per giorno della settimana: aggrega i dati di vendita in base al giorno della settimana.
+### **Cosa ricordare:**
 
-Funzioni di ordinamento e visualizzazione: sono implementate varie funzioni di confronto per ordinare i prodotti in base a diversi criteri come nome, data, categoria e prezzo.
+  - **Nessuna garanzia di tipo:** Poiché il tipo degli elementi non è noto in fase di compilazione, potresti incorrere in errori a runtime se provi ad accedere a proprietà o metodi che non esistono per un determinato oggetto.
+  - **Performance:** L'utilizzo di dynamic può comportare una leggera penalizzazione in termini di prestazioni rispetto all'utilizzo di una lista con un tipo specifico.
 
-Esportazione CSV: gli utenti possono esportare l'elenco filtrato di prodotti o prodotti categorizzati in un file CSV per uso esterno.
+### **Quando usare con cautela:**
 
-### Gestione Spese
+  - **Codice critico:** Evita di utilizzare List<dynamic> in parti di codice dove le prestazioni sono cruciali o dove la sicurezza è fondamentale.
+  - **Codice complesso:** Se il tuo codice diventa troppo complesso a causa dell'uso di dynamic, considera di utilizzare una struttura dati più specifica o di introdurre un'interfaccia comune per gli oggetti nella lista.
 
-- [x] **Aggiungi Nuove Spese**: Registra nuove spese con dettagli come data, importo, categoria e descrizione.
-- [x] **Modifica e Elimina Spese**: Aggiorna o rimuovi spese esistenti.
-- [x] **Visualizza Riepilogo**: Consulta un riepilogo dettagliato delle spese registrate.
-- [x] **Ordinamento Visualizzazione**: Ordinamento della visualizzazione delle spese registrate in ordine alfabetico, di data, di inserimento, di categoria, di prezzo (alto - basso / basso - alto).
+## Descrizione del Codice
 
-### Categorie di Spesa
+Questo programma è un gestionale per prodotti aziendali che consente di gestire e visualizzare prodotti e categorie, generare report e analisi, e esportare i dati in formato CSV. Utilizza le librerie Newtonsoft.Json per la manipolazione dei dati JSON e Spectre.Console per l'interfaccia a riga di comando interattiva.
 
-- [x] **Gestione Categorie**: Crea e gestisci categorie di spesa personalizzate.
-- [x] **Assegna Categorie**: Collega i prodotti alle categorie appropriate per una gestione più organizzata.
+# Dettagli del Codice
+## 1) Importazioni
+Il programma inizia con l'importazione delle librerie necessarie e la definizione della classe Program contenente il metodo Main.
 
-### Report e Analisi
+```csharp
+using Newtonsoft.Json;
+using Spectre.Console;
+using System.Diagnostics;
+```
 
-- [x] **Vendite per Categoria**: Analizza il totale delle vendite suddiviso per categoria di prodotto. Fornisce una panoramica di quanto ciascuna categoria contribuisce alle vendite complessive.
-      Tabella con le categorie e i relativi totali delle vendite.
-- [x] **Vendite Mensili**: Analizza il totale delle vendite per mese, offrendo una panoramica delle vendite mensili e aiutando a identificare tendenze stagionali o periodiche.
-      Tabella con i mesi e i totali delle vendite per ciascun mese.
-- [x] **Vendite per Prodotto**: Analizza il totale delle vendite per ciascun prodotto, permettendo di identificare quali prodotti generano i maggiori ricavi.
-      Tabella con i prodotti e i totali delle vendite per ciascun prodotto
-- [x] **Fasce di Prezzo**: Analizza le vendite suddivise per fasce di prezzo, fornendo una panoramica su come le vendite si distribuiscono tra diverse fasce di prezzo.
-      Tabella con le fasce di prezzo e i totali delle vendite per ciascuna fascia.
-- [x] **Giorni della Settimana**: Analizza il totale delle vendite suddiviso per giorno della settimana, utile per comprendere le variazioni delle vendite nei diversi giorni della settimana.
-      Tabella con i giorni della settimana e i totali delle vendite per ciascun giorno
-- [ ] **Creazione di Grafici**: Analizza le spese attraverso grafici incorporati nel file CSV (in fase di valutazione "Microsoft.Office.Interop.Excel").
+## 2) Main Method
+Il punto di ingresso del programma è il metodo Main. Qui vengono caricati i dati dei prodotti e delle categorie dai file JSON e viene presentato un menu principale per la navigazione.
 
-### Ricerca del prodotto
-- StartWith
-- [ ] **Ricerca per Categoria/prodotto/descrizione/data/orario**: analizza e cerca tutti prodotti presenti e fa una ricerca del prodotto tramite classico metodo nel nome e tramite i suoi dettagli specifici
+```csharp
+static void Main(string[] args)
+{
+    // Stampa il titolo dell'applicazione
+    AnsiConsole.MarkupLine("[bold green]Gestionale delle Prodotti Aziendali[/]");
 
-### Funzionalità Future
+    // Percorsi dei file JSON
+    string pathProdotti = @"GestioneProdotti.json";
+    string pathCategorie = @"Categorie.json";
 
-- [x] **Esporta in CSV**: Genera file CSV contenenti i dettagli delle spese per analisi finanziaria e contabilità.
-- [x] **Apertura del File.csv**: Una volta generato ed esportato in file .CSV richiedere all'utente se desidera aprirlo e se si aprire il file appena generato. 2 esportazioni differenti: 1 esporta tutti quanti i prodotti (completi) 2 esporta tutti quanti i prodotti della categoria selezionata.
-- [ ] **Gestione degli Utenti**: Implementa registrazione e login degli utenti con ruoli e permessi.
-- [ ] **Gestione Spese Carte di Credito Aziendali**: Monitoraggio delle spese effettuate tramite carte di credito aziendali.
-- [ ] **Monitoraggio Spese Viaggi e Vitto**: Gestisci le spese relative a viaggi e vitto.
-- [ ] **Gestione Spese per Progetti**: Assegna e monitorizza spese specifiche per progetti.
-- [ ] **Analisi Finanziaria**: Analisi complessiva del fatturato, utili e perdite.
-- [ ] **Budget e Avvisi**: Imposta e monitora budget per categorie con notifiche sui superamenti.
-- [ ] **Gestione Multi-Valuta**: Gestisci spese in diverse valute e esegui conversioni tra valute.
-- [x] **Persistenza dei Dati**: Implementazione della persistenza dei dati usando JSON e supporto per database.
-- [ ] **Recuperare e convertire info file**: Comprendere la conversione del file selezionato in scv che si vuole convertire in informazioni che vadano ad aggiungersi nel file "GesioneProdotti.json"
+    // Carica i dati
+    List<dynamic> Prodotti = CaricaProdotti(pathProdotti);
+    List<string> Categorie = CaricaCategorie(pathCategorie);
+
+    // Menu principale
+    while (true)
+    {
+        var menu = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("Scegli un'opzione:")
+                .AddChoices("Gestione Prodotti", "Categorie di Prodotto", "Report e Analisi", "Ricerca Prodotto", "Esci"));
+
+        // Switch case per gestire le scelte del menu
+        switch (menu)
+        {
+            case "Gestione Prodotti":
+                GestioneProdotti(Prodotti, Categorie, pathProdotti, pathCategorie);
+                break;
+
+            case "Categorie di Prodotto":
+                VisualizzaCategorie(Prodotti, Categorie);
+                break;
+
+            case "Report e Analisi":
+                VisualizzaReport(Prodotti);
+                break;
+
+            case "Ricerca Prodotto":
+                RicercaProdotti(Prodotti);
+                break;
+
+            case "Esci":
+                return;
+        }
+    }
+}
+
+```
+
+## 3) Caricamento dei Dati
+I metodi CaricaProdotti e CaricaCategorie leggono i dati da file JSON e li deserializzano in liste di oggetti dinamici e stringhe.
+
+```csharp
+static List<dynamic> CaricaProdotti(string path) { ... }
+static List<string> CaricaCategorie(string path) { ... }
+
+```
+
+## 4) Gestione Prodotti
+Il metodo GestioneProdotti offre opzioni per aggiungere, visualizzare, modificare ed eliminare prodotti.
+
+```csharp
+static void GestioneProdotti(List<dynamic> Prodotti, List<string> Categorie, string pathProdotti, string pathCategorie) { ... }
+```
+### Aggiunta di Prodotti
+```csharp
+static void AggiungiProdotto(List<dynamic> Prodotti, List<string> Categorie, string pathProdotti, string pathCategorie) { ... }
+
+```
+### Visualizzazione Prodotti
+Permette di ordinare i prodotti in base a diversi criteri e di esportarli in formato CSV.
+```csharp
+static void VisualizzaProdotti(List<dynamic> Prodotti) { ... }
+static void VisualizzaProdottiInTabella(List<dynamic> prodottiOrdinati) { ... }
+static void EsportaCsvProd(List<dynamic> ProdottiOrdinati) { ... }
+```
+### Modifica ed Eliminazione
+Consente di modificare o eliminare prodotti esistenti, aggiornando di conseguenza i file JSON.
+```csharp
+static void ModificaProdotto(List<dynamic> Prodotti, List<string> Categorie, string pathProdotti, string pathCategorie) { ... }
+static void EliminaProdotto(List<dynamic> Prodotti, List<string> Categorie, string pathProdotti, string pathCategorie) { ... }
+```
+## 5) Gestione Categorie
+Visualizza le categorie dei prodotti e consente la selezione e l'esportazione dei dati.
+```csharp
+static void VisualizzaCategorie(List<dynamic> Prodotti, List<string> Categorie) { ... }
+```
+## 6) Report e Analisi
+Genera report su vendite mensili, per prodotto, fasce di prezzo e giorni della settimana.
+```csharp
+static void ReportVenditeMese(List<dynamic> Prodotti) { ... }
+static void ReportVenditeProdotto(List<dynamic> Prodotti) { ... }
+static void ReportVenditeFascePrezzo(List<dynamic> Prodotti) { ... }
+static void ReportVenditeGiorni(List<dynamic> Prodotti) { ... }
+```
+## 7) Ricerca Prodotti
+Funzionalità per la ricerca di prodotti specifici basati su criteri inseriti dall'utente.
+```csharp
+static void RicercaProdotti(List<dynamic> Prodotti) { ... }
+```
+
+
+## 8) Utilità Grafiche
+Disegna grafici a barre per la visualizzazione dei dati.
+```csharp
+static void DisegnaGraficoBarre(string titolo, Dictionary<string, decimal> dati) { ... }
+
+```
+
+# To-Do List
+
+- [ ] **Autenticazione Utente:**
+  - Implementare un sistema di autenticazione per limitare l'accesso a utenti autorizzati. (implementazione futura)
+
+- [ ] **Gestione Magazzino:**
+  - Aggiungere funzionalità per gestire l'inventario del magazzino, includendo scorte e riordino.
+
+- [ ] **Analisi Avanzate:**
+  - Sviluppare report più avanzati come l'analisi delle tendenze di vendita e previsioni.
+
+- [ ] **Backup e Ripristino:**
+  - Aggiungere funzionalità per il backup e il ripristino dei dati in caso di errori o perdite di dati.
+
+- [ ] **Rimuovere Ridondanze:**
+  - Trovare e rimuovere eventualemente ove possibile tutte le ridonzanze del codice per accorciarlo.
+
+- [ ] **Gestione degli Errori:**
+  - Implementa una gestione degli errori robusta per evitare che l'applicazione si blocchi in caso di errori imprevisti.
+
+- [ ] **Aggiunta Quantità:**
+  - Implementa una gestione delle quantità dei prodotti disponibili.
+
+- [ ] **Aggiunta Cliente e ordini:**
+  - Implementa una gestione della ventita di uno o piu prodotti ad un cliente con le specifiche del nome categoria data e data ordine per poterlo implementare nel KPI.
+
+- [ ] **Aggiunta Quantità:**
+  - Implementa un'analisi del KPI per visualizare le vendite e le possibilità di crescità.
 
 ## Architettura del Progetto
 
