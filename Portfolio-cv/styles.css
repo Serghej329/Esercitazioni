@@ -1,0 +1,197 @@
+body {
+  /* background-color: #818080;*/
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+/*
+.barra-applicazioni {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 43px;
+  background: #004172;
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.barra-applicazioni a {
+  display: inline-block;
+  height: 100%;
+  width: 45px; 
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 24px 24px;
+}
+
+.barra-applicazioni a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+*/
+/* Stili per le icone di sinistra */
+/*
+.icone-sinistra {
+  float: left;
+}
+
+#menu-start i {
+  font-size: 21px;
+  color: rgb(255, 255, 255);
+}
+
+#cerca {
+  background-image: url("./icon/search.png");
+}
+
+#cartella {
+  background-image: url("./icon/file-explorer.png");
+}
+
+#chrome {
+  background-image: url("./icon/chrome.png");
+}
+
+#finestre {
+  background-image: url("./Portfolio-cv/icon/switch-window.png");
+}
+*/
+/* Stili per le icone di destra */
+/*
+.icone-destra {
+  float: right;
+}
+
+#wifi {
+  background-image: url("./icon/wifi.png");
+}
+
+#audio {
+  background-image: url("./icon/volume.png");
+}
+*/
+/* Stile per la data e l'ora */
+/*
+.data-ora {
+  display: inline-block;
+  width: 70px;
+  text-align: center;
+  color: white;
+  font-size: 11.3px;
+  padding-top: 3px;
+}
+
+.data-ora span {
+  display: block;
+  margin-top: 5px;
+}
+  */
+/*fine toolbar*/
+
+.tools{
+    position: fixed;
+    margin-bottom: 3vh;
+    background-color: #a5a5a5a9;
+    /*filter: blur(2px);*/
+    border-radius: 15px;
+    bottom: 0;
+    width: 500px;
+    height: 8vh;
+    border: 2px solid black;
+}
+#internet{
+}
+
+#terminal {
+  width: 65%;
+  height: 70%;
+  background-color: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#title-bar {
+  background-color: #dbdbdb;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  font-family: "Courier New", monospace;
+  color: rgb(255, 255, 255);
+}
+
+/* Inizialmente nasconde tutte le sezioni */
+.command {
+  display: none;
+}
+
+/* Mostra solo la sezione che corrisponde all'ID dell'ancora */
+.command:target {
+  display: block;
+}
+
+.prompt1,
+.prompt2 {
+  display: inline;
+}
+
+.prompt1 {
+  color: #0f0;
+}
+
+.prompt2 {
+  color: #003cff;
+  margin-left: 5px;
+}
+
+.output {
+  margin-top: 5px;
+  white-space: pre-wrap;
+}
+
+#cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background-color: #0f0;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#nav {
+  margin: 20px;
+}
+
+#nav a {
+  color: rgb(255, 0, 191);
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+#nav a:hover {
+  text-decoration: underline;
+}
