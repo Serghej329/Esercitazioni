@@ -1,0 +1,152 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Amministrazione Comunale</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/_Layout.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <span>Ente appartenenza/Owner</span>
+            <div>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="text-white me-2">Link 1</a>
+                <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-white">Link 2 Active</a>
+            </div>
+        </div>
+    </div>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="fas fa-code"></i> Lorem Ipsum
+                    <small>Inserire qui la tag line</small>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">link 1 attivo</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">link 2</a></li>
+                        <li class="nav-item"><a class="nav-link disabled" href="#">link 3 disabilitato</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown">Esempio di Dropdown</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Azione 1</a></li>
+                                <li><a class="dropdown-item" href="#">Azione 2</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown">Esempio di Megamenu</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Opzione 1</a></li>
+                                <li><a class="dropdown-item" href="#">Opzione 2</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="d-flex align-items-center">
+                        <span class="text-white me-3">Seguici su</span>
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <form class="search-form me-3">
+                            <input class="form-control" type="search" placeholder="Cerca" aria-label="Search">
+                            <i class="fas fa-search search-icon text-white"></i>
+                        </form>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-light dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                ITA
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                                <li><a class="dropdown-item" href="#">ITA</a></li>
+                                <li><a class="dropdown-item" href="#">ENG</a></li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn btn-light ms-2">Accedi</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="container my-5">
+        @RenderBody()
+    </main>
+
+    <footer class="text-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 footer-column">
+                    <h5>AMMINISTRAZIONE</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Giunta e consiglio</a></li>
+                        <li><a href="#">Aree di competenza</a></li>
+                        <li><a href="#">Dipendenti</a></li>
+                        <li><a href="#">Luoghi</a></li>
+                        <li><a href="#">Associazioni e società partecipate</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 footer-column">
+                    <h5>SERVIZI</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Pagamenti</a></li>
+                        <li><a href="#">Sostegno</a></li>
+                        <li><a href="#">Domande e iscrizioni</a></li>
+                        <li><a href="#">Segnalazioni</a></li>
+                        <li><a href="#">Autorizzazioni e concessioni</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 footer-column">
+                    <h5>NOVITÀ</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Notizie</a></li>
+                        <li><a href="#">Eventi</a></li>
+                        <li><a href="#">Comunicati stampa</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 footer-column">
+                    <h5>DOCUMENTI</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Progetti e attività</a></li>
+                        <li><a href="#">Delibere, determine e ordinanze</a></li>
+                        <li><a href="#">Bandi</a></li>
+                        <li><a href="#">Concorsi</a></li>
+                        <li><a href="#">Albo pretorio</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <p><strong>Comune di Lorem Ipsum</strong><br>Via Roma O - 00000 Lorem Ipsum<br>Codice fiscale / P. IVA: 0000000000<br>Posta Elettronica Certificata</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <p>Segui su:</p>
+                    <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="me-3"><i class="fab fa-medium"></i></a>
+                    <a href="#" class="me-3"><i class="fab fa-behance"></i></a>
+                    <p><a href="#" class="text-light">Form Newsletter</a></p>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 text-center">
+                    <a href="#">Media Policy</a> | 
+                    <a href="#">Note legali</a> | 
+                    <a href="#">Privacy Policy</a> | 
+                    <a href="#">Mappa del sito</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

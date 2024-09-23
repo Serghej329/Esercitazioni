@@ -1,0 +1,212 @@
+﻿
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Serghej Ivaldi - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha384-dyB6NVtAlF5E1f2BznpasZAB6ElyZ4/0D3hM2tFtyO2PtYYHmf4cM/3Rj1XKfQqG" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="/Esercitazioni/progettoprova1/wwwroot/css/site.css" />
+
+</head>
+
+<body background="/Esercitazioni/progettoprova1/wwwroot/img/background.jpg">
+
+    <!-- Modal Windows-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+    <div class="barra-applicazioni">
+      <div class="icone-sinistra">
+        <a href="#menu-start-modal" id="menu-start"><i class="fa-brands fa-windows"></i></a>
+        <a href="#cerca" id="cerca"></a>
+        <a href="#finestre" id="finestre"></a>
+        <a href="#cartella" id="cartella"></a>
+        <a href="#chrome-popup" id="chrome"></a>
+      </div>
+      <div class="icone-destra">
+        <a href="#su" id="su"><i class="fas fa-chevron-up"></i></a>
+        <a href="#audio-modal" id="audio"></a>
+        <a href="#wifi-modal" id="wifi"></a>
+        <div class="data-ora">
+          <span class="ora">17:44</span>
+          <span class="data">25/11/2022</span>
+        </div>
+        <a href="#notifiche" id="notifiche"><i class="far fa-bell"></i></a>
+      </div>
+    </div>
+-->
+
+
+    <div id="terminal" style="box-sizing:unset;">
+        <div id="title-bar">
+            <span>Portfolio Terminal</span>
+            <span>_ □ ×</span>
+        </div>
+        <div id="content">
+            <pre id="ascii-art">
+                                                       _____                _          _   _____          _     _ _ 
+                                                      / ____|              | |        (_) |_   _|        | |   | (_)
+                                                     | (___   ___ _ __ __ _| |__   ___ _    | |_   ____ _| | __| |_ 
+                                                      \___ \ / _ \ '__/ _` | '_ \ / _ \ |   | \ \ / / _` | |/ _` | |
+                                                      ____) |  __/ | | (_| | | | |  __/ |  _| |\ V / (_| | | (_| | |
+                                                     |_____/ \___|_|  \__, |_| |_|\___| | |_____\_/ \__,_|_|\__,_|_|
+                                                                       __/ |         _/ |                           
+                                                                      |___/         |__/                            
+        </pre>
+            <pre id="ascii-art2">
+                ██████  ███████ ██    ██ ███████ ██       ██████  ██████  ███████ ██████      ██████   ██████  ██████  ████████ ███████  ██████  ██      ██  ██████  
+                ██   ██ ██      ██    ██ ██      ██      ██    ██ ██   ██ ██      ██   ██     ██   ██ ██    ██ ██   ██    ██    ██      ██    ██ ██      ██ ██    ██ 
+                ██   ██ █████   ██    ██ █████   ██      ██    ██ ██████  █████   ██████      ██████  ██    ██ ██████     ██    █████   ██    ██ ██      ██ ██    ██ 
+                ██   ██ ██       ██  ██  ██      ██      ██    ██ ██      ██      ██   ██     ██      ██    ██ ██   ██    ██    ██      ██    ██ ██      ██ ██    ██ 
+                ██████  ███████   ████   ███████ ███████  ██████  ██      ███████ ██   ██     ██       ██████  ██   ██    ██    ██       ██████  ███████ ██  ██████  
+
+
+           </pre>
+
+            <p>Benvenuto nel mio portfolio!</p>
+            <p>Usa i link qui sotto per navigare:</p>
+
+            <div id="nav">
+                <a href="#about">Chi Sono</a>
+                <a href="#skills">| Skills</a>
+                <a href="#projects">| Projects</a>
+                <a href="#contact">| Contact</a>
+            </div>
+
+            <div class="command" id="about">
+                <p class="prompt1">visitatore@portfolio</p>
+                :
+                <p class="prompt2">~</p>
+                $ Chi Sono
+                <div class="output">
+                    Sono un ragazzo di 20 anni appassionato al sviluppo front-end...
+                    [RESTO DELLA BIO]
+                </div>
+            </div>
+
+            <div class="command" id="skills">
+                <p class="prompt1">visitatore@portfolio</p>
+                :
+                <p class="prompt2">~</p>
+                $ skills
+                <div class="output">
+                    Le mie competenze includono: - HTML - CSS - Sass - Responsive Design - UI/UX
+                    Design - React - c# - c++ - Autocad
+                </div>
+            </div>
+
+            <div class="command" id="projects">
+                <p class="prompt1">visitatore@portfolio</p>
+                :
+                <p class="prompt2">~</p>
+                $ projects
+                <div class="output">
+                    Progetti recenti: 1. Marina's Portfolio - [Breve descrizione] 2.
+                    XXXXXXXX XXXXX - Lorem, ipsum dolor sit amet consectetur adipisicing
+                    elit. [Aggiungere altri progetti]
+                </div>
+            </div>
+
+            <div class="command" id="contact">
+                <p class="prompt1">visitatore@portfolio</p>
+                :
+                <p class="prompt2">~</p>
+                $ contact
+                <div class="output">
+                    Email: ivaldi500@gmail.com LinkedIn:
+                    https://www.linkedin.com/in/serghej-ivaldi-470253244/ GitHub:
+                    https://github.com/Serghej329
+                </div>
+            </div>
+
+            <p>
+            <p class="prompt1">visitatore@portfolio</p>:<p class="prompt2">~</p>$<span id="cursor"></span></p>
+        </div>
+    </div>
+    <div class="taskbar">
+        <div class="taskbar-left">
+            <a class="taskbar-icon start-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                    >
+                    <path
+                        d="M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z" />
+                </svg>
+            </a>
+
+            <div class="search-container">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                    >
+                    <path
+                        d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6 .1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" />
+                </svg>
+                <input class="search-box" type="text" placeholder="Continua">
+            </div>
+
+            <a class="taskbar-icon">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512">
+                    <path
+                        d="M464 128H272l-64-64H48C21.5 64 0 85.5 0 112v288c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V176c0-26.5-21.5-48-48-48z" />
+                </svg>
+            </a>
+            <a class="taskbar-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                    >
+                    <path
+                        d="M503.5 241.5c-.1-1.6-.2-3.1-.2-4.7v-.1l-.4-4.7v-.1a245.9 245.9 0 0 0 -7.3-41.2c0-.1 0-.1-.1-.2l-1.1-4c-.1-.2-.1-.5-.2-.6-.4-1.2-.7-2.5-1.1-3.7-.1-.2-.1-.6-.2-.8-.4-1.2-.7-2.4-1.1-3.5-.1-.4-.2-.6-.4-1-.4-1.2-.7-2.3-1.2-3.5l-.4-1.1c-.4-1.1-.8-2.3-1.2-3.4a8.3 8.3 0 0 0 -.4-1c-.5-1.1-.8-2.3-1.3-3.4-.1-.2-.2-.6-.4-.8-.5-1.2-1-2.3-1.4-3.5 0-.1-.1-.2-.1-.4-1.6-3.8-3.2-7.7-5-11.4l-.4-.7c-.5-1-.8-1.8-1.3-2.6-.2-.5-.5-1.1-.7-1.6-.4-.8-.8-1.6-1.2-2.4-.4-.6-.6-1.2-1-1.8s-.8-1.4-1.2-2.3c-.4-.6-.7-1.3-1.1-1.9s-.8-1.4-1.2-2.2a18.1 18.1 0 0 0 -1.2-2c-.4-.7-.8-1.3-1.2-2s-.8-1.3-1.2-2-.8-1.3-1.2-1.9-.8-1.4-1.3-2.2a15.6 15.6 0 0 0 -1.2-1.8L463.2 119a15.6 15.6 0 0 0 -1.2-1.8c-.5-.7-1.1-1.6-1.6-2.3-.4-.5-.7-1.1-1.1-1.6l-1.8-2.5c-.4-.5-.6-.8-1-1.3-1-1.3-1.8-2.5-2.8-3.7a248.8 248.8 0 0 0 -23.5-26.6A186.8 186.8 0 0 0 412 62.5c-4-3.5-8.2-6.7-12.5-9.8a162.5 162.5 0 0 0 -24.6-15.1c-2.4-1.3-4.8-2.5-7.2-3.7a254 254 0 0 0 -55.4-19.6c-1.9-.4-3.8-.8-5.6-1.2h-.1c-1-.1-1.8-.4-2.8-.5a236.4 236.4 0 0 0 -38-4H255.1a234.6 234.6 0 0 0 -45.5 5c-33.6 7.1-63.2 21.2-82.9 39-1.1 1-1.9 1.7-2.4 2.2l-.5 .5H124l-.1 .1 .1-.1a.1 .1 0 0 0 .1-.1l-.1 .1a.4 .4 0 0 1 .2-.1c14.6-8.8 34.9-16 49.4-19.6l5.9-1.4c.4-.1 .8-.1 1.2-.2 1.7-.4 3.4-.7 5.2-1.1 .2 0 .6-.1 .8-.1C250.9 20.9 319.3 40.1 367 85.6a171.5 171.5 0 0 1 26.9 32.8c30.4 49.2 27.5 111.1 3.8 147.6-34.4 53-111.4 71.3-159 24.8a84.2 84.2 0 0 1 -25.6-59 74.1 74.1 0 0 1 6.2-31c1.7-3.8 13.1-25.7 18.2-24.6-13.1-2.8-37.6 2.6-54.7 28.2-15.4 22.9-14.5 58.2-5 83.3a132.9 132.9 0 0 1 -12.1-39.2c-12.2-82.6 43.3-153 94.3-170.5-27.5-24-96.5-22.3-147.7 15.4-29.9 22-51.2 53.2-62.5 90.4 1.7-20.9 9.6-52.1 25.8-83.9-17.2 8.9-39 37-49.8 62.9-15.6 37.4-21 82.2-16.1 124.8 .4 3.2 .7 6.4 1.1 9.6 19.9 117.1 122 206.4 244.8 206.4C392.8 503.4 504 392.2 504 255 503.9 250.5 503.8 245.9 503.5 241.5z" />
+                </svg>
+            </a>
+            <a class="taskbar-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"
+                    >
+                    <path
+                        d="M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2l43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3 .8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2 .6l144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7 .8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z" />
+                </svg>
+            </a>
+        </div>
+        <div class="taskbar-right">
+            <div class="taskbar-icon date-time" id="date-time">
+                <span class="time"></span>
+                <span class="date"></span>
+            </div>
+            <a class="taskbar-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                    style="box-sizing:unset;">
+                    <path
+                        d="M215 71.1L126.1 160H24c-13.3 0-24 10.7-24 24v144c0 13.3 10.7 24 24 24h102.1l89 89c15 15 41 4.5 41-17V88c0-21.5-26-32-41-17zm233.3-51.1c-11.2-7.3-26.2-4.2-33.5 7-7.3 11.2-4.2 26.2 7 33.5 66.3 43.5 105.8 116.6 105.8 195.6 0 79-39.6 152.1-105.8 195.6-11.2 7.3-14.3 22.3-7 33.5 7 10.7 21.9 14.6 33.5 7C528.3 439.6 576 351.3 576 256S528.3 72.4 448.4 20zM480 256c0-63.5-32.1-121.9-85.8-156.2-11.2-7.1-26-3.8-33.1 7.5s-3.8 26.2 7.4 33.4C408.3 166 432 209.1 432 256s-23.7 90-63.5 115.4c-11.2 7.1-14.5 22.1-7.4 33.4 6.5 10.4 21.1 15.1 33.1 7.5C447.9 377.9 480 319.5 480 256zm-141.8-76.9c-11.6-6.3-26.2-2.2-32.6 9.5-6.4 11.6-2.2 26.2 9.5 32.6C328 228.3 336 241.6 336 256c0 14.4-8 27.7-20.9 34.8-11.6 6.4-15.8 21-9.5 32.6 6.4 11.7 21.1 15.8 32.6 9.5 28.2-15.6 45.8-45 45.8-76.9s-17.5-61.3-45.8-76.9z" />
+                </svg>
+            </a>
+            <a class="taskbar-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"
+                    style="box-sizing:unset;">
+                    <path
+                        d="M54.2 202.9C123.2 136.7 216.8 96 320 96s196.8 40.7 265.8 106.9c12.8 12.2 33 11.8 45.2-.9s11.8-33-.9-45.2C549.7 79.5 440.4 32 320 32S90.3 79.5 9.8 156.7C-2.9 169-3.3 189.2 8.9 202s32.5 13.2 45.2 .9zM320 256c56.8 0 108.6 21.1 148.2 56c13.3 11.7 33.5 10.4 45.2-2.8s10.4-33.5-2.8-45.2C459.8 219.2 393 192 320 192s-139.8 27.2-190.5 72c-13.3 11.7-14.5 31.9-2.8 45.2s31.9 14.5 45.2 2.8c39.5-34.9 91.3-56 148.2-56zm64 160a64 64 0 1 0 -128 0 64 64 0 1 0 128 0z" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+</body>
+
+</html>

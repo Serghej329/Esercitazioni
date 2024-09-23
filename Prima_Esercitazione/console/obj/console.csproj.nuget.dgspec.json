@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Serghej\\Documents\\Esercitazioni\\Prima_Esercitazione\\console\\console.csproj": {}
+    "c:\\Users\\Serghej\\Documents\\Esercitazioni\\Prima_Esercitazione\\console\\console.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Serghej\\Documents\\Esercitazioni\\Prima_Esercitazione\\console\\console.csproj": {
+    "c:\\Users\\Serghej\\Documents\\Esercitazioni\\Prima_Esercitazione\\console\\console.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Serghej\\Documents\\Esercitazioni\\Prima_Esercitazione\\console\\console.csproj",
+        "projectUniqueName": "c:\\Users\\Serghej\\Documents\\Esercitazioni\\Prima_Esercitazione\\console\\console.csproj",
         "projectName": "console",
-        "projectPath": "C:\\Users\\Serghej\\Documents\\Esercitazioni\\Prima_Esercitazione\\console\\console.csproj",
+        "projectPath": "c:\\Users\\Serghej\\Documents\\Esercitazioni\\Prima_Esercitazione\\console\\console.csproj",
         "packagesPath": "C:\\Users\\Serghej\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Serghej\\Documents\\Esercitazioni\\Prima_Esercitazione\\console\\obj\\",
+        "outputPath": "c:\\Users\\Serghej\\Documents\\Esercitazioni\\Prima_Esercitazione\\console\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Serghej\\AppData\\Roaming\\NuGet\\NuGet.Config"

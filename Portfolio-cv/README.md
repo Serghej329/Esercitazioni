@@ -12,6 +12,7 @@ Questo repository contiene tutti i file necessari per creare un portfolio online
 
 ## Tecnologie Utilizzate
 
+
 - **HTML:** Struttura della pagina web.
 - **CSS:** Stili e layout della pagina.
 - **Framework:** boostrap?

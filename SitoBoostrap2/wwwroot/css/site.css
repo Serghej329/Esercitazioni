@@ -1,0 +1,93 @@
+:root {
+  --primary-color: #c62828;
+  --secondary-color: #8e0000;
+  --text-color: #ffff;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.top-bar {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  padding: 5px 0;
+}
+
+.navbar {
+  background-color: var(--primary-color);
+  padding: 15px 0;
+}
+
+.navbar-brand {
+  color: var(--text-color) !important;
+  font-size: 1.5rem;
+}
+
+.navbar-brand small {
+  display: block;
+  font-size: 0.8rem;
+}
+
+.nav-link {
+  color: var(--text-color) !important;
+}
+
+.nav-link.active {
+  font-weight: bold;
+}
+
+.search-form {
+  position: relative;
+}
+
+.search-form input {
+  padding-right: 30px;
+}
+
+.search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+footer {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: 30px 0;
+}
+
+footer h5 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+footer ul {
+  padding-left: 0;
+}
+
+footer ul li {
+  margin-bottom: 5px;
+}
+
+footer a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.social-icons a {
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .navbar-brand small {
+      display: none;
+  }
+}

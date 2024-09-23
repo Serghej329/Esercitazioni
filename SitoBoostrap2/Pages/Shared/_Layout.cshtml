@@ -1,0 +1,340 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Amministrazione Comunale</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+    :root {
+      --primary-color: #c62828;
+      --secondary-color: #8e0000;
+      --text-color: #ffffff;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .top-bar {
+      background-color: var(--secondary-color);
+      color: var(--text-color);
+      padding: 5px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar {
+      background-color: var(--primary-color);
+      padding: 15px 0;
+    }
+
+    .navbar-brand {
+      color: var(--text-color) !important;
+      font-size: 1.5rem;
+    }
+
+    .navbar-brand small {
+      display: block;
+      font-size: 0.8rem;
+    }
+
+    .nav-link {
+      color: var(--text-color) !important;
+    }
+
+    .nav-link.active {
+      font-weight: bold;
+    }
+
+    .search-form {
+      position: relative;
+      margin-left: auto;
+    }
+
+    .search-form input {
+      padding-right: 30px;
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    footer {
+      background-color: var(--primary-color);
+      color: var(--text-color);
+      padding: 30px 0;
+    }
+
+    footer h5 {
+      font-size: 1rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    footer ul {
+      padding-left: 0;
+    }
+
+    footer ul li {
+      margin-bottom: 5px;
+    }
+
+    footer a {
+      color: var(--text-color);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .social-icons a {
+      font-size: 1.2rem;
+      margin-right: 10px;
+    }
+
+    .navbar-brand i {
+      /* Increased icon size with padding for border */
+      width: 2.5rem;
+      height: 2.5rem;
+      padding: 5px;
+      border: 3px solid white;
+      border-radius: 50%;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="top-bar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <span>Ente appartenenza/Owner</span>
+
+            <li class="nav-item"><a class="nav-link active" href="#">link 1</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Link 2 Active</a></li>
+            <div class="dropdown">
+                <button class="btn btn-outline-light dropdown-toggle" type="button" id="languageDropdown"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    ITA
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                    <li><a class="dropdown-item" href="#">ITA</a></li>
+                    <li><a class="dropdown-item" href="#">ENG</a></li>
+                </ul>
+            </div>
+            <a href="#" class="btn btn-light ms-2">Accedi</a>
+
+        </div>
+    </div>
+    <!--<nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-code"></i> Lorem Ipsum
+                <small>Inserire qui la tag line</small>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">link 1 attivo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">link 2</a></li>
+                    <li class="nav-item"><a class="nav-link disabled" href="#">link 3 disabilitato</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+                            data-bs-toggle="dropdown">Esempio di Dropdown</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Azione 1</a></li>
+                            <li><a class="dropdown-item" href="#">Azione 2</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                            data-bs-toggle="dropdown">Esempio di Megamenu</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Opzione 1</a></li>
+                            <li><a class="dropdown-item" href="#">Opzione 2</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <span class="text-white me-3">Seguici su</span>
+                    <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-github"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                    <form class="search-form me-3">
+                        <input class="form-control" type="search" placeholder="Cerca" aria-label="Search">
+                        <i class="fas fa-search search-icon"></i>
+                    </form>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-light dropdown-toggle" type="button" id="languageDropdown"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            ITA
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </nav>-->
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container">
+            <a class="navbar-brand " href="#">
+                <svg  class="bg-white" version="1.0" width="80.000000pt" height="80.000000pt" viewBox="0 0 105.000000 183.000000" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <defs></defs>
+  <g transform="translate(0.000000,183.000000) scale(0.100000,-0.100000)" fill="var(--primary-color)" stroke="none">
+    <path d="M0 915 l0 -915 1025 0 1025 0 0 915 0 915 -1025 0 -1025 0 0 -915z
+m1240 802 c105 -32 159 -57 235 -109 172 -116 281 -270 346 -488 21 -68 18
+-319 -4 -390 -49 -158 -107 -258 -209 -362 -83 -84 -130 -118 -231 -166 -138
+-67 -183 -76 -352 -76 -138 0 -157 3 -235 29 -47 16 -102 39 -122 52 -21 13
+-40 23 -43 23 -16 0 -106 71 -165 130 -116 115 -167 202 -221 380 -19 60 -19
+317 0 385 47 178 137 314 294 450 80 68 232 135 367 159 48 9 296 -4 340 -17z"></path>
+    <path d="M925 1640 c-88 -15 -129 -26 -174 -48 -25 -12 -48 -22 -53 -22 -16 0
+-113 -73 -166 -124 -50 -48 -142 -168 -142 -185 0 -4 -9 -27 -21 -51 -37 -77
+-51 -149 -51 -275 0 -146 21 -233 83 -349 91 -169 254 -293 461 -350 77 -22
+263 -21 337 0 263 77 434 239 515 489 22 68 26 97 26 206 0 129 -17 211 -67
+319 -71 155 -236 300 -403 355 -30 9 -65 21 -77 26 -33 12 -212 19 -268 9z
+m287 -343 c4 -7 6 -16 4 -22 -3 -5 -25 -62 -51 -125 -25 -63 -50 -124 -54
+-135 -5 -11 -21 -51 -36 -90 -31 -81 -38 -97 -57 -145 -8 -19 -33 -79 -54
+-134 -21 -54 -44 -100 -50 -103 -7 -2 -28 3 -48 11 -38 16 -38 16 -9 86 8 19
+18 44 22 55 5 11 13 31 19 45 6 14 62 150 124 303 l113 278 35 -6 c19 -4 38
+-12 42 -18z m-473 -168 l22 -29 -81 -80 c-44 -43 -80 -83 -80 -88 0 -5 34 -41
+75 -81 41 -40 75 -80 75 -90 -1 -21 -34 -61 -52 -61 -17 0 -228 213 -228 231
+0 20 221 238 235 233 7 -3 22 -18 34 -35z m738 -71 c62 -62 113 -118 113 -125
+0 -14 -217 -233 -231 -233 -10 0 -58 50 -59 61 0 4 36 42 80 85 44 43 80 81
+80 84 0 4 -36 43 -80 86 -44 43 -80 82 -80 86 0 9 50 68 58 68 4 0 57 -51 119
+-112z"></path>
+  </g>
+</svg> Lorem Ipsum
+                <small>Inserire qui la tag line</small>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">link 1 attivo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">link 2</a></li>
+                    <li class="nav-item"><a class="nav-link disabled" href="#">link 3 disabilitato</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+                            data-bs-toggle="dropdown">Esempio di Dropdown</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Azione 1</a></li>
+                            <li><a class="dropdown-item" href="#">Azione 2</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                            data-bs-toggle="dropdown">Esempio di Megamenu</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Opzione 1</a></li>
+                            <li><a class="dropdown-item" href="#">Opzione 2</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <span class="text-white me-3">Seguici su</span>
+                    <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-github"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                    <form class="search-form me-3">
+                        <input class="form-control" type="search" placeholder="Cerca" aria-label="Search">
+                        <i class="fas fa-search search-icon"></i>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        @RenderBody()
+    </div>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <h5>AMMINISTRAZIONE</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Giunta e consiglio</a></li>
+                        <li><a href="#">Aree di competenza</a></li>
+                        <li><a href="#">Dipendenti</a></li>
+                        <li><a href="#">Luoghi</a></li>
+                        <li><a href="#">Associazioni e società partecipate</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>SERVIZI</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Pagamenti</a></li>
+                        <li><a href="#">Sostegno</a></li>
+                        <li><a href="#">Domande e iscrizioni</a></li>
+                        <li><a href="#">Segnalazioni</a></li>
+                        <li><a href="#">Autorizzazioni e concessioni</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>NOVITÀ</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Notizie</a></li>
+                        <li><a href="#">Eventi</a></li>
+                        <li><a href="#">Comunicati stampa</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>DOCUMENTI</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Progetti e attività</a></li>
+                        <li><a href="#">Delibere, determine e ordinanze</a></li>
+                        <li><a href="#">Bandi</a></li>
+                        <li><a href="#">Concorsi</a></li>
+                        <li><a href="#">Albo pretorio</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6 mb-4">
+                    <h5>CONTATTI</h5>
+                    <p>Comune di Lorem Ipsum<br>Via Roma 0 - 00000 Lorem Ipsum<br>Codice fiscale / P. IVA: 0000000000
+                    </p>
+                    <p>Posta Elettronica Certificata</p>
+                    <p>URP - Ufficio Relazioni con il Pubblico</p>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h5>LOREM IPSUM</h5>
+                    <div class="social-icons mb-3">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-medium"></i></a>
+                        <a href="#"><i class="fab fa-behance"></i></a>
+                    </div>
+                    <h5>NEWSLETTER</h5>
+                    <p><a href="#">Form Newsletter</a></p>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 text-center">
+                    <a href="#">Media policy</a>
+                    <a href="#">Note legali</a>
+                    <a href="#">Privacy policy</a>
+                    <a href="#">Mappa del sito</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

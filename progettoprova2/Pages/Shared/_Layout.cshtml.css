@@ -1,0 +1,402 @@
+﻿/**{
+  box-sizing:unset;
+}*/
+body {
+  /* background-color: #818080;*/
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.tools{
+    position: fixed;
+    margin-bottom: 3vh;
+    background-color: #a5a5a5a9;
+    /*filter: blur(2px);*/
+    border-radius: 15px;
+    bottom: 0;
+    width: 500px;
+    height: 8vh;
+    border: 2px solid black;
+}
+
+#terminal {
+  width: 65%;
+  height: 70%;
+  background-color: #000;
+  border-radius: 10px;
+  overflow:auto;
+  display: flex;
+  flex-direction: column;
+  resize: both;
+}
+/*
+#terminal::-webkit-resizer {
+  border: 2px solid yellow;
+  background: blue;
+  box-shadow: 0 0 2px 5px red;
+  outline: 2px dashed green;
+  display:block;  
+  width: 150px !important;
+  height: 150px !important;
+}*/
+#title-bar {
+  background-color: #dbdbdb;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  font-family: "Courier New", monospace;
+  color: rgb(255, 255, 255);
+}
+
+/* Inizialmente nasconde tutte le sezioni */
+.command {
+  display: none;
+}
+
+/* Mostra solo la sezione che corrisponde all'ID dell'ancora */
+.command:target {
+  display: block;
+}
+
+.prompt1,
+.prompt2 {
+  display: inline;
+}
+
+.prompt1 {
+  color: #0f0;
+}
+
+.prompt2 {
+  color: #003cff;
+  margin-left: 5px;
+}
+
+.output {
+  margin-top: 5px;
+  white-space: pre-wrap;
+}
+
+#cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background-color: #0f0;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#nav {
+  margin: 20px;
+}
+
+#nav a {
+  color: rgb(255, 0, 191);
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+#nav a:hover {
+  text-decoration: underline;
+}
+
+
+  /* Taskbar */
+  .taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 45px;
+    background-color: #202020;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    z-index: 1000; /* Aumenta il valore se necessario */
+  }
+
+.taskbar-left, .taskbar-right {
+  display: flex;
+  align-items: center;
+}
+
+
+.taskbar-icon svg {
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+  padding: 10px;
+  fill: #ffffff;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.taskbar-icon svg:hover {
+  background-color: #3f3f3f;
+}
+
+.search-container {
+  position: relative;
+  display: inline-block;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  fill: #888; 
+}
+
+.search-box {
+  padding-left: 40px; 
+  height: 40px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 200px;
+  /* Usa !important solo se necessario */
+}
+
+.search-box svg:hover {
+  background-color: none;
+}
+
+
+.date-time {
+  position: relative;
+  font-size: 12px;
+  padding: 0 10px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: auto;
+  min-width: 70px;
+}
+.date-time .time {
+  font-size: 14px;
+}
+
+.date-time .date {
+  font-size: 10px;
+}
+
+/* CSS-only clock simulation */
+.date-time .time::before {
+  content: '00:00';
+  animation: timeChange 150s linear infinite;
+}
+
+.date-time .date::before {
+  content: '06/09';
+  animation: dateChange 100s linear infinite;
+}
+
+
+
+
+
+
+/*
+@keyframes dateChange {
+  0% { content: '06/09'; }
+  100% { content: '07/09'; }
+}
+@keyframes timeChange {
+  0% { content: '00:00'; }
+  1% { content: '00:15'; }
+  2% { content: '00:30'; }
+  3% { content: '00:45'; }
+  4% { content: '01:00'; }
+  5% { content: '01:15'; }
+  6% { content: '01:30'; }
+  7% { content: '01:45'; }
+  8% { content: '02:00'; }
+  9% { content: '02:15'; }
+  10% { content: '02:30'; }
+  11% { content: '02:45'; }
+  12% { content: '03:00'; }
+  13% { content: '03:15'; }
+  14% { content: '03:30'; }
+  15% { content: '03:45'; }
+  16% { content: '04:00'; }
+  17% { content: '04:15'; }
+  18% { content: '04:30'; }
+  19% { content: '04:45'; }
+  20% { content: '05:00'; }
+  21% { content: '05:15'; }
+  22% { content: '05:30'; }
+  23% { content: '05:45'; }
+  24% { content: '06:00'; }
+  25% { content: '06:15'; }
+  26% { content: '06:30'; }
+  27% { content: '06:45'; }
+  28% { content: '07:00'; }
+  29% { content: '07:15'; }
+  30% { content: '07:30'; }
+  31% { content: '07:45'; }
+  32% { content: '08:00'; }
+  33% { content: '08:15'; }
+  34% { content: '08:30'; }
+  35% { content: '08:45'; }
+  36% { content: '09:00'; }
+  37% { content: '09:15'; }
+  38% { content: '09:30'; }
+  39% { content: '09:45'; }
+  40% { content: '10:00'; }
+  41% { content: '10:15'; }
+  42% { content: '10:30'; }
+  43% { content: '10:45'; }
+  44% { content: '11:00'; }
+  45% { content: '11:15'; }
+  46% { content: '11:30'; }
+  47% { content: '11:45'; }
+  48% { content: '12:00'; }
+  49% { content: '12:15'; }
+  50% { content: '12:30'; }
+  51% { content: '12:45'; }
+  52% { content: '13:00'; }
+  53% { content: '13:15'; }
+  54% { content: '13:30'; }
+  55% { content: '13:45'; }
+  56% { content: '14:00'; }
+  57% { content: '14:15'; }
+  58% { content: '14:30'; }
+  59% { content: '14:45'; }
+  60% { content: '15:00'; }
+  61% { content: '15:15'; }
+  62% { content: '15:30'; }
+  63% { content: '15:45'; }
+  64% { content: '16:00'; }
+  65% { content: '16:15'; }
+  66% { content: '16:30'; }
+  67% { content: '16:45'; }
+  68% { content: '17:00'; }
+  69% { content: '17:15'; }
+  70% { content: '17:30'; }
+  71% { content: '17:45'; }
+  72% { content: '18:00'; }
+  73% { content: '18:15'; }
+  74% { content: '18:30'; }
+  75% { content: '18:45'; }
+  76% { content: '19:00'; }
+  77% { content: '19:15'; }
+  78% { content: '19:30'; }
+  79% { content: '19:45'; }
+  80% { content: '20:00'; }
+  81% { content: '20:15'; }
+  82% { content: '20:30'; }
+  83% { content: '20:45'; }
+  84% { content: '21:00'; }
+  85% { content: '21:15'; }
+  86% { content: '21:30'; }
+  87% { content: '21:45'; }
+  88% { content: '22:00'; }
+  89% { content: '22:15'; }
+  90% { content: '22:30'; }
+  91% { content: '22:45'; }
+  92% { content: '23:00'; }
+  93% { content: '23:15'; }
+  94% { content: '23:30'; }
+  95% { content: '23:45'; }
+  100% { content: '00:00'; }
+}
+*/
+
+@media (max-width: 768px) {
+  .tools {
+    width: 100%;
+    height: 60px;
+  }
+
+  #terminal {
+    width: 90%;
+    height: 60%;
+  }
+
+  .taskbar {
+    height: 50px;
+  }
+
+  .taskbar-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .date-time {
+    font-size: 10px;
+  }
+
+  .date-time .time {
+    font-size: 12px;
+  }
+
+  .date-time .date {
+    font-size: 8px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .tools {
+    width: 100%;
+    height: 50px;
+  }
+
+  #terminal {
+    width: 100%;
+    height: 50%;
+  }
+
+  .taskbar {
+    height: 45px;
+  }
+
+  .taskbar-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .date-time {
+    font-size: 8px;
+  }
+
+  .date-time .time {
+    font-size: 10px;
+  }
+
+  .date-time .date {
+    font-size: 6px;
+  }
+}
