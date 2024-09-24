@@ -1,13 +1,44 @@
 class Controller
 {
-    private Database _db; // Istanza della classe Database per la gestione dei dati
-    private View _view; // Istanza della classe View per l'interazione con l'utente
+    private Database _db; 
+    private View _view; 
+
+    private string _currentUserRole;
+    private bool _isLogged; // Flag per indicare se l'utente è loggato
 
     // Costruttore per inizializzare il Controller con istanze di Database e View
     public Controller(Database db, View view)
     {
         _db = db;
         _view = view;
+        _isLogged = false; // Inizialmente l'utente non è loggato
+    }
+
+    public bool Login()
+    {
+        if (_isLogged) return true; 
+
+        Console.WriteLine("Username:");
+        var username = Console.ReadLine();
+
+        Console.WriteLine("Password:");
+        var password = Console.ReadLine();
+
+        // Convalida nome utente e password rispetto alla tabella Auth
+        var user = _db.ValidateCredentials(username, password);
+
+        if (user != null)
+        {
+            Console.WriteLine("Login avvenuto con successo!");
+            _currentUserRole = user.Role; // Imposta il ruolo corrente
+            _isLogged = true; // Imposta il flag di login a true
+            return true;
+        }
+        else
+        {
+            Console.WriteLine("Username o password errati.");
+            return false;
+        }
     }
 
     // Ciclo del menu principale per l'interazione con l'utente
@@ -15,44 +46,93 @@ class Controller
     {
         while (true)
         {
-            _view.ShowMainMenu(); // Mostra il menu principale
+            if (!Login()) // Controllo dello stato del login
+            {
+                continue;
+            }
+
+            ShowCustomMenu(); // Mostra il menu personalizzato in base al ruolo
             var input = _view.GetInput(); // Ottieni l'input dell'utente
 
             // Valida l'input e esegui azioni in base alla scelta
-            if (int.TryParse(input, out int scelta) && scelta >= 1 && scelta <= 6)
+            if (int.TryParse(input, out int scelta))
             {
                 switch (scelta)
                 {
                     case 1:
-                        AddUser(); // Aggiungi un nuovo utente
+                        if (_currentUserRole == "CEO" || _currentUserRole == "Manager")
+                        {
+                            AddUser(); // Aggiungi un nuovo utente
+                        }
+                        else
+                        {
+                            Console.WriteLine("Accesso negato.");
+                        }
                         break;
                     case 2:
                         ShowUsers(); // Mostra la lista degli utenti
                         break;
                     case 3:
-                        UpdateUser(); // Aggiorna un utente esistente
+                        if (_currentUserRole == "CEO" || _currentUserRole == "Manager")
+                        {
+                            UpdateUser(); // Aggiorna un utente esistente
+                        }
+                        else
+                        {
+                            Console.WriteLine("Accesso negato.");
+                        }
                         break;
                     case 4:
-                        ShowUsers(); // Mostra gli utenti prima della cancellazione
-                        DeleteUser(); // Elimina un utente
+                        if (_currentUserRole == "CEO" || _currentUserRole == "Manager")
+                        {
+                            ShowUsers(); 
+                            DeleteUser();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Accesso negato.");
+                        }
                         break;
                     case 5:
                         SearchUser(); // Cerca un utente per nome
                         break;
                     case 6:
-                        return; // Esci dal menu
+                        _isLogged = false; 
+                        return; // Esci da tutto
+                    case 7:
+                        _isLogged = false; 
+                        Console.WriteLine("Logout effettuato. Puoi ora accedere con un altro account.");
+                        break;
+                    default:
+                        Console.WriteLine("Scelta non valida, riprova.");
+                        break;
                 }
             }
             else
             {
-                Console.WriteLine("Scelta non valida, riprova."); // Messaggio di scelta non valida
+                Console.WriteLine("Scelta non valida, riprova.");
             }
+        }
+    }
+
+    // Metodo per mostrare il menu personalizzato in base al ruolo
+    private void ShowCustomMenu()
+    {
+        if (_currentUserRole == "CEO" || _currentUserRole == "Manager")
+        {
+            _view.ShowMainMenu(_currentUserRole); // Mostra il menu completo per CEO e Manager
+        }
+        else
+        {
+            _view.ShowLimitedMenu(); // Mostra un menu limitato per altri ruoli
         }
     }
 
     // Metodo per aggiungere un nuovo utente
     private void AddUser()
     {
+        if (!Login()) return; // Richiedi il login se non è già stato fatto
+
         Console.WriteLine("inserisci il nuovo nome:"); // Richiesta per il nome
         var name = _view.GetInput();
 
@@ -62,7 +142,14 @@ class Controller
         Console.WriteLine("inserisci il nuovo salario:"); // Richiesta per il salario
         if (decimal.TryParse(_view.GetInput(), out decimal salary))
         {
-            _db.AddUser(name, role, salary); // Aggiungi l'utente al database
+            Console.WriteLine("inserisci il nuovo username:"); // Richiesta per l'username
+            var username = _view.GetInput();
+
+            Console.WriteLine("inserisci la nuova password:"); // Richiesta per la password
+            var password = _view.GetInput();
+
+            // Aggiungi l'utente al database con username e password
+            _db.AddUser(name, role, salary, username, password);
             Console.WriteLine("Utente aggiornato correttamente."); // Messaggio di successo
         }
         else
@@ -74,6 +161,8 @@ class Controller
     // Metodo per visualizzare la lista degli utenti
     private void ShowUsers()
     {
+        if (!Login()) return;
+
         var users = _db.GetUsers(); // Recupera gli utenti dal database
         _view.ShowUsers(users); // Mostra gli utenti nella vista
     }
@@ -81,6 +170,8 @@ class Controller
     // Metodo per aggiornare un utente esistente
     private void UpdateUser()
     {
+        if (!Login()) return; 
+
         while (true)
         {
             ShowUsers(); // Mostra gli utenti per la selezione
@@ -100,7 +191,7 @@ class Controller
             }
             else
             {
-                Console.WriteLine("Scelta non valida. Riprova."); // Messaggio di scelta non valida
+                Console.WriteLine("Scelta non valida. Riprova.");
             }
         }
     }
@@ -108,12 +199,14 @@ class Controller
     // Metodo per aggiornare un utente tramite ID
     private void UpdateUserById()
     {
+        if (!Login()) return; 
+
         while (true)
         {
             Console.WriteLine("Inserisci l'ID dell'utente da modificare (0 per tornare alla scelta precedente):");
             var idInput = _view.GetInput();
 
-            if (idInput == "0") break; // Esci dal ciclo se viene inserito 0
+            if (idInput == "0") break;
 
             // Valida l'ID e recupera l'utente
             if (int.TryParse(idInput, out int id))
@@ -121,17 +214,17 @@ class Controller
                 var user = _db.SearchUsersById(id);
                 if (user != null)
                 {
-                    ModifyUserChoice(user.Id); // Modifica l'utente se trovato
+                    ModifyUserChoice(user.Id);
                     return;
                 }
                 else
                 {
-                    Console.WriteLine("Nessun utente trovato con questo ID. Riprova."); // Messaggio di errore se non trovato
+                    Console.WriteLine("Nessun utente trovato con questo ID. Riprova.");
                 }
             }
             else
             {
-                Console.WriteLine("ID non valido. Riprova."); // Messaggio di errore per ID non valido
+                Console.WriteLine("ID non valido. Riprova.");
             }
         }
     }
@@ -139,12 +232,14 @@ class Controller
     // Metodo per aggiornare un utente tramite Nome
     private void UpdateUserByName()
     {
+        if (!Login()) return;
+
         while (true)
         {
             Console.WriteLine("Inserisci il nome dell'utente da modificare (0 per tornare alla scelta precedente):");
             var nameInput = _view.GetInput();
 
-            if (nameInput == "0") break; // Esci dal ciclo se viene inserito 0
+            if (nameInput == "0") break;
 
             var users = _db.SearchUsers(nameInput); // Cerca utenti per nome
             if (users.Count == 1)
@@ -161,7 +256,7 @@ class Controller
             }
             else
             {
-                Console.WriteLine("Nessun utente trovato con questo nome. Riprova."); // Messaggio di errore se non trovato
+                Console.WriteLine("Nessun utente trovato con questo nome. Riprova.");
             }
         }
     }
@@ -169,28 +264,30 @@ class Controller
     // Metodo per modificare i dettagli di un utente in base alla scelta dell'utente
     private void ModifyUserChoice(int id)
     {
+        if (!Login()) return;
+
         while (true)
         {
-            ShowUsers(); // Mostra gli utenti
+            ShowUsers();
             Console.WriteLine("Cosa vuoi modificare? (1) Nome, (2) Ruolo, (3) Stipendio, (0) Indietro");
-            var choice = _view.GetInput(); // Ottieni la scelta dell'utente
+            var choice = _view.GetInput();
 
-            if (choice == "0") return; // Torna indietro se viene selezionato 0
+            if (choice == "0") return;
 
             // Chiama il metodo corrispondente in base alla scelta
             switch (choice)
             {
                 case "1":
-                    UpdateUserName(id); // Aggiorna il nome
+                    UpdateUserName(id);
                     break;
                 case "2":
-                    UpdateUserRole(id); // Aggiorna il ruolo
+                    UpdateUserRole(id);
                     break;
                 case "3":
-                    UpdateUserSalary(id); // Aggiorna il salario
+                    UpdateUserSalary(id);
                     break;
                 default:
-                    Console.WriteLine("Scelta non valida. Riprova."); // Messaggio di scelta non valida
+                    Console.WriteLine("Scelta non valida. Riprova.");
                     break;
             }
         }
@@ -199,27 +296,29 @@ class Controller
     // Metodo per selezionare un utente da una lista di utenti
     private void SelectUserFromList(List<User> users)
     {
+        if (!Login()) return; 
+
         while (true)
         {
-            var idInput = _view.GetInput(); // Ottieni l'input dell'utente
+            var idInput = _view.GetInput();
 
-            if (int.TryParse(idInput, out int id)) // Valida l'ID
+            if (int.TryParse(idInput, out int id))
             {
                 // Controlla se l'ID esiste nella lista degli utenti
                 foreach (var user in users)
                 {
                     if (user.Id == id)
                     {
-                        ModifyUserChoice(id); // Modifica l'utente se trovato
+                        ModifyUserChoice(id);
                         return;
                     }
                 }
 
-                Console.WriteLine("ID non presente nella lista. Riprova."); // Messaggio di errore se l'ID non è trovato
+                Console.WriteLine("ID non presente nella lista. Riprova.");
             }
             else
             {
-                Console.WriteLine("ID non valido. Riprova."); // Messaggio di errore per ID non valido
+                Console.WriteLine("ID non valido. Riprova.");
             }
         }
     }
@@ -227,73 +326,84 @@ class Controller
     // Metodo per aggiornare il nome dell'utente
     private void UpdateUserName(int id)
     {
-        Console.WriteLine("Inserisci il nuovo nome:"); // Richiesta per il nuovo nome
+        if (!Login()) return; 
+
+        Console.WriteLine("Inserisci il nuovo nome:");
         var newName = _view.GetInput();
 
-        // Valida il nuovo nome e aggiorna
+        // Controlla il nuovo nome e aggiorna
         if (!string.IsNullOrWhiteSpace(newName))
         {
-            _db.UpdateUser(id, newName); // Aggiorna il nome dell'utente nel database
-            Console.WriteLine("Nome dell'Utente aggiornato con successo."); // Messaggio di successo
+            _db.UpdateUser(id, newName);
+            Console.WriteLine("Nome dell'Utente aggiornato con successo.");
         }
         else
         {
-            Console.WriteLine("Nome non valido. Riprova."); // Messaggio di errore per nome non valido
+            Console.WriteLine("Nome non valido. Riprova.");
         }
     }
 
     // Metodo per aggiornare il ruolo dell'utente
     private void UpdateUserRole(int id)
     {
-        Console.WriteLine("Inserisci il nuovo ruolo:"); // Richiesta per il nuovo ruolo
+        if (!Login()) return; 
+
+        Console.WriteLine("Inserisci il nuovo ruolo:");
         var newRole = _view.GetInput();
 
         // Valida il nuovo ruolo e aggiorna
         if (!string.IsNullOrWhiteSpace(newRole))
         {
-            _db.UpdateUserRole(id, newRole); // Aggiorna il ruolo dell'utente nel database
-            Console.WriteLine("Ruolo aggiornato con successo."); // Messaggio di successo
+            _db.UpdateUserRole(id, newRole);
+            Console.WriteLine("Ruolo aggiornato con successo.");
         }
         else
         {
-            Console.WriteLine("Ruolo non valido."); // Messaggio di errore per ruolo non valido
+            Console.WriteLine("Ruolo non valido.");
         }
     }
 
     // Metodo per aggiornare il salario dell'utente
     private void UpdateUserSalary(int id)
     {
-        Console.WriteLine("Inserisci il nuovo stipendio:"); // Richiesta per il nuovo stipendio
+        if (!Login()) return; 
+
+        Console.WriteLine("Inserisci il nuovo stipendio:");
         if (decimal.TryParse(_view.GetInput(), out decimal newSalary))
         {
-            _db.UpdateUserSalary(id, newSalary); // Aggiorna il salario dell'utente nel database
-            Console.WriteLine("Stipendio aggiornato con successo."); // Messaggio di successo
+            _db.UpdateUserSalary(id, newSalary);
+            Console.WriteLine("Stipendio aggiornato con successo.");
         }
         else
         {
-            Console.WriteLine("Stipendio non valido."); // Messaggio di errore per stipendio non valido
+            Console.WriteLine("Stipendio non valido.");
         }
     }
 
     // Metodo per eliminare un utente
     private void DeleteUser()
     {
-        Console.WriteLine("Inserisci l'ID dell'utente da eliminare:"); // Richiesta per l'ID dell'utente da eliminare
+        if (!Login()) return; 
+
+        Console.WriteLine("Inserisci l'ID dell'utente da eliminare:");
         var idInput = _view.GetInput();
 
         // Valida l'ID e cancella l'utente
         if (int.TryParse(idInput, out int id))
         {
-            _db.DeleteUser(id); // Cancella l'utente dal database
-            Console.WriteLine("Utente eliminato con successo."); // Messaggio di successo
+            _db.DeleteUser(id);
+            Console.WriteLine("Utente eliminato con successo.");
         }
         else
         {
-            Console.WriteLine("ID non valido. Riprova."); // Messaggio di errore per ID non valido
+            Console.WriteLine("ID non valido. Riprova.");
         }
     }
+
     private void SearchUser()
     {
+        if (!Login()) return; // Richiedi il login se non è già stato fatto
+
         Console.WriteLine("Inserisci il nome da cercare:");
         var name = _view.GetInput();
 
@@ -308,6 +418,3 @@ class Controller
         }
     }
 }
-
-
-

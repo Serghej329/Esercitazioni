@@ -1,3 +1,4 @@
+/*View.cs*/
 class View
 {
     private Database _db;
@@ -7,16 +8,26 @@ class View
         _db = db;
     }
 
-    public void ShowMainMenu()
+     public void ShowMainMenu(string role)
     {
-        Console.WriteLine("1. Aggiungi un utente");
-        Console.WriteLine("2. Leggi tutti gli utenti");
-        Console.WriteLine("3. Modifica un utente");
-        Console.WriteLine("4. Elimina un utente");
-        Console.WriteLine("5. Ricerca utente per nome");
+        Console.WriteLine("Menu Principale:");
+        Console.WriteLine("1. Aggiungi Utente");
+        Console.WriteLine("2. Mostra Utenti");
+        Console.WriteLine("3. Aggiorna Utente");
+        Console.WriteLine("4. Elimina Utente");
+        Console.WriteLine("5. Cerca Utente");
         Console.WriteLine("6. Esci");
+        Console.WriteLine("7. Cambia Account");
     }
 
+    public void ShowLimitedMenu()
+    {
+        Console.WriteLine("Menu Principale:");
+        Console.WriteLine("2. Mostra Utenti");
+        Console.WriteLine("5. Cerca Utente");
+        Console.WriteLine("6. Esci");
+        Console.WriteLine("7. Cambia Account");
+    }
     public void ShowUsers(List<User> users)
     {
         foreach (var user in users)
