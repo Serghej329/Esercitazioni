@@ -28,7 +28,7 @@ class Database
 
     public User ValidateCredentials(string username, string password)
     {
-        // Prepare the SQL command to check for matching credentials
+        
         var command = new SQLiteCommand("SELECT * FROM auth WHERE username = @username AND password = @password", _connection);
         command.Parameters.AddWithValue("@username", username);
         command.Parameters.AddWithValue("@password", password);
@@ -39,7 +39,7 @@ class Database
             {
                 int authId = reader.GetInt32(0);
 
-                // Query the users table to get the Name and Salary
+                
                 var userCommand = new SQLiteCommand("SELECT id, name, role, salary FROM users WHERE id = @id", _connection);
                 userCommand.Parameters.AddWithValue("@id", authId);
 
@@ -63,7 +63,7 @@ class Database
 
     public void AddUser(string name, string role, decimal salary, string username, string password)
     {
-        // Insert user information into the users table
+        
         var userCommand = new SQLiteCommand("INSERT INTO users (name, username, role, salary) VALUES (@name, @username, @role, @salary)", _connection);
         userCommand.Parameters.AddWithValue("@name", name);
         userCommand.Parameters.AddWithValue("@username", username);
@@ -71,7 +71,7 @@ class Database
         userCommand.Parameters.AddWithValue("@salary", salary);
         userCommand.ExecuteNonQuery();
 
-        // Insert login information into the auth table
+        
         var authCommand = new SQLiteCommand("INSERT INTO auth (username, password) VALUES (@username, @password)", _connection);
         authCommand.Parameters.AddWithValue("@username", username);
         authCommand.Parameters.AddWithValue("@password", password);
