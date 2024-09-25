@@ -8,7 +8,8 @@ class View
         _db = db;
     }
 
-     public void ShowMainMenu(string role)
+    // Mostra menu per CEO & Manager (Admin)
+    public void ShowMainMenu(string role)
     {
         Console.WriteLine("Menu Principale:");
         Console.WriteLine("1. Aggiungi Utente");
@@ -20,6 +21,7 @@ class View
         Console.WriteLine("7. Cambia Account");
     }
 
+    // Mostra menu per i dipendenti (non Admin)
     public void ShowLimitedMenu()
     {
         Console.WriteLine("Menu Principale:");

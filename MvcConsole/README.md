@@ -1,43 +1,79 @@
 # MvcConsole
 
-MvcConsole è una semplice applicazione console in C# progettata per gestire informazioni sugli utenti utilizzando il pattern architetturale MVC (Model-View-Controller). Il progetto si concentra su funzionalità di gestione utenti come l'aggiunta, l'aggiornamento, l'eliminazione e la ricerca di utenti, consentendo una facile integrazione di analisi dati e statistiche nelle versioni future.
-Nella versione attuale è presente anche una funzionalita di **login** per gestire i permessi di determinate funzionalità presenti nel programma a seconda del ruolo dell'utente:
-- **Admin** (CEO e Manager): può eseguire tutte le funzionalità
-- **Altri**: può eseguire delle funzionalità limitate (esclusivamente visualizzazione degli utenti)
+**MvcConsole** è un'applicazione console scritta in C# che adotta il pattern architetturale **MVC** (Model-View-Controller) per la gestione delle informazioni sugli utenti. Il progetto si focalizza su operazioni di base quali l'aggiunta, l'aggiornamento, l'eliminazione e la ricerca di utenti, con l'obiettivo di facilitare l'eventuale integrazione di analisi dati e statistiche in future versioni.
 
-## Funzionalità di base
+Nella versione attuale, l'applicazione include anche una funzionalità di **login** per gestire i permessi delle varie operazioni, a seconda del ruolo assegnato a ciascun utente:
 
-- Aggiungi nuovi utenti con nome, ruolo e stipendio. [x]
-- Aggiorna utenti esistenti (nome, ruolo o stipendio). [x]
-- Elimina utenti tramite ID.
-- Cerca utenti per nome.
-- Visualizza tutti gli utenti.
-- Implementato in C# utilizzando SQLite come database per la memorizzazione persistente dei dati.
-- Implementazione Login con gestione dei permessi ()
+- **Admin** (ruoli: CEO e Manager): può eseguire tutte le operazioni disponibili.
+- **Dipendente** (altri ruoli): ha accesso limitato a operazioni di sola visualizzazione.
 
-## Login
+## Funzionalità Principali
 
-- Creare tabella per autenticare
-- Esiste un'utente per effettuare il primo login _Username: admin_ e _Password: password_
+- **Aggiungi Utente**: Permette di inserire un nuovo utente con nome, ruolo e salario.
+- **Aggiorna Utente**: Consente di modificare i dati di un utente esistente (nome, ruolo o salario).
+- **Elimina Utente**: Consente di rimuovere un utente dal sistema tramite il suo ID.
+- **Cerca Utente**: Permette di cercare utenti per nome.
+- **Visualizza Tutti gli Utenti**: Mostra l'elenco completo degli utenti registrati.
+- **Persistenza dei Dati**: Utilizzo di SQLite come database per mantenere i dati in modo persistente.
+- **Login e Gestione Permessi**: Accesso controllato tramite login, con funzionalità differenziate in base al ruolo.
+
+## Funzionalità di Login
+
+Il sistema di autenticazione richiede il login all'avvio dell'applicazione. I dati per l'autenticazione sono memorizzati in una tabella dedicata, con un utente predefinito già presente per il primo accesso:
+
+- **Username**: admin
+- **Password**: password
+
+Una volta effettuato l'accesso come admin, sarà possibile gestire i dati degli utenti e assegnare i rispettivi ruoli. L'applicazione verifica il ruolo assegnato e limita le operazioni disponibili a seconda di esso.
 
 ## Tecnologie Utilizzate
 
-- **C# .NET**: Linguaggio di programmazione principale del progetto.
-- **Pattern MVC**: Usato per separare le responsabilità tra il Model, View e Controller.
-- **SQLite**: Database incorporato per la memorizzazione dei dati degli utenti, consentendo uno storage persistente senza bisogno di un server di database separato.
-- **Interfaccia Console**: Interfaccia testuale semplice per l'interazione con l'utente.
+- **C# .NET**: Linguaggio principale di sviluppo dell'applicazione.
+- **Pattern MVC**: Utilizzato per separare la logica del programma (Controller), la gestione dei dati (Model) e l'interfaccia utente (View).
+- **SQLite**: Database leggero e integrato per la memorizzazione persistente degli utenti.
+- **Console**: Interfaccia testuale semplice e immediata per interagire con l'applicazione.
 
 ## Struttura del Progetto
 
-- **Controller**: Gestisce la logica di business dell'applicazione. Comunica tra la View e il Model.
-- **Model (Database)**: Si occupa della gestione dei dati e della loro persistenza. Interagisce con il database SQLite per la gestione dei dati degli utenti.
-- **View**: Responsabile della visualizzazione dei dati all'utente e della raccolta degli input dalla console.
+- **Controller**: Gestisce la logica di business dell'applicazione, fungendo da intermediario tra la View e il Model.
+- **Model**: Si occupa della gestione e persistenza dei dati. Interagisce con SQLite per operazioni come l'inserimento, la modifica e la cancellazione di utenti.
+- **View**: Responsabile della visualizzazione dei dati e della gestione degli input provenienti dalla console.
+
+## Dettagli Tecnici per la Gestione dei Ruoli
+
+### Tabella **"users"**
+Questa tabella contiene i seguenti campi:
+- **Nome**
+- **Username**
+- **Ruolo**
+- **Salario**
+
+Il campo "Ruolo" determina i permessi dell'utente. Se il ruolo è "CEO" o "Manager", l'utente ha i permessi di admin; altrimenti, l'utente sarà considerato un dipendente con permessi limitati.
+
+### Tabella **"auth"**
+Questa tabella gestisce l'autenticazione degli utenti con:
+- **Username**
+- **Password**
+
+Al primo avvio dell'applicazione, esiste già un utente predefinito con username **admin** e password **password**, e ruolo **CEO** (quindi admin).
+
+### Flusso di Login
+Dopo aver creato le tabelle, al primo avvio verrà richiesto il login, con username e password. Una volta effettuato l'accesso come admin, si avrà accesso completo al menu, che permetterà l'inserimento di nuovi utenti (nome, ruolo, salario). Il sistema verificherà il ruolo degli utenti e, in base a esso, modificherà dinamicamente le opzioni disponibili nel menu.
+
+Gli utenti con ruoli **CEO** o **Manager** avranno accesso a tutte le funzionalità (aggiunta, modifica, eliminazione, visualizzazione), mentre gli altri ruoli potranno solo visualizzare e cercare utenti.
+
+### Stato di Login Persistente
+Il sistema richiederà il login solo all'avvio e manterrà lo stato dell'utente loggato per tutta la sessione. Il flag **_isLoggedIn** viene utilizzato per tracciare se l'utente è autenticato e verrà reimpostato su `false` solo al momento della disconnessione o dell'uscita dal menu principale.
 
 ## Miglioramenti Futuri
 
-- Implementazione di funzionalità di autenticazione e autorizzazione per utenti.[x]
-- Implementazione di funzionalità per il cambio utente. [x]
-- Implementazione di funzionalità di statistiche (spectre console?)
+- **Statistiche**: Prevedere l'integrazione di strumenti di analisi e statistiche, ad esempio utilizzando la libreria **Spectre.Console**.
+- **Cambio Account**: Implementare la possibilità di cambiare utente senza uscire dall'applicazione.
+
+---
+
+In questa versione, l'applicazione è pronta per gestire utenti con login e permessi, personalizzando il menu in base ai ruoli.
+
 
 # Passaggi
 

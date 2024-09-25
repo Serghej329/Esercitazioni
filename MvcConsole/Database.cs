@@ -26,38 +26,41 @@ class Database
         insertDefaultUserInUsers.ExecuteNonQuery();
     }
 
-    public User ValidateCredentials(string username, string password)
+    public User CheckCredenziali(string username, string password)
     {
-        
+        // Preparazione della query SQL per le credenziali di autenticazione:
         var command = new SQLiteCommand("SELECT * FROM auth WHERE username = @username AND password = @password", _connection);
         command.Parameters.AddWithValue("@username", username);
         command.Parameters.AddWithValue("@password", password);
 
+
+        // Esecuzione della query e lettura del risultato
         using (var reader = command.ExecuteReader())
         {
             if (reader.Read())
             {
                 int authId = reader.GetInt32(0);
 
-                
+                // Recupero delle informazioni dettagliate dell'utente dalla tabella users
                 var userCommand = new SQLiteCommand("SELECT id, name, role, salary FROM users WHERE id = @id", _connection);
                 userCommand.Parameters.AddWithValue("@id", authId);
 
+                // Lettura dei dati dell'utente
                 using (var userReader = userCommand.ExecuteReader())
                 {
+                    // Se l'utente con l'ID corrispondente viene trovato, si creano le informazioni dell'utente usando la classe User e i dati letti dal userReader
                     if (userReader.Read())
                     {
                         return new User(
-                            userReader.GetInt32(0),
-                            userReader.GetString(1),
-                            userReader.GetString(2),
-                            userReader.GetDecimal(3)
+                            userReader.GetInt32(0), // id
+                            userReader.GetString(1), // name
+                            userReader.GetString(2), // role
+                            userReader.GetDecimal(3) // salario
                         );
                     }
                 }
             }
         }
-
         return null; // Nessun utente trovato
     }
 

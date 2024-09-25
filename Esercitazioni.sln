@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitoBoostrap2", "SitoBoostr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcConsole", "MvcConsole\MvcConsole.csproj", "{4445B4F0-7A7B-4F51-959E-2C3F3C95C29C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcConsoleDatabase", "MvcConsoleDatabase\MvcConsoleDatabase.csproj", "{077D8B4F-9000-4060-B62C-221BE32B50A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +76,10 @@ Global
 		{4445B4F0-7A7B-4F51-959E-2C3F3C95C29C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4445B4F0-7A7B-4F51-959E-2C3F3C95C29C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4445B4F0-7A7B-4F51-959E-2C3F3C95C29C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{077D8B4F-9000-4060-B62C-221BE32B50A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{077D8B4F-9000-4060-B62C-221BE32B50A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{077D8B4F-9000-4060-B62C-221BE32B50A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{077D8B4F-9000-4060-B62C-221BE32B50A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E5CE7024-7F8F-485D-B428-6D24A678BF89} = {C026496B-A9A9-4460-9A81-D2D1E89580FC}
