@@ -24,6 +24,7 @@ class Subscription
 
 class Transition
 {
+    
     public int Id { get; set; }
     public int UserId { get; set; }
     public DateOnly Data { get; set; }
