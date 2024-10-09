@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using System.IO;
+using System.Linq;
 
 namespace WebAppProdotti.Pages
 {
@@ -8,21 +11,55 @@ namespace WebAppProdotti.Pages
     {
         private readonly ILogger<ProdottiModel> _logger;
 
+        // Proprietà per contenere i prodotti e le categorie
+        public List<Prodotto> Prodotti { get; set; }
+        public List<string> Categorie { get; set; }
+        public int NumeroPagine { get; set; }
+
         public ProdottiModel(ILogger<ProdottiModel> logger)
         {
             _logger = logger;
         }
 
-        public IEnumerable<Prodotto> ElencoProdotti { get; set; }
-
-        public void OnGet()
+        // Metodo OnGet per ottenere e filtrare i prodotti
+        public void OnGet(decimal? minPrezzo, decimal? maxPrezzo, int? pageIndex, string selectedCategoria)
         {
-            ElencoProdotti = new List<Prodotto>
+            var jsonFilePath = "wwwroot/json/prodotti.json";
+
+            // Verifica se il file esiste
+            if (System.IO.File.Exists(jsonFilePath))
             {
-                new Prodotto { Id = 1, Nome = "Prod 1", Prezzo = 100, Immagine = "./img/img1.jpg"},
-                new Prodotto { Id = 2, Nome = "Prod 2", Prezzo = 200, Immagine = "./img/img2.jpg" },
-                new Prodotto { Id = 3, Nome = "Prod 3", Prezzo = 300, Immagine = "./img/img3.jpg" }
-            };
+                var json = System.IO.File.ReadAllText(jsonFilePath);
+                var tuttiProdotti = JsonConvert.DeserializeObject<List<Prodotto>>(json);
+
+                if (tuttiProdotti != null)
+                {
+                    // Ottieni le categorie distinte
+                    Categorie = tuttiProdotti.Select(p => p.Categoria).Distinct().ToList();
+
+                    // Filtra i prodotti in base al prezzo e alla categoria
+                    var prodottiFiltrati = tuttiProdotti.Where(p =>
+                        (!minPrezzo.HasValue || p.Prezzo >= minPrezzo.Value) &&
+                        (!maxPrezzo.HasValue || p.Prezzo <= maxPrezzo.Value) &&
+                        (string.IsNullOrEmpty(selectedCategoria) || p.Categoria == selectedCategoria)).ToList();
+
+                    // Calcola il numero di pagine
+                    NumeroPagine = (int)System.Math.Ceiling((double)prodottiFiltrati.Count / 6);
+
+                    // Esegui la paginazione
+                    Prodotti = prodottiFiltrati.Skip(((pageIndex ?? 1) - 1) * 6).Take(6).ToList();
+                }
+                else
+                {
+                    _logger.LogWarning("Prodotti non trovati nel file.");
+                    Prodotti = new List<Prodotto>();
+                }
+            }
+            else
+            {
+                _logger.LogError("File prodotti.json non trovato.");
+                Prodotti = new List<Prodotto>();
+            }
         }
     }
 }

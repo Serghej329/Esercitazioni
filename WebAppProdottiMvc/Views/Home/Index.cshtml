@@ -1,0 +1,86 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="hero-section text-center">
+    <div class="container">
+        <h1 class="display-4">Benvenuti nel Giardino delle Meraviglie</h1>
+        <p class="lead">Scopri la magia della natura con la nostra selezione di piante e fiori unici</p>
+        <a href="/Prodotti" class="btn btn-primary btn-lg mt-3">Esplora il Catalogo</a>
+    </div>
+</div>
+
+@if (Model.RandomProdotti != null && Model.RandomProdotti.Count > 0)
+{
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="text-center mb-4">I nostri prodotti in evidenza</h2>
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    @for (int i = 0; i < Model.RandomProdotti.Count; i++)
+                    {
+                        var prodotto = Model.RandomProdotti[i];
+                        <div class="carousel-item @(i == 0 ? "active" : "")">
+                            <img src="~/@prodotto.Immagine" class="d-block w-100" alt="@prodotto.Nome" />
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>@prodotto.Nome</h5>
+                                <p>@prodotto.Dettaglio</p>
+                                <p><strong>Prezzo:</strong> @prodotto.Prezzo &euro;</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+}
+
+<section class="cta-section">
+    <div class="container text-center">
+        <h2>Vuoi saperne di più?</h2>
+        <p>Iscriviti alla nostra newsletter per rimanere aggiornato su tutte le novità!</p>
+        <form class="mt-3">
+            <div class="input-group mb-3">
+                <input type="email" class="form-control" placeholder="Inserisci la tua email" aria-label="Email" aria-describedby="button-addon2">
+                <button class="btn btn-primary" type="button" id="button-addon2">Iscriviti</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section class="feature-boxes py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <div class="feature-box">
+                    <i class="fas fa-leaf fa-3x mb-3"></i>
+                    <h3>Piante di Qualità</h3>
+                    <p>Scegli tra una vasta gamma di piante di alta qualità.</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="feature-box">
+                    <i class="fas fa-truck fa-3x mb-3"></i>
+                    <h3>Spedizione Veloce</h3>
+                    <p>Consegna veloce e affidabile in tutta Italia.</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="feature-box">
+                    <i class="fas fa-seedling fa-3x mb-3"></i>
+                    <h3>Supporto Specializzato</h3>
+                    <p>Assistenza dedicata per ogni tua esigenza.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

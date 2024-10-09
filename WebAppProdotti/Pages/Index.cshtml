@@ -1,10 +1,96 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home - Il Giardino delle Meraviglie";
 }
 
-<div class="text-center">
-    <h1 class="display-4" >ciaoooooo</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+<div class="hero-section text-center">
+    <h1 class="display-4">Benvenuti nel Giardino delle Meraviglie</h1>
+    <p class="lead">Scopri la magia della natura con la nostra selezione di piante e fiori unici</p>
+    <a href="/Prodotti" class="btn btn-primary btn-lg mt-3">Esplora il Catalogo</a>
+</div>
+
+@if (Model.RandomProdotti != null && Model.RandomProdotti.Count > 0)
+{
+    <div class="featured-products">
+        <h2 class="text-center mb-4">I nostri prodotti in evidenza</h2>
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                @for (int i = 0; i < Model.RandomProdotti.Count; i++)
+                {
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="@i"
+                        class="@(i == 0 ? "active" : "")" aria-current="@(i == 0 ? "true" : "false")"
+                        aria-label="Slide @(i + 1)"></button>
+                }
+            </div>
+            <div class="carousel-inner">
+                @for (int i = 0; i < Model.RandomProdotti.Count; i++)
+                {
+                    var prodotto = Model.RandomProdotti[i];
+                    <div class="carousel-item @(i == 0 ? "active" : "")">
+                        <img src="~/@prodotto.Immagine" class="d-block w-100" alt="@prodotto.Nome"
+                            style="height: 400px; object-fit: cover;" />
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>@prodotto.Nome</h5>
+                            <p>@prodotto.Dettaglio</p>
+                            <p><strong>Prezzo:</strong> @prodotto.Prezzo €</p>
+                            <a href="/ProdottoDettaglio?id=@prodotto.Id" class="btn btn-primary">Scopri di più</a>
+                        </div>
+                    </div>
+                }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Precedente</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Successivo</span>
+            </button>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-info" role="alert">
+        Stiamo preparando nuove meraviglie per voi. Tornate presto per scoprire la nostra selezione di piante e fiori!
+    </div>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="feature-box">
+                <i class="fas fa-leaf fa-3x mb-3" style="color: var(--link-color);"></i>
+                <h3>Selezione Premium</h3>
+                <p>Offriamo solo le migliori piante e fiori, curati con passione dai nostri esperti.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-box">
+                <i class="fas fa-truck fa-3x mb-3" style="color: var(--link-color);"></i>
+                <h3>Consegna Rapida</h3>
+                <p>Spedizione veloce e sicura per garantire che le vostre piante arrivino fresche e in salute.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-box">
+                <i class="fas fa-hands-helping fa-3x mb-3" style="color: var(--link-color);"></i>
+                <h3>Supporto Esperto</h3>
+                <p>Il nostro team di esperti è sempre disponibile per consigli sulla cura delle vostre piante.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="cta-section">
+    <h2>Trasforma il tuo spazio in un'oasi verde</h2>
+    <p class="lead">Iscriviti alla nostra newsletter per ricevere consigli, offerte speciali e novità sul mondo delle piante.</p>
+    <form class="mt-4">
+        <div class="input-group mb-3 w-75 mx-auto">
+            <input type="email" class="form-control" placeholder="Inserisci la tua email" aria-label="Email" aria-describedby="button-addon2">
+            <button class="btn btn-primary" type="button" id="button-addon2">Iscriviti</button>
+        </div>
+    </form>
 </div>

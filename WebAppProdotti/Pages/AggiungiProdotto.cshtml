@@ -1,0 +1,83 @@
+@page
+@model AggiungiProdottoModel
+@{
+    ViewData["Title"] = "Aggiungi Prodotto";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-dark text-white">
+            <h1 class="card-title">@ViewData["Title"]</h1>
+        </div>
+        <div class="card-body">
+            <form method="post" class="needs-validation" novalidate>
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <label asp-for="Prodotto.Nome" class="form-label">Nome</label>
+                        <input asp-for="Prodotto.Nome" class="form-control" required />
+                        <span asp-validation-for="Prodotto.Nome" class="text-danger"></span>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter a name.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="Prodotto.Prezzo" class="form-label">Prezzo</label>
+                        <input asp-for="Prodotto.Prezzo" class="form-control" required />
+                        <span asp-validation-for="Prodotto.Prezzo" class="text-danger"></span>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter a price.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="Prodotto.Dettaglio" class="form-label">Dettaglio</label>
+                        <input asp-for="Prodotto.Dettaglio" class="form-control" required />
+                        <span asp-validation-for="Prodotto.Dettaglio" class="text-danger"></span>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter details.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="Prodotto.Immagine" class="form-label">Immagine</label>
+                        <input asp-for="Prodotto.Immagine" class="form-control" required />
+                        <span asp-validation-for="Prodotto.Immagine" class="text-danger"></span>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please provide an image.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="Prodotto.Quantita" class="form-label">Quantità</label>
+                        <input asp-for="Prodotto.Quantita" class="form-control" required />
+                        <span asp-validation-for="Prodotto.Quantita" class="text-danger"></span>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter quantity.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="Prodotto.Categoria" class="form-label">Categoria</label>
+                        <select asp-for="Prodotto.Categoria" class="form-select" asp-items="@(new SelectList(Model.Categorie))" required>
+                            <option value="">Seleziona categoria</option>
+                        </select>
+                        <span asp-validation-for="Prodotto.Categoria" class="text-danger"></span>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please select a category.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="Codice" class="form-label">Codice</label>
+                        <input asp-for="Codice" class="form-control" placeholder="codice di sicurezza" required />
+                        <span asp-validation-for="Codice" class="text-danger"></span>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter a code.</div>
+                    </div>
+
+                    <button type="submit" class="btn btn-dark">Aggiungi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,141 @@
+﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+/* _Layout.cshtml.css */
+:root {
+  --primary-color: #4a7c59; /* Primary color */
+  --secondary-color: #8cb369; /* Secondary color */
+  --accent-color: #f4e285; /* Accent color */
+  --text-color: #333; /* Text color */
+  --link-color: #0077cc; /* Link color */
+  --background-color: #f9f9f9; /* Background color */
+}
+
+html {
+  font-size: 14px;
+  position: relative;
+  min-height: 100%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Global Styles */
+body {
+  font-family: 'Roboto', sans-serif; /* Changed to Roboto */
+  color: var(--text-color);
+  background-color: var(--background-color);
+  margin-bottom: 60px; /* Ensure space for footer */
+}
+
+/* Navbar Styles */
+.navbar {
+  background-color: var(--primary-color) !important; /* Updated navbar color */
+}
+
+.navbar-brand, .nav-link {
+  color: white !important; /* White text for navbar */
+}
+
+.nav-link:hover {
+  color: var(--accent-color) !important; /* Accent color on hover */
+}
+
+/* Button Styles */
+.btn-primary {
+  color: #fff;
+  background-color: var(--secondary-color); /* Using variable for consistency */
+  border-color: var(--secondary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Footer Styles */
+.footer {
+  position: relative; /* Use relative positioning */
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  padding: 1rem 0;
+  margin-top: 2rem;
+  white-space: nowrap;
+  line-height: 60px;
+}
+
+.footer a {
+  color: var(--link-color);
+}
+
+/* General box-shadow utility */
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/garden-hero.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 6rem 0;
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero-section p {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
+
+/* Featured Products */
+.featured-products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 4rem 0;
+  background-color: white;
+}
+
+.featured-products h2 {
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Carousel Styles */
+.carousel-item img {
+  object-fit: cover;
+  height: 500px;
+}
+
+.carousel-caption {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 1.5rem;
+  border-radius: 5px;
+}
+
+/* Button Focus Styles */
+.btn:focus, 
+.btn:active:focus, 
+.form-control:focus, 
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 3rem 2rem;
+  }
+}

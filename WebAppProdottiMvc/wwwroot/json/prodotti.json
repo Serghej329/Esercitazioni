@@ -1,0 +1,11 @@
+[
+  {
+    "Id": 8,
+    "Nome": "cipolle",
+    "Prezzo": 20.0,
+    "Dettaglio": "tante cipolle di tropea",
+    "Immagine": "img/img3.jpg",
+    "Quantita": 10,
+    "Categoria": "frutta&verdura"
+  }
+]

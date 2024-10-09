@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcConsoleDatabase", "MvcCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppProdotti", "WebAppProdotti\WebAppProdotti.csproj", "{11018FB4-817F-40DE-8019-8761EF62356A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppProdottiMvc", "WebAppProdottiMvc\WebAppProdottiMvc.csproj", "{8AB8D745-4AD5-49D2-835E-0E5114EAD824}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +88,10 @@ Global
 		{11018FB4-817F-40DE-8019-8761EF62356A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11018FB4-817F-40DE-8019-8761EF62356A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11018FB4-817F-40DE-8019-8761EF62356A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AB8D745-4AD5-49D2-835E-0E5114EAD824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AB8D745-4AD5-49D2-835E-0E5114EAD824}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AB8D745-4AD5-49D2-835E-0E5114EAD824}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AB8D745-4AD5-49D2-835E-0E5114EAD824}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E5CE7024-7F8F-485D-B428-6D24A678BF89} = {C026496B-A9A9-4460-9A81-D2D1E89580FC}

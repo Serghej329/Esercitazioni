@@ -13,12 +13,17 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+// Middleware configuration
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
+
+app.UseStatusCodePages(context =>
+{
+    context.HttpContext.Response.StatusCode = 404;
+    return Task.CompletedTask;
+});
 
 app.MapRazorPages();
 
