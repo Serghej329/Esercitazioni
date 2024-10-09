@@ -4,4 +4,5 @@ public class ProdottiViewModel
     public decimal MinPrezzo { get; set; }
     public decimal MaxPrezzo { get; set; }
     public int NumeroPagine { get; set; }
+    public int PaginaCorrente { get; set; }
 }

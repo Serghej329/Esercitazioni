@@ -14,19 +14,15 @@ public class ProdottiController : Controller
     private readonly ILogger<ProdottiController> _logger;
 
     // Costruttore che riceve il logger
-
     public ProdottiController(ILogger<ProdottiController> logger)
     {
         _logger = logger;
     }
 
     // Metodo per leggere i prodotti dal file JSON
-
     private List<Prodotto> LeggiProdottiDaJson()
     {
-        // Legge il contenuto del file prodotti.json
         var jsonData = System.IO.File.ReadAllText(prodottiFilePath);
-        // Deserializza il contenuto in una lista di oggetti Prodotto
         return JsonConvert.DeserializeObject<List<Prodotto>>(jsonData) ?? new List<Prodotto>();
     }
 
@@ -35,9 +31,7 @@ public class ProdottiController : Controller
     {
         try
         {
-            // Serializza la lista di prodotti in formato JSON
             var jsonData = JsonConvert.SerializeObject(prodotti, Formatting.Indented);
-            // Scrive il JSON nel file prodotti.json
             System.IO.File.WriteAllText(prodottiFilePath, jsonData);
             _logger.LogInformation("Product list successfully written to JSON.");
         }
@@ -47,22 +41,13 @@ public class ProdottiController : Controller
         }
     }
 
-
-    /* private List<string> LeggiCategorieDaJson()
-     {
-         var jsonData = System.IO.File.ReadAllText(categorieFilePath);
-         return JsonConvert.DeserializeObject<List<string>>(jsonData) ?? new List<string>();
-     }*/
-
     // Metodo per leggere le categorie dal file JSON
-
     private List<string> LeggiCategorieDaJson()
     {
         try
         {
             var jsonData = System.IO.File.ReadAllText(categorieFilePath);
             _logger.LogInformation("Categorie JSON loaded: " + jsonData); // Log per il JSON data
-            // Deserializza il JSON in una lista di stringhe (categorie)
             return JsonConvert.DeserializeObject<List<string>>(jsonData) ?? new List<string>();
         }
         catch (Exception ex)
@@ -72,13 +57,28 @@ public class ProdottiController : Controller
         }
     }
 
-
     // Action per visualizzare la lista dei prodotti con filtro prezzo e paginazione
     public IActionResult Index(int? minPrezzo, int? maxPrezzo, int pageIndex = 1)
     {
         var prodotti = LeggiProdottiDaJson();
+        var prodottiFiltrati = FiltraProdottiPerPrezzo(prodotti, minPrezzo, maxPrezzo);
+        var prodottiPaginati = PaginaProdotti(prodottiFiltrati, pageIndex);
 
-        // Filtro per prezzo minimo e massimo
+        var viewModel = new ProdottiViewModel
+        {
+            Prodotti = prodottiPaginati,
+            MinPrezzo = minPrezzo ?? 0,
+            MaxPrezzo = maxPrezzo ?? prodotti.Max(p => p.Prezzo),
+            NumeroPagine = (int)Math.Ceiling((double)prodottiFiltrati.Count() / 6),
+            PaginaCorrente = pageIndex
+        };
+
+        return View("Prodotti", viewModel);
+    }
+
+    // Metodo per filtrare i prodotti per prezzo
+    private List<Prodotto> FiltraProdottiPerPrezzo(List<Prodotto> prodotti, int? minPrezzo, int? maxPrezzo)
+    {
         if (minPrezzo.HasValue)
         {
             prodotti = prodotti.Where(p => p.Prezzo >= minPrezzo.Value).ToList();
@@ -87,44 +87,33 @@ public class ProdottiController : Controller
         {
             prodotti = prodotti.Where(p => p.Prezzo <= maxPrezzo.Value).ToList();
         }
+        return prodotti;
+    }
 
-        // Paginazione mostra 6 prodotti per pagina
+    // Metodo per paginare i prodotti
+    private List<Prodotto> PaginaProdotti(List<Prodotto> prodotti, int pageIndex)
+    {
         int numeroProdottiPerPagina = 6;
-        var prodottiPaginati = prodotti.Skip((pageIndex - 1) * numeroProdottiPerPagina).Take(numeroProdottiPerPagina);
-
-        // Crea un ViewModel con i prodotti filtrati e i dettagli per la paginazione
-        var viewModel = new ProdottiViewModel
-        {
-            Prodotti = prodottiPaginati,
-            MinPrezzo = minPrezzo ?? 0,
-            MaxPrezzo = maxPrezzo ?? prodotti.Max(p => p.Prezzo),
-            NumeroPagine = (int)Math.Ceiling((double)prodotti.Count() / numeroProdottiPerPagina)
-        };
-
-        // Ritorna la vista "Prodotti" con il ViewModel
-        return View("Prodotti", viewModel);
+        return prodotti.Skip((pageIndex - 1) * numeroProdottiPerPagina).Take(numeroProdottiPerPagina).ToList();
     }
 
     // Action per visualizzare i dettagli di un singolo prodotto
     public IActionResult ProdottoDettaglio(int id)
     {
-        // Cerca il prodotto per ID nella lista di prodotti
         var prodotti = LeggiProdottiDaJson();
         var prodotto = prodotti.Find(p => p.Id == id);
 
-        // ritorna errore se il prodotto non esiste
         if (prodotto == null)
         {
             return NotFound();
         }
-        // Ritorna la view con i dettagli del prodotto
+
         return View(prodotto);
     }
 
     // Action per visualizzare il form di aggiunta prodotto (GET)
     public IActionResult AggiungiProdotto()
     {
-        // Crea un ViewModel che include un nuovo prodotto e la lista delle categorie
         var viewModel = new AggiungiProdottoViewModel
         {
             Prodotto = new Prodotto(),
@@ -135,16 +124,13 @@ public class ProdottiController : Controller
     }
 
     // Action per processare l'aggiunta di un nuovo prodotto (POST)
-
     [HttpPost]
     public IActionResult AggiungiProdotto(AggiungiProdottoViewModel viewModel)
     {
         _logger.LogInformation("Valore della categoria: " + viewModel.Prodotto.Categoria);
 
-        // Se il ModelState non è valido (errore di validazione)
         if (!ModelState.IsValid)
         {
-            // Log che registra  errori di validazione
             foreach (var modelState in ModelState.Values)
             {
                 foreach (var error in modelState.Errors)
@@ -156,14 +142,12 @@ public class ProdottiController : Controller
             var prodotti = LeggiProdottiDaJson();
             viewModel.Prodotto.Id = prodotti.Count > 0 ? prodotti.Max(p => p.Id) + 1 : 1;
 
-            // Logica di salvataggio
             prodotti.Add(viewModel.Prodotto);
             SalvaProdottiSuJson(prodotti);
 
             return RedirectToAction("Index");
         }
 
-        // In caso di errore, ricarica le categorie e ritorna la view
         viewModel.Categorie = LeggiCategorieDaJson();
         return View(viewModel);
     }
@@ -181,25 +165,21 @@ public class ProdottiController : Controller
 
         var viewModel = new ModificaProdottoViewModel
         {
-            Prodotto = prodotto
-
+            Prodotto = prodotto,
+            Categorie = LeggiCategorieDaJson() // Carica le categorie dal file JSON
         };
 
         return View(viewModel);
     }
 
     // azione POST per inviare dati al server del metodo modificaprodotto
-
     [HttpPost]
     public IActionResult ModificaProdotto(ModificaProdottoViewModel viewModel)
     {
-        // Log dell'informazione per tracciare la categoria selezionata dall'utente
         _logger.LogInformation("Categoria selezionata: " + viewModel.Prodotto.Categoria);
 
-        // Verifica se il modello è valido, controlla eventuali errori di validazione
-       /* if (!ModelState.IsValid)
+        if (!ModelState.IsValid)
         {
-            // Log degli errori di validazione
             foreach (var modelState in ModelState.Values)
             {
                 foreach (var error in modelState.Errors)
@@ -208,21 +188,17 @@ public class ProdottiController : Controller
                 }
             }
 
-            // Se ci sono errori ritorna la stessa vista per permettere all'utente di correggerli
+            viewModel.Categorie = LeggiCategorieDaJson();
             return View(viewModel);
-        }*/
+        }
 
-        // Se il ModelState è valido (nessun errore), procedi con la modifica del prodotto
         var prodotti = LeggiProdottiDaJson();
         var prodottoDaModificare = prodotti.FirstOrDefault(p => p.Id == viewModel.Prodotto.Id);
-        // Trova il prodotto corrispondente all'ID passato dal viewModel
 
-        // Se il prodotto è stato trovato aggiorna le sue proprietà
         if (prodottoDaModificare != null)
         {
             _logger.LogInformation("Modifica del prodotto con ID: {Id}", viewModel.Prodotto.Id);
 
-            // Aggiorna le proprietà del prodotto con i valori provenienti dal form di modifica
             prodottoDaModificare.Nome = viewModel.Prodotto.Nome;
             prodottoDaModificare.Prezzo = viewModel.Prodotto.Prezzo;
             prodottoDaModificare.Dettaglio = viewModel.Prodotto.Dettaglio;
@@ -230,25 +206,22 @@ public class ProdottiController : Controller
             prodottoDaModificare.Quantita = viewModel.Prodotto.Quantita;
             prodottoDaModificare.Categoria = viewModel.Prodotto.Categoria;
 
-            // Salva i prodotti aggiornati
             SalvaProdottiSuJson(prodotti);
 
             _logger.LogInformation("Prodotto con ID: {Id} modificato con successo.", viewModel.Prodotto.Id);
 
-            // Reindirizza l'utente all'azione Index (lista dei prodotti) dopo la modifica
             return RedirectToAction("Index");
         }
 
         _logger.LogWarning("Prodotto con ID: {Id} non trovato.", viewModel.Prodotto.Id);
-        return NotFound(); // Se il prodotto non esiste, restituisce 404
+        return NotFound();
     }
-
 
     // Azione GET per visualizzare la conferma della cancellazione di un prodotto
     public IActionResult CancellaProdotto(int id)
     {
         var prodotti = LeggiProdottiDaJson();
-        var prodotto = prodotti.Find(p => p.Id == id); // Cerca il prodotto per ID
+        var prodotto = prodotti.Find(p => p.Id == id);
 
         if (prodotto == null)
         {
@@ -263,13 +236,12 @@ public class ProdottiController : Controller
     public IActionResult ConfermaCancellazione(int id)
     {
         var prodotti = LeggiProdottiDaJson();
-        // Trova il prodotto con l'ID specificato
         var prodotto = prodotti.Find(p => p.Id == id);
 
         if (prodotto != null)
         {
-            prodotti.Remove(prodotto); // Rimuovi il prodotto dalla lista
-            SalvaProdottiSuJson(prodotti); // Salva il file JSON aggiornato
+            prodotti.Remove(prodotto);
+            SalvaProdottiSuJson(prodotti);
         }
 
         return RedirectToAction("Index");

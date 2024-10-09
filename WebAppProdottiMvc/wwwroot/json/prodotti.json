@@ -7,5 +7,59 @@
     "Immagine": "img/img3.jpg",
     "Quantita": 10,
     "Categoria": "frutta&verdura"
+  },
+  {
+    "Id": 9,
+    "Nome": "mario",
+    "Prezzo": 1234.0,
+    "Dettaglio": "fwe",
+    "Immagine": "img/default.jpg",
+    "Quantita": 10,
+    "Categoria": "frutta&verdura"
+  },
+  {
+    "Id": 10,
+    "Nome": "EWFDAW",
+    "Prezzo": 23.0,
+    "Dettaglio": "qsdxc",
+    "Immagine": "img/default.jpg",
+    "Quantita": 12,
+    "Categoria": "Categoria2"
+  },
+  {
+    "Id": 11,
+    "Nome": "wqde",
+    "Prezzo": 132.0,
+    "Dettaglio": "ASFD",
+    "Immagine": "img/default.jpg",
+    "Quantita": 12,
+    "Categoria": "Categoria3"
+  },
+  {
+    "Id": 12,
+    "Nome": "QWEFR",
+    "Prezzo": 12.0,
+    "Dettaglio": "SDF",
+    "Immagine": "img/default.jpg",
+    "Quantita": 12,
+    "Categoria": "Categoria3"
+  },
+  {
+    "Id": 13,
+    "Nome": "AWED",
+    "Prezzo": 12.0,
+    "Dettaglio": "ZSDF",
+    "Immagine": "img/default.jpg",
+    "Quantita": 12,
+    "Categoria": "Categoria2"
+  },
+  {
+    "Id": 14,
+    "Nome": "QWD",
+    "Prezzo": 1221.0,
+    "Dettaglio": "ZSDF",
+    "Immagine": "img/default.jpg",
+    "Quantita": 12,
+    "Categoria": "Categoria2"
   }
 ]
