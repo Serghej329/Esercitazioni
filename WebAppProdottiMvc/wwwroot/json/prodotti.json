@@ -1,39 +1,12 @@
 [
   {
-    "Id": 8,
-    "Nome": "cipolle",
-    "Prezzo": 20.0,
-    "Dettaglio": "tante cipolle di tropea",
-    "Immagine": "img/img3.jpg",
-    "Quantita": 10,
-    "Categoria": "frutta&verdura"
-  },
-  {
-    "Id": 9,
-    "Nome": "mario",
-    "Prezzo": 1234.0,
-    "Dettaglio": "fwe",
-    "Immagine": "img/default.jpg",
-    "Quantita": 10,
-    "Categoria": "frutta&verdura"
-  },
-  {
     "Id": 10,
     "Nome": "EWFDAW",
-    "Prezzo": 23.0,
+    "Prezzo": 25.0,
     "Dettaglio": "qsdxc",
     "Immagine": "img/default.jpg",
-    "Quantita": 12,
+    "Quantita": 10,
     "Categoria": "Categoria2"
-  },
-  {
-    "Id": 11,
-    "Nome": "wqde",
-    "Prezzo": 132.0,
-    "Dettaglio": "ASFD",
-    "Immagine": "img/default.jpg",
-    "Quantita": 12,
-    "Categoria": "Categoria3"
   },
   {
     "Id": 12,
@@ -61,5 +34,23 @@
     "Immagine": "img/default.jpg",
     "Quantita": 12,
     "Categoria": "Categoria2"
+  },
+  {
+    "Id": 15,
+    "Nome": "cipolle",
+    "Prezzo": 1.0,
+    "Dettaglio": "cipolle di tropea",
+    "Immagine": "img/img3.jpg",
+    "Quantita": 150,
+    "Categoria": "frutta&verdura"
+  },
+  {
+    "Id": 16,
+    "Nome": "abcd",
+    "Prezzo": 15.0,
+    "Dettaglio": "abcd",
+    "Immagine": "img/default.jpg",
+    "Quantita": 12,
+    "Categoria": "frutta&verdura"
   }
 ]

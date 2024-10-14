@@ -1,0 +1,47 @@
+[
+  {
+    "Id": 10,
+    "Nome": "aiutooo",
+    "Prezzo": 25.0,
+    "Dettaglio": "qsdxc",
+    "Immagine": "img/default.jpg",
+    "Quantita": 10,
+    "Categoria": "Categoria2"
+  },
+  {
+    "Id": 13,
+    "Nome": "AWED",
+    "Prezzo": 12.0,
+    "Dettaglio": "ZSDF",
+    "Immagine": "img/default.jpg",
+    "Quantita": 12,
+    "Categoria": "Categoria2"
+  },
+  {
+    "Id": 14,
+    "Nome": "QWD",
+    "Prezzo": 1221.0,
+    "Dettaglio": "ZSDF",
+    "Immagine": "img/default.jpg",
+    "Quantita": 12,
+    "Categoria": "Categoria2"
+  },
+  {
+    "Id": 15,
+    "Nome": "cipolle",
+    "Prezzo": 1.0,
+    "Dettaglio": "cipolle di tropea",
+    "Immagine": "img/img3.jpg",
+    "Quantita": 150,
+    "Categoria": "frutta&verdura"
+  },
+  {
+    "Id": 16,
+    "Nome": "abcd",
+    "Prezzo": 15.0,
+    "Dettaglio": "abcd",
+    "Immagine": "img/default.jpg",
+    "Quantita": 12,
+    "Categoria": "frutta&verdura"
+  }
+]
